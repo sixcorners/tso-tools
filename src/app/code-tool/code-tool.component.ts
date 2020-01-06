@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { ChartNavigatorService } from './chart-navigator.service';
 
 @Component({
   selector: 'app-code-tool',
@@ -16,6 +17,6 @@ export class CodeToolComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver, readonly navigator: ChartNavigatorService) {}
 
 }
