@@ -20,6 +20,7 @@ export class RoomGuard implements CanActivate {
   }
 }
 
+// https://stackoverflow.com/a/53429547/988346
 function getResolvedUrl(route: ActivatedRouteSnapshot): string {
   return route.pathFromRoot
     .map(v => v.url.map(segment => segment.toString()).join('/'))
