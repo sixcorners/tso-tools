@@ -5,6 +5,7 @@ import {
   RouterStateSnapshot,
   Router
 } from '@angular/router';
+import shortid from 'shortid';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class RoomGuard implements CanActivate {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.router.createUrlTree(
-      [getResolvedUrl(next) + '/' + Math.random()]
+      [getResolvedUrl(next) + '/' + shortid.generate()]
     );
   }
 }
