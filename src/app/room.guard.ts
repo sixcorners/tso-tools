@@ -7,6 +7,7 @@ import {
 } from '@angular/router';
 import shortid from 'shortid';
 
+// https://juristr.com/blog/2018/11/better-route-guard-redirects/
 @Injectable({
   providedIn: 'root'
 })
