@@ -22,7 +22,6 @@
       </button>
       <span>tso-tools</span>
     </mat-toolbar>
-    <img src="assets/charts/{{navigator.currentChart.image}}"><br>
     <select (change)="navigator.moveChart($event.target.value)">
       <option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">{{entry.chart.name}}</option>
     </select><br>
@@ -31,6 +30,7 @@
     </span><br>
     <button *ngFor="let choice of navigator.currentChoices" (click)="navigator.moveNode(choice.id)">
       {{choice.matches}}
-    </button>
+    </button><br>
+    <img src="assets/charts/{{navigator.currentChart.image}}"><br>
   </mat-sidenav-content>
 </mat-sidenav-container>
