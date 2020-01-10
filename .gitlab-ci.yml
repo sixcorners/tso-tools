@@ -16,6 +16,6 @@ deploy:
   variables:
     GIT_STRATEGY: none
   script:
-    - npx ipfs-deploy -p pinata -d cloudflare
+    - npx ipfs-deploy -p pinata -d cloudflare -C -O
   rules:
     - if: '$CI_COMMIT_REF_NAME == "master"'
