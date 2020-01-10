@@ -1,12 +1,19 @@
+image: node
+cache:
+  paths:
+    - node_modules/
+before_script:
+  - npm install
 build:
   stage: build
-  image: node:latest
   script:
-    - npm install
     - npm run build
-  cache:
-    paths:
-      - node_modules/
   artifacts:
     paths:
       - dist/
+deploy:
+  stage: deploy
+  script:
+    - npm run deploy
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "master"'
