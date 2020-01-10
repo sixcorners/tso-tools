@@ -13,7 +13,9 @@ build:
       - dist/
 deploy:
   stage: deploy
+  variables:
+    GIT_STRATEGY: none
   script:
-    - npm run deploy
+    - npx ipfs-deploy -p pinata -d cloudflare
   rules:
     - if: '$CI_COMMIT_REF_NAME == "master"'
