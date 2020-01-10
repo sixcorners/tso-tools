@@ -2,11 +2,10 @@ image: node
 cache:
   paths:
     - node_modules/
-before_script:
-  - npm install
 build:
   stage: build
   script:
+    - npm install
     - npm run build
   artifacts:
     expire_in: 1 week
