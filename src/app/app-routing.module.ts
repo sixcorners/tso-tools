@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RoomGuard } from './room.guard';
+import { RoomGuard } from './room/room.guard';
 import { CodeToolComponent } from './code-tool/code-tool.component';
 
 const routes: Routes = [
