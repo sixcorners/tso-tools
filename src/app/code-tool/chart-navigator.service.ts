@@ -281,9 +281,10 @@ export class ChartNavigatorService {
       .where(h2.id.isNull())
       .orderBy(node.matches);
     db.observe(query, changes => {
-      this.currentChoices = changes[changes.length - 1].object.map(
-        result => result.node
-      );
+      this.currentChoices = this.currentChoices.map(x => null)
+      changes[changes.length - 1].object.forEach(result => {
+        this.currentChoices[result.node.matches] = result.node
+      });
     });
   });
 

@@ -1,10 +1,47 @@
 <select (change)="navigator.moveChart($event.target.value)">
   <option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">{{entry.chart.name}}</option>
-</select><br>
-<span *ngFor="let letter of navigator.currentNode.combination.split('')" style="font-size: xx-large">
-  {{letter}}
-</span><br>
-<button *ngFor="let choice of navigator.currentChoices" (click)="navigator.moveNode(choice.id)">
-  {{choice.matches}}
-</button><br>
+</select>
+<br>
+<span
+  style="font-size: xx-large">
+  {{navigator.currentNode.combination[0]}}
+</span>
+<span
+  style="font-size: xx-large">
+  {{navigator.currentNode.combination[1]}}
+</span>
+<span
+  style="font-size: xx-large">
+  {{navigator.currentNode.combination[2]}}
+</span>
+<br>
+<button
+  [disabled]="!navigator.currentChoices[0]"
+  (click)="navigator.moveNode(navigator.currentChoices[0].id)"
+  mat-raised-button
+  color="accent">
+  0
+</button>
+<button
+  [disabled]="!navigator.currentChoices[1]"
+  (click)="navigator.moveNode(navigator.currentChoices[1].id)"
+  mat-raised-button
+  color="accent">
+  1
+</button>
+<button
+  [disabled]="!navigator.currentChoices[2]"
+  (click)="navigator.moveNode(navigator.currentChoices[2].id)"
+  mat-raised-button
+  color="accent">
+  2
+</button>
+<button
+  [disabled]="!navigator.currentChoices[3]"
+  (click)="navigator.moveNode(navigator.currentChoices[3].id)"
+  mat-raised-button
+  color="accent">
+  3
+</button>
+<br>
 <img src="assets/charts/{{navigator.currentChart.image}}"><br>
