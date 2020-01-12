@@ -12,11 +12,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { ChartNavigatorService } from "./code-tool/chart-navigator.service";
+import { RoomComponent } from './room/room/room.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CodeToolComponent
+    CodeToolComponent,
+    RoomComponent
   ],
   imports: [
     BrowserModule,
