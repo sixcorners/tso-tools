@@ -18,6 +18,7 @@
 <button
   [disabled]="!navigator.currentChoices[0]"
   (click)="navigator.moveNode(navigator.currentChoices[0].id)"
+  (window:keydown.0)="navigator.moveNode(navigator.currentChoices[0].id)"
   mat-raised-button
   color="accent">
   0
@@ -25,6 +26,7 @@
 <button
   [disabled]="!navigator.currentChoices[1]"
   (click)="navigator.moveNode(navigator.currentChoices[1].id)"
+  (window:keydown.1)="navigator.moveNode(navigator.currentChoices[1].id)"
   mat-raised-button
   color="accent">
   1
@@ -32,6 +34,7 @@
 <button
   [disabled]="!navigator.currentChoices[2]"
   (click)="navigator.moveNode(navigator.currentChoices[2].id)"
+  (window:keydown.2)="navigator.moveNode(navigator.currentChoices[2].id)"
   mat-raised-button
   color="accent">
   2
@@ -39,6 +42,7 @@
 <button
   [disabled]="!navigator.currentChoices[3]"
   (click)="navigator.moveNode(navigator.currentChoices[3].id)"
+  (window:keydown.3)="navigator.moveNode(navigator.currentChoices[3].id)"
   mat-raised-button
   color="accent">
   3
