@@ -1,36 +1,10 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>tso-tools</span>
-    </mat-toolbar>
-    <select (change)="navigator.moveChart($event.target.value)">
-      <option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">{{entry.chart.name}}</option>
-    </select><br>
-    <span *ngFor="let letter of navigator.currentNode.combination.split('')" style="font-size: xx-large">
-      {{letter}}
-    </span><br>
-    <button *ngFor="let choice of navigator.currentChoices" (click)="navigator.moveNode(choice.id)">
-      {{choice.matches}}
-    </button><br>
-    <img src="assets/charts/{{navigator.currentChart.image}}"><br>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<select (change)="navigator.moveChart($event.target.value)">
+  <option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">{{entry.chart.name}}</option>
+</select><br>
+<span *ngFor="let letter of navigator.currentNode.combination.split('')" style="font-size: xx-large">
+  {{letter}}
+</span><br>
+<button *ngFor="let choice of navigator.currentChoices" (click)="navigator.moveNode(choice.id)">
+  {{choice.matches}}
+</button><br>
+<img src="assets/charts/{{navigator.currentChart.image}}"><br>
