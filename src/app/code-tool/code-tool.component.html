@@ -1,7 +1,3 @@
-<select (change)="navigator.moveChart($event.target.value)">
-  <option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">{{entry.chart.name}}</option>
-</select>
-<br>
 <span>
   {{navigator.currentNode.combination[0]}}
 </span>
@@ -45,4 +41,8 @@
   3
 </button>
 <br>
-<img src="assets/charts/{{navigator.currentChart.image}}"><br>
+<mat-select (change)="navigator.moveChart($event.target.value)" [value]="navigator.currentChart.id">
+  <mat-option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">{{entry.chart.name}}</mat-option>
+</mat-select>
+<br>
+<img src="assets/charts/{{navigator.currentChart.image}}">
