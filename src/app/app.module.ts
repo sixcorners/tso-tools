@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
 import { ChartNavigatorService } from './code-tool/chart-navigator.service';
 import { RoomComponent } from './room/room.component';
 import { PizzaToolComponent } from './pizza-tool/pizza-tool.component';
@@ -31,7 +32,8 @@ import { PizzaToolComponent } from './pizza-tool/pizza-tool.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatSelectModule
   ],
   providers: [ChartNavigatorService],
   bootstrap: [AppComponent]
