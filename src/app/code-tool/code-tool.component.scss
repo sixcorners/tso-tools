@@ -1,5 +1,21 @@
-span {
+.letter {
   font-size: xx-large;
+}
+
+.letter.active {
+  font-size: 1200%;
+}
+
+.letter.body.active {
+  color: red;
+}
+
+.letter.mech.active {
+  color: green;
+}
+
+.letter.logic.active {
+  color: blue;
 }
 
 img {
