@@ -44,8 +44,11 @@
   3
 </button>
 <br>
-<mat-select (change)="navigator.moveChart($event.target.value)" [value]="navigator.currentChart.id">
-  <mat-option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">{{entry.chart.name}}</mat-option>
-</mat-select>
+<mat-form-field>
+  <mat-label>Chart</mat-label>
+  <mat-select (change)="navigator.moveChart($event.target.value)" [value]="navigator.currentChart.id">
+    <mat-option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">{{entry.chart.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
 <br>
 <img src="assets/charts/{{navigator.currentChart.image}}">
