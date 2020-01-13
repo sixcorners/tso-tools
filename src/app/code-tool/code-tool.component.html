@@ -46,7 +46,7 @@
 <br>
 <mat-form-field>
   <mat-label>Chart</mat-label>
-  <mat-select (change)="navigator.moveChart($event.target.value)" [value]="navigator.currentChart.id">
+  <mat-select (selectionChange)="navigator.moveChart($event.value)" [value]="navigator.currentChart.id">
     <mat-option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">{{entry.chart.name}}</mat-option>
   </mat-select>
 </mat-form-field>
