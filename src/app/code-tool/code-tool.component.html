@@ -1,12 +1,15 @@
-<span>
-  {{navigator.currentNode.combination[0]}}
-</span>
-<span>
-  {{navigator.currentNode.combination[1]}}
-</span>
-<span>
-  {{navigator.currentNode.combination[2]}}
-</span>
+<mat-checkbox [(ngModel)]="body">body</mat-checkbox><br>
+<mat-checkbox [(ngModel)]="mech">mech</mat-checkbox><br>
+<mat-checkbox [(ngModel)]="logic">logic</mat-checkbox><br>
+<span class="letter body" [class.active]="body">{{
+  navigator.currentNode.combination[0]
+}}</span>
+<span class="letter mech" [class.active]="mech">{{
+  navigator.currentNode.combination[1]
+}}</span>
+<span class="letter logic" [class.active]="logic">{{
+  navigator.currentNode.combination[2]
+}}</span>
 <br>
 <button
   [disabled]="!navigator.currentChoices[0]"
