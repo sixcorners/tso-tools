@@ -7,6 +7,9 @@ import { ChartNavigatorService } from './chart-navigator.service';
   styleUrls: ['./code-tool.component.scss']
 })
 export class CodeToolComponent implements OnInit {
+  body = false;
+  mech = false;
+  logic = false;
 
   constructor(readonly navigator: ChartNavigatorService) { }
 
