@@ -324,31 +324,29 @@ export class ChartNavigatorService {
     });
   });
 
-  moveChart(id: number) {
-    this.db.then(db => {
-      const history = db.getSchema().table('history');
-      const row = { chart_id: id, node_id: this.currentNode.id };
-      if (!this.currentNode.parent_id) {
-        row.node_id = this.availableCharts[id - 1].node.id;
-      }
-      db.insert()
-        .into(history)
-        .values([history.createRow(row)])
-        .exec();
-    });
+  async moveChart(id: number) {
+    const db = await this.db;
+    const history = db.getSchema().table('history');
+    const row = { chart_id: id, node_id: this.currentNode.id };
+    if (!this.currentNode.parent_id) {
+      row.node_id = this.availableCharts[id - 1].node.id;
+    }
+    db.insert()
+      .into(history)
+      .values([history.createRow(row)])
+      .exec();
   }
 
-  moveNode(id: number) {
-    this.db.then(db => {
-      const history = db.getSchema().table('history');
-      const row = {
-        chart_id: this.history[this.history.length - 1].history.chart_id,
-        node_id: id
-      };
-      db.insert()
-        .into(history)
-        .values([history.createRow(row)])
-        .exec();
-    });
+  async moveNode(id: number) {
+    const db = await this.db;
+    const history = db.getSchema().table('history');
+    const row = {
+      chart_id: this.history[this.history.length - 1].history.chart_id,
+      node_id: id
+    };
+    db.insert()
+      .into(history)
+      .values([history.createRow(row)])
+      .exec();
   }
 }
