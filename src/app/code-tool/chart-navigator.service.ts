@@ -40,16 +40,14 @@ export class ChartNavigatorService {
       await db
         .insert()
         .into(chart)
-        .values(
-          [
-            [1, 'Madison\'s CBU Chart', 'cbuchart.gif'],
-            [2, 'Thraxis optimized by Madison', 'cbuthraxisopt.gif'],
-            [3, 'The Hermione CBU Chart', 'chart.gif'],
-            [4, 'Jandrea\'s NEVER WRONG Codebreaker Chart', 'jnw.jpg'],
-            [5, 'Twiddler\'s CBU Code Smasher 4.0', 'twiddler_mim_code2.gif'],
-            [6, 'tso0112\'s chart', ''],
-          ].map(r => chart.createRow({ id: r[0], name: r[1], image: r[2] }))
-        )
+        .values([
+          ['Madison\'s CBU Chart', 'cbuchart.gif'], // 1
+          ['Thraxis optimized by Madison', 'cbuthraxisopt.gif'], // 2
+          ['The Hermione CBU Chart', 'chart.gif'], // 3
+          ['Jandrea\'s NEVER WRONG Codebreaker Chart', 'jnw.jpg'], // 4
+          ['Twiddler\'s CBU Code Smasher 4.0', 'twiddler_mim_code2.gif'], // 5
+          ['tso0112\'s chart', ''] // 6
+        ].map(r => chart.createRow({ name: r[0], image: r[1] })))
         .exec();
 
       const node = db.getSchema().table('node');
