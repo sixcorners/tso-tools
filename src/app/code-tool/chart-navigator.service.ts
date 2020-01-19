@@ -46,7 +46,8 @@ export class ChartNavigatorService {
             [2, 'Thraxis optimized by Madison', 'cbuthraxisopt.gif'],
             [3, 'The Hermione CBU Chart', 'chart.gif'],
             [4, 'Jandrea\'s NEVER WRONG Codebreaker Chart', 'jnw.jpg'],
-            [5, 'Twiddler\'s CBU Code Smasher 4.0', 'twiddler_mim_code2.gif']
+            [5, 'Twiddler\'s CBU Code Smasher 4.0', 'twiddler_mim_code2.gif'],
+            [6, 'tso0112\'s chart', ''],
           ].map(r => chart.createRow({ id: r[0], name: r[1], image: r[2] }))
         )
         .exec();
@@ -231,6 +232,43 @@ export class ChartNavigatorService {
           [25, 1, 'CBC'], // 26
           [20, 0, 'CCC'] // 27
         ].map(createRowForChart(5)))
+        .exec();
+      await db
+        .insert()
+        .into(node)
+        .values([
+          [null, 3, 'AAA'], // 1
+          [1, 0, 'BBB'], // 2
+          [2, 0, 'CCC'], // 3
+          [2, 1, 'ABC'], // 4
+          [4, 0, 'CCB'], // 5
+          [4, 1, 'BCC'], // 6
+          [4, 2, 'CBC'], // 7
+          [2, 2, 'ABC'], // 8
+          [8, 0, 'BCB'], // 9
+          [8, 1, 'CBB'], // 10
+          [8, 2, 'BBC'], // 11
+          [1, 1, 'AAB'], // 12
+          [12, 0, 'BBA'], // 13
+          [13, 1, 'CCA'], // 14
+          [13, 2, 'BCA'], // 15
+          [15, 1, 'CBA'], // 16
+          [12, 1, 'ABC'], // 17
+          [17, 1, 'CAC'], // 18
+          [18, 2, 'BAC'], // 19
+          [17, 2, 'ACC'], // 20
+          [12, 2, 'ABB'], // 21
+          [21, 1, 'BAB'], // 22
+          [22, 2, 'CAB'], // 23
+          [21, 2, 'ACB'], // 24
+          [1, 2, 'ABC'], // 25
+          [25, 0, 'BAA'], // 26
+          [26, 2, 'CAA'], // 27
+          [25, 1, 'AAB'], // 28
+          [28, 1, 'ACA'], // 29
+          [25, 2, 'AAC'], // 30
+          [30, 1, 'ABA'] // 31
+        ].map(createRowForChart(6)))
         .exec();
 
       const { chart_id, id } = (await db.select()
