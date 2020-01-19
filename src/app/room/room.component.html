@@ -3,7 +3,7 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar>Room {{ room.name }}</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item href="#">Link 1</a>
       <a mat-list-item href="#">Link 2</a>
@@ -11,7 +11,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" role="toolbar">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -20,6 +20,9 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>tso-tools</span>
+      <span class="spacer"></span>
+      <a mat-button routerLink="/code/{{ room.name }}" routerLinkActive="active">Code</a>
+      <a mat-button routerLink="/pizza/{{ room.name }}" routerLinkActive="active">Pizza</a>
     </mat-toolbar>
 	<router-outlet></router-outlet>
   </mat-sidenav-content>

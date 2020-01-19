@@ -15,3 +15,15 @@
   top: 0;
   z-index: 1;
 }
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar a {
+  padding: 0 14px;
+}
+
+a.active, a:hover {
+  color: #ce93d8;
+}
