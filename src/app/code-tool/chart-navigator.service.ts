@@ -233,11 +233,16 @@ export class ChartNavigatorService {
         ].map(createRowForChart(5)))
         .exec();
 
+      const { chart_id, id } = (await db.select()
+        .from(node)
+        .orderBy(node.id)
+        .limit(1)
+        .exec())[0];
       const history = db.getSchema().table('history');
       await db
         .insert()
         .into(history)
-        .values([history.createRow({ chart_id: 1, node_id: 101 })])
+        .values([history.createRow({ chart_id, node_id: id })])
         .exec();
     });
   }
