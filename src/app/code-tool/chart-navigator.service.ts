@@ -340,7 +340,7 @@ export class ChartNavigatorService {
           lf.op.and(node.parent_id.isNull(), node.chart_id.eq(h1.chart_id))
         )
       )
-      .leftOuterJoin(h2, h2.id.gt(h1.id))
+      .leftOuterJoin(h2, h2.id.gt(h1.id)) // https://dba.stackexchange.com/a/192694
       .where(h2.id.isNull());
     db.observe(query, changes => {
       this.currentChoices = this.currentChoices.map(x => null);
