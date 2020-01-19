@@ -8,15 +8,13 @@ import { PizzaToolComponent } from './pizza-tool/pizza-tool.component';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'code' },
   { path: 'code', pathMatch: 'full', canActivate: [RoomGuard], children: [] },
-  { path: 'code/:room', component: RoomComponent, children: [{
-    path: '',
-    component: CodeToolComponent
-  }]},
+  { path: 'code/:room', component: RoomComponent, children: [
+    { path: '', component: CodeToolComponent }
+  ]},
   { path: 'pizza', pathMatch: 'full', canActivate: [RoomGuard], children: [] },
-  { path: 'pizza/:room', component: RoomComponent, children: [{
-    path: '',
-    component: PizzaToolComponent
-  }]},
+  { path: 'pizza/:room', component: RoomComponent, children: [
+    { path: '', component: PizzaToolComponent }
+  ]},
 ];
 
 @NgModule({
