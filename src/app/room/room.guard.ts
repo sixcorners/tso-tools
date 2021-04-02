@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot,
   Router
 } from '@angular/router';
-import shortid from 'shortid';
+import { nanoid } from 'nanoid'
 
 // https://juristr.com/blog/2018/11/better-route-guard-redirects/
 @Injectable({
@@ -16,7 +16,7 @@ export class RoomGuard implements CanActivate {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.router.createUrlTree(
-      [getResolvedUrl(next) + '/' + shortid.generate()]
+      [getResolvedUrl(next) + '/' + nanoid()]
     );
   }
 }

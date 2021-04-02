@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { RoomGuard } from './room/room.guard';
 import { RoomComponent } from './room/room.component';
 import { CodeToolComponent } from './code-tool/code-tool.component';
