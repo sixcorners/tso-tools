@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PizzaToolComponent } from './pizza-tool.component';
 
@@ -6,7 +6,7 @@ describe('PizzaToolComponent', () => {
   let component: PizzaToolComponent;
   let fixture: ComponentFixture<PizzaToolComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PizzaToolComponent ]
     })
