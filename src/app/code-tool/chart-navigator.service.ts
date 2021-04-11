@@ -42,7 +42,7 @@ export class ChartNavigatorService {
         .insert()
         .into(chart)
         .values([
-          ['Madison\'s CBU Chart', 'cbuchart.gif'], // 1
+          ['Madison’s CBU Chart', 'cbuchart.gif'], // 1
           ['Thraxis optimized by Madison', 'cbuthraxisopt.gif'], // 2
           ['The Hermione CBU Chart', 'chart.gif'], // 3
           ['Jandrea\'s NEVER WRONG Codebreaker Chart', 'jnw.jpg'], // 4
