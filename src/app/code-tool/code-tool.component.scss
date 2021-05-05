@@ -1,23 +1,45 @@
-.letter {
+.tool {
+  display: inline-flex;
+  flex-wrap: wrap;
+  vertical-align: top;
+}
+
+.checkboxes {
+  display: flex;
+  flex-direction: column;
+}
+
+.controls {
+  margin: auto 8px;
+}
+
+.letters {
+  flex: 100%;
+  margin: 16px;
   font-size: xx-large;
 }
 
-.letter.active {
+.letters > .active {
   font-size: 1200%;
+  line-height: .8;
 }
 
-.letter.body.active {
+.body.active {
   color: lightpink;
 }
 
-.letter.mech.active {
+.mech.active {
   color: lightgreen;
 }
 
-.letter.logic.active {
+.logic.active {
   color: lightblue;
 }
 
-button, .letter {
+.checkboxes, button, .letters > * {
   margin: 0 4px;
+}
+
+.chart {
+  display: inline-block;
 }
