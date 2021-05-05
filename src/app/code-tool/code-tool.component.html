@@ -1,55 +1,63 @@
-<mat-checkbox [(ngModel)]="body">body</mat-checkbox><br>
-<mat-checkbox [(ngModel)]="mech">mech</mat-checkbox><br>
-<mat-checkbox [(ngModel)]="logic">logic</mat-checkbox><br>
-<span class="letter body" [class.active]="body">{{
-  navigator.currentNode.combination[0]
-}}</span>
-<span class="letter mech" [class.active]="mech">{{
-  navigator.currentNode.combination[1]
-}}</span>
-<span class="letter logic" [class.active]="logic">{{
-  navigator.currentNode.combination[2]
-}}</span>
-<br>
-<button
-  [disabled]="!navigator.currentChoices[0]"
-  (click)="navigator.moveNode(navigator.currentChoices[0].id)"
-  (window:keydown.`)="navigator.moveNode(navigator.currentChoices[0].id)"
-  (window:keydown.0)="navigator.moveNode(navigator.currentChoices[0].id)"
-  mat-raised-button
-  color="accent">
-  0
-</button>
-<button
-  [disabled]="!navigator.currentChoices[1]"
-  (click)="navigator.moveNode(navigator.currentChoices[1].id)"
-  (window:keydown.1)="navigator.moveNode(navigator.currentChoices[1].id)"
-  mat-raised-button
-  color="accent">
-  1
-</button>
-<button
-  [disabled]="!navigator.currentChoices[2]"
-  (click)="navigator.moveNode(navigator.currentChoices[2].id)"
-  (window:keydown.2)="navigator.moveNode(navigator.currentChoices[2].id)"
-  mat-raised-button
-  color="accent">
-  2
-</button>
-<button
-  [disabled]="!navigator.currentChoices[3]"
-  (click)="navigator.moveNode(navigator.currentChoices[3].id)"
-  (window:keydown.3)="navigator.moveNode(navigator.currentChoices[3].id)"
-  mat-raised-button
-  color="warn">
-  3
-</button>
-<br>
-<mat-form-field>
-  <mat-label>Chart</mat-label>
-  <mat-select (selectionChange)="navigator.moveChart($event.value)" [value]="navigator.currentChart.id">
-    <mat-option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">{{entry.chart.name}}</mat-option>
-  </mat-select>
-</mat-form-field>
-<br>
-<img src="assets/charts/{{navigator.currentChart.image}}">
+<div class="tool">
+  <div class="letters">
+    <span class="body" [class.active]="body">{{
+      navigator.currentNode.combination[0]
+    }}</span>
+    <span class="mech" [class.active]="mech">{{
+      navigator.currentNode.combination[1]
+    }}</span>
+    <span class="logic" [class.active]="logic">{{
+      navigator.currentNode.combination[2]
+    }}</span>
+  </div>
+  <div class="checkboxes">
+    <mat-checkbox [(ngModel)]="body">body</mat-checkbox>
+    <mat-checkbox [(ngModel)]="mech">mech</mat-checkbox>
+    <mat-checkbox [(ngModel)]="logic">logic</mat-checkbox>
+  </div>
+  <div class="controls">
+    <button
+      [disabled]="!navigator.currentChoices[0]"
+      (click)="navigator.moveNode(navigator.currentChoices[0].id)"
+      (window:keydown.`)="navigator.moveNode(navigator.currentChoices[0].id)"
+      (window:keydown.0)="navigator.moveNode(navigator.currentChoices[0].id)"
+      mat-raised-button
+      color="accent">{{
+      0
+      }}</button>
+    <button
+      [disabled]="!navigator.currentChoices[1]"
+      (click)="navigator.moveNode(navigator.currentChoices[1].id)"
+      (window:keydown.1)="navigator.moveNode(navigator.currentChoices[1].id)"
+      mat-raised-button
+      color="accent">{{
+      1
+      }}</button>
+    <button
+      [disabled]="!navigator.currentChoices[2]"
+      (click)="navigator.moveNode(navigator.currentChoices[2].id)"
+      (window:keydown.2)="navigator.moveNode(navigator.currentChoices[2].id)"
+      mat-raised-button
+      color="accent">{{
+      2
+      }}</button>
+    <button
+      [disabled]="!navigator.currentChoices[3]"
+      (click)="navigator.moveNode(navigator.currentChoices[3].id)"
+      (window:keydown.3)="navigator.moveNode(navigator.currentChoices[3].id)"
+      mat-raised-button
+      color="warn">{{
+      3
+      }}</button>
+  </div>
+</div>
+<div class="chart">
+  <mat-form-field>
+    <mat-label>Chart</mat-label>
+    <mat-select (selectionChange)="navigator.moveChart($event.value)" [value]="navigator.currentChart.id">
+      <mat-option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">{{entry.chart.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <img src="assets/charts/{{navigator.currentChart.image}}">
+</div>
