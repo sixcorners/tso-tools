@@ -1,4 +1,8 @@
 <mat-toolbar>History</mat-toolbar>
 <mat-nav-list>
-  <a mat-list-item *ngFor="let entry of navigator.history">{{entry.node.combination}}</a>
+  <a mat-list-item
+    *ngFor="let entry of navigator.history"
+    (click)="navigator.moveNode(entry.node.id)">{{
+    entry.node.combination
+  }}</a>
 </mat-nav-list>
