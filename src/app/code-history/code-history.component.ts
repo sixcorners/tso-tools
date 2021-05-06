@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChartNavigatorService } from '../code-tool/chart-navigator.service';
 
 @Component({
   selector: 'app-code-history',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CodeHistoryComponent implements OnInit {
 
-  constructor() { }
+  constructor(readonly navigator: ChartNavigatorService) { }
 
   ngOnInit(): void {
   }
