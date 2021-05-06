@@ -15,7 +15,7 @@
     <mat-checkbox [(ngModel)]="mech">mech</mat-checkbox>
     <mat-checkbox [(ngModel)]="logic">logic</mat-checkbox>
   </div>
-  <div class="controls">
+  <div class="buttons">
     <button
       [disabled]="!navigator.currentChoices[0]"
       (click)="navigator.moveNode(navigator.currentChoices[0].id)"
