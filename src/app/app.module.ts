@@ -17,13 +17,15 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ChartNavigatorService } from './code-tool/chart-navigator.service';
 import { RoomComponent } from './room/room.component';
 import { PizzaToolComponent } from './pizza-tool/pizza-tool.component';
+import { CodeHistoryComponent } from './code-history/code-history.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CodeToolComponent,
     RoomComponent,
-    PizzaToolComponent
+    PizzaToolComponent,
+    CodeHistoryComponent
   ],
   imports: [
     BrowserModule,
