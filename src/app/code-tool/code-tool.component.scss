@@ -1,20 +1,23 @@
 .tool {
-  display: inline-flex;
-  flex-wrap: wrap;
+  display: inline-block;
   vertical-align: top;
 }
 
 .checkboxes {
-  display: flex;
-  flex-direction: column;
+  display: inline-block;
+  vertical-align: middle;
 }
 
-.controls {
+.checkboxes > * {
+  display: block;
+}
+
+.buttons {
+  display: inline-block;
   margin: auto 8px;
 }
 
 .letters {
-  flex: 100%;
   margin: 16px;
   font-size: xx-large;
 }
@@ -36,7 +39,7 @@
   color: lightblue;
 }
 
-.checkboxes, button, .letters > * {
+.buttons, button, .letters > * {
   margin: 0 4px;
 }
 
