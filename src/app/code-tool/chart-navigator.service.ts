@@ -317,31 +317,27 @@ export class ChartNavigatorService {
   currentChoices = [];
   private currentChoicesQuery = this.db.then(db => {
     const node = db.getSchema().table('node');
-    const h1 = db
-      .getSchema()
-      .table('history')
-      .as('h1');
-    const h2 = db
-      .getSchema()
-      .table('history')
-      .as('h2');
+    const history = db.getSchema().table('history');
     const query = db
       .select()
       .from(node)
       .innerJoin(
-        h1,
+        history,
         lf.op.or(
-          node.parent_id.eq(h1.node_id),
-          lf.op.and(node.parent_id.isNull(), node.chart_id.eq(h1.chart_id))
+          node.parent_id.eq(history.node_id),
+          lf.op.and(node.parent_id.isNull(), node.chart_id.eq(history.chart_id))
         )
       )
-      .leftOuterJoin(h2, h2.id.gt(h1.id)) // https://dba.stackexchange.com/a/192694
-      .where(h2.id.isNull());
+      .orderBy(history.id, lf.Order.DESC)
+      .limit(4);
     db.observe(query, changes => {
-      this.currentChoices = this.currentChoices.map(x => null);
-      changes[changes.length - 1].object.forEach(result => {
+      this.currentChoices = [null, null, null, null];
+      let results = changes[changes.length - 1].object;
+      let last_history_id = results[0].history.id;
+      for (let result of results) {
+        if (result.history.id != last_history_id) break;
         this.currentChoices[result.node.matches] = result.node;
-      });
+      }
     });
   });
 
