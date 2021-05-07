@@ -302,20 +302,13 @@ export class ChartNavigatorService {
   currentChart: any = {};
   private currentChartQuery = this.db.then(db => {
     const chart = db.getSchema().table('chart');
-    const h1 = db
-      .getSchema()
-      .table('history')
-      .as('h1');
-    const h2 = db
-      .getSchema()
-      .table('history')
-      .as('h2');
+    const history = db.getSchema().table('history');
     const query = db
       .select()
       .from(chart)
-      .innerJoin(h1, h1.chart_id.eq(chart.id))
-      .leftOuterJoin(h2, h2.id.gt(h1.id))
-      .where(h2.id.isNull());
+      .innerJoin(history, history.chart_id.eq(chart.id))
+      .orderBy(history.id, lf.Order.DESC)
+      .limit(1);
     db.observe(query, changes => {
       this.currentChart = changes[changes.length - 1].object[0].chart;
     });
@@ -355,20 +348,13 @@ export class ChartNavigatorService {
   currentNode: any = { combination: 'AAA' };
   private currentNodeQuery = this.db.then(db => {
     const node = db.getSchema().table('node');
-    const h1 = db
-      .getSchema()
-      .table('history')
-      .as('h1');
-    const h2 = db
-      .getSchema()
-      .table('history')
-      .as('h2');
+    const history = db.getSchema().table('history');
     const query = db
       .select()
       .from(node)
-      .innerJoin(h1, h1.node_id.eq(node.id))
-      .leftOuterJoin(h2, h2.id.gt(h1.id))
-      .where(h2.id.isNull());
+      .innerJoin(history, history.node_id.eq(node.id))
+      .orderBy(history.id, lf.Order.DESC)
+      .limit(1);
     db.observe(query, changes => {
       this.currentNode = changes[changes.length - 1].object[0].node;
     });
