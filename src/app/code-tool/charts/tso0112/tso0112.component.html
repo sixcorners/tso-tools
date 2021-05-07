@@ -1,56 +1,56 @@
 <input type="checkbox" id="short">
-<span (click)="navigator.moveNodeRelative(0)"        >START - AAA</span><label for="short">short: </label>
-<span (click)="navigator.moveNodeRelative(1)"        >         |- 0 - BBB
-</span><span (click)="navigator.moveNodeRelative(2)" >         |        |- 0 - CCC (win)
-</span><span (click)="navigator.moveNodeRelative(3)" >         |        |- 1 - ABC
-</span><span (click)="navigator.moveNodeRelative(4)" >         |        |        |- 0 - CCB (win)
-</span><span (click)="navigator.moveNodeRelative(5)" >         |        |        |- 1 - BCC (win)
-</span><span (click)="navigator.moveNodeRelative(6)" >         |        |        |- 2 - CBC (win)
-</span><span class="full"                            >         |        |
-</span><span (click)="navigator.moveNodeRelative(7)" >         |        |- 2 - ABC
-</span><span (click)="navigator.moveNodeRelative(8)" >         |        |        |- 0 - BCB (win)
-</span><span (click)="navigator.moveNodeRelative(9)" >         |        |        |- 1 - CBB (win)
-</span><span (click)="navigator.moveNodeRelative(10)">         |        |        |- 2 - BBC (win)
-</span><span class="full"                            >         |        |
-</span><span class="full"                            >         |        |- 3 - (win)
-</span><span class="full"                            >         |
-</span><span (click)="navigator.moveNodeRelative(11)">         |- 1 - AAB
-</span><span (click)="navigator.moveNodeRelative(12)">         |        |- 0 - BBA
-</span><span (click)="navigator.moveNodeRelative(13)">         |        |        |- 1 - CCA (win)
-</span><span (click)="navigator.moveNodeRelative(14)">         |        |        |- 2 - BCA
-</span><span (click)="navigator.moveNodeRelative(15)">         |        |        |        |- 1 - CBA (win)
-</span><span class="full"                            >         |        |        |        |- 3 - (win)
-</span><span class="full"                            >         |        |        |
-</span><span class="full"                            >         |        |        |- 3 - (win)
-</span><span class="full"                            >         |        |
-</span><span (click)="navigator.moveNodeRelative(16)">         |        |- 1 - ABC
-</span><span (click)="navigator.moveNodeRelative(17)">         |        |        |- 1 - CAC
-</span><span (click)="navigator.moveNodeRelative(18)">         |        |        |        |- 2 - BAC (win)
-</span><span class="full"                            >         |        |        |        |- 3 - (win)
-</span><span class="full"                            >         |        |        |
-</span><span (click)="navigator.moveNodeRelative(19)">         |        |        |- 2 - ACC (win)
-</span><span class="full"                            >         |        |        |- 3 - (win)
-</span><span class="full"                            >         |        |
-</span><span (click)="navigator.moveNodeRelative(20)">         |        |- 2 - ABB
-</span><span (click)="navigator.moveNodeRelative(21)">         |                |- 1 - BAB
-</span><span (click)="navigator.moveNodeRelative(22)">         |                |        |- 2 - CAB (win)
-</span><span class="full"                            >         |                |        |- 3 - (win)
-</span><span class="full"                            >         |                |
-</span><span (click)="navigator.moveNodeRelative(23)">         |                |- 2 - ACB (win)
-</span><span class="full"                            >         |                |- 3 - (win)
-</span><span class="full"                            >         |
-</span><span (click)="navigator.moveNodeRelative(24)">         |- 2 - ABC
-</span><span (click)="navigator.moveNodeRelative(25)">         |        |- 0 - BAA
-</span><span (click)="navigator.moveNodeRelative(26)">         |        |        |- 2 - CAA (win)
-</span><span class="full"                            >         |        |        |- 3 - (win)
-</span><span class="full"                            >         |        |
-</span><span (click)="navigator.moveNodeRelative(27)">         |        |- 1 - AAB
-</span><span (click)="navigator.moveNodeRelative(28)">         |        |        |- 1 - ACA (win)
-</span><span class="full"                            >         |        |        |- 3 - (win)
-</span><span class="full"                            >         |        |
-</span><span (click)="navigator.moveNodeRelative(29)">         |        |- 2 - AAC
-</span><span (click)="navigator.moveNodeRelative(30)">         |                |- 1 - ABA (win)
-</span><span class="full"                            >         |                |- 3 - (win)
-</span><span class="full"                            >         |
-</span><span class="full"                            >         |- 3 - (win)
-</span><span class="full"                            >END</span>
+<span data-node="0"        >START - AAA</span><label for="short">short: </label>
+<span data-node="1"        >         |- 0 - BBB
+</span><span data-node="2" >         |        |- 0 - CCC (win)
+</span><span data-node="3" >         |        |- 1 - ABC
+</span><span data-node="4" >         |        |        |- 0 - CCB (win)
+</span><span data-node="5" >         |        |        |- 1 - BCC (win)
+</span><span data-node="6" >         |        |        |- 2 - CBC (win)
+</span><span               >         |        |
+</span><span data-node="7" >         |        |- 2 - ABC
+</span><span data-node="8" >         |        |        |- 0 - BCB (win)
+</span><span data-node="9" >         |        |        |- 1 - CBB (win)
+</span><span data-node="10">         |        |        |- 2 - BBC (win)
+</span><span               >         |        |
+</span><span               >         |        |- 3 - (win)
+</span><span               >         |
+</span><span data-node="11">         |- 1 - AAB
+</span><span data-node="12">         |        |- 0 - BBA
+</span><span data-node="13">         |        |        |- 1 - CCA (win)
+</span><span data-node="14">         |        |        |- 2 - BCA
+</span><span data-node="15">         |        |        |        |- 1 - CBA (win)
+</span><span               >         |        |        |        |- 3 - (win)
+</span><span               >         |        |        |
+</span><span               >         |        |        |- 3 - (win)
+</span><span               >         |        |
+</span><span data-node="16">         |        |- 1 - ABC
+</span><span data-node="17">         |        |        |- 1 - CAC
+</span><span data-node="18">         |        |        |        |- 2 - BAC (win)
+</span><span               >         |        |        |        |- 3 - (win)
+</span><span               >         |        |        |
+</span><span data-node="19">         |        |        |- 2 - ACC (win)
+</span><span               >         |        |        |- 3 - (win)
+</span><span               >         |        |
+</span><span data-node="20">         |        |- 2 - ABB
+</span><span data-node="21">         |                |- 1 - BAB
+</span><span data-node="22">         |                |        |- 2 - CAB (win)
+</span><span               >         |                |        |- 3 - (win)
+</span><span               >         |                |
+</span><span data-node="23">         |                |- 2 - ACB (win)
+</span><span               >         |                |- 3 - (win)
+</span><span               >         |
+</span><span data-node="24">         |- 2 - ABC
+</span><span data-node="25">         |        |- 0 - BAA
+</span><span data-node="26">         |        |        |- 2 - CAA (win)
+</span><span               >         |        |        |- 3 - (win)
+</span><span               >         |        |
+</span><span data-node="27">         |        |- 1 - AAB
+</span><span data-node="28">         |        |        |- 1 - ACA (win)
+</span><span               >         |        |        |- 3 - (win)
+</span><span               >         |        |
+</span><span data-node="29">         |        |- 2 - AAC
+</span><span data-node="30">         |                |- 1 - ABA (win)
+</span><span               >         |                |- 3 - (win)
+</span><span               >         |
+</span><span               >         |- 3 - (win)
+</span><span               >END</span>

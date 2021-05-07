@@ -19,40 +19,12 @@ label[for=short] {
     content: "✓";
 }
 
-:checked ~ .full {
+:checked ~ span:not([data-node]) {
     display: none;
 }
 
-:host-context(.node-0) span:nth-of-type(1),
-:host-context(.node-1) span:nth-of-type(2),
-:host-context(.node-2) span:nth-of-type(3),
-:host-context(.node-3) span:nth-of-type(4),
-:host-context(.node-4) span:nth-of-type(5),
-:host-context(.node-5) span:nth-of-type(6),
-:host-context(.node-6) span:nth-of-type(7),
-:host-context(.node-7) span:nth-of-type(9),
-:host-context(.node-8) span:nth-of-type(10),
-:host-context(.node-9) span:nth-of-type(11),
-:host-context(.node-10) span:nth-of-type(12),
-:host-context(.node-11) span:nth-of-type(16),
-:host-context(.node-12) span:nth-of-type(17),
-:host-context(.node-13) span:nth-of-type(18),
-:host-context(.node-14) span:nth-of-type(19),
-:host-context(.node-15) span:nth-of-type(20),
-:host-context(.node-16) span:nth-of-type(25),
-:host-context(.node-17) span:nth-of-type(26),
-:host-context(.node-18) span:nth-of-type(27),
-:host-context(.node-19) span:nth-of-type(30),
-:host-context(.node-20) span:nth-of-type(33),
-:host-context(.node-21) span:nth-of-type(34),
-:host-context(.node-22) span:nth-of-type(35),
-:host-context(.node-23) span:nth-of-type(38),
-:host-context(.node-24) span:nth-of-type(41),
-:host-context(.node-25) span:nth-of-type(42),
-:host-context(.node-26) span:nth-of-type(43),
-:host-context(.node-27) span:nth-of-type(46),
-:host-context(.node-28) span:nth-of-type(47),
-:host-context(.node-29) span:nth-of-type(50),
-:host-context(.node-30) span:nth-of-type(51) {
-    color: red;
+@for $i from 0 through 30 {
+    :host-context(.node-#{$i}) [data-node='#{$i}'] {
+        color: red;
+    }
 }
