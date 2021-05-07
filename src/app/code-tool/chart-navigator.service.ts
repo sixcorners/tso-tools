@@ -413,4 +413,15 @@ export class ChartNavigatorService {
       .values([history.createRow(row)])
       .exec();
   }
+
+  async moveNodeRelative(relative_id: number) {
+    const db = await this.db;
+    const node = db.getSchema().table('node');
+    this.moveNode((await db.select()
+      .from(node)
+      .where(lf.op.and(
+        node.chart_id.eq(this.currentChart.id),
+        node.relative_id.eq(relative_id)))
+      .exec())[0].id)
+  }
 }

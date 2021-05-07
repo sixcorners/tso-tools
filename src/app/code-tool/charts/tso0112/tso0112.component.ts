@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChartNavigatorService } from '../../chart-navigator.service';
 
 @Component({
   selector: 'app-tso0112',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Tso0112Component implements OnInit {
 
-  constructor() { }
+  constructor(readonly navigator: ChartNavigatorService) { }
 
   ngOnInit(): void {
   }
