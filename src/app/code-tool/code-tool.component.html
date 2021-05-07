@@ -58,10 +58,12 @@
       <mat-option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">{{entry.chart.name}}</mat-option>
     </mat-select>
   </mat-form-field>
-  <app-cbuchart *ngIf="navigator.currentChart.file == 'cbuchart'"></app-cbuchart>
-  <app-cbuthraxisopt *ngIf="navigator.currentChart.file == 'cbuthraxisopt'"></app-cbuthraxisopt>
-  <app-chart *ngIf="navigator.currentChart.file == 'chart'"></app-chart>
-  <app-jnw *ngIf="navigator.currentChart.file == 'jnw'"></app-jnw>
-  <app-twiddler-mim-code2 *ngIf="navigator.currentChart.file == 'twiddler_mim_code2'"></app-twiddler-mim-code2>
-  <app-tso0112 *ngIf="navigator.currentChart.file == 'tso0112'"></app-tso0112>
+  <ng-container [ngSwitch]="navigator.currentChart.file">
+    <app-cbuchart *ngSwitchCase="'cbuchart'"></app-cbuchart>
+    <app-cbuthraxisopt *ngSwitchCase="'cbuthraxisopt'"></app-cbuthraxisopt>
+    <app-chart *ngSwitchCase="'chart'"></app-chart>
+    <app-jnw *ngSwitchCase="'jnw'"></app-jnw>
+    <app-twiddler-mim-code2 *ngSwitchCase="'twiddler_mim_code2'"></app-twiddler-mim-code2>
+    <app-tso0112 *ngSwitchCase="'tso0112'"></app-tso0112>
+  </ng-container>
 </div>
