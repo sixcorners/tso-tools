@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ChartNavigatorService } from '../../chart-navigator.service';
 
 @Component({
@@ -9,9 +9,12 @@ import { ChartNavigatorService } from '../../chart-navigator.service';
 })
 export class Tso0112Component implements OnInit {
 
-  constructor(readonly navigator: ChartNavigatorService) { }
+  constructor(private navigator: ChartNavigatorService) { }
 
   ngOnInit(): void {
   }
 
+  @HostListener("click", ['$event.target.dataset.node']) onClick(node) {
+    if (node) this.navigator.moveNodeRelative(node);
+  }
 }
