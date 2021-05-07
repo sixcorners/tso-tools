@@ -18,6 +18,12 @@ import { ChartNavigatorService } from './code-tool/chart-navigator.service';
 import { RoomComponent } from './room/room.component';
 import { PizzaToolComponent } from './pizza-tool/pizza-tool.component';
 import { CodeHistoryComponent } from './code-history/code-history.component';
+import { CbuchartComponent } from './code-tool/charts/cbuchart/cbuchart.component';
+import { CbuthraxisoptComponent } from './code-tool/charts/cbuthraxisopt/cbuthraxisopt.component';
+import { ChartComponent } from './code-tool/charts/chart/chart.component';
+import { JnwComponent } from './code-tool/charts/jnw/jnw.component';
+import { TwiddlerMimCode2Component } from './code-tool/charts/twiddler-mim-code2/twiddler-mim-code2.component';
+import { Tso0112Component } from './code-tool/charts/tso0112/tso0112.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +31,13 @@ import { CodeHistoryComponent } from './code-history/code-history.component';
     CodeToolComponent,
     RoomComponent,
     PizzaToolComponent,
-    CodeHistoryComponent
+    CodeHistoryComponent,
+    CbuchartComponent,
+    CbuthraxisoptComponent,
+    ChartComponent,
+    JnwComponent,
+    TwiddlerMimCode2Component,
+    Tso0112Component
   ],
   imports: [
     BrowserModule,
