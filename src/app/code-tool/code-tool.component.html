@@ -51,7 +51,7 @@
       }}</button>
   </div>
 </div>
-<div class="chart">
+<div class="chart node-{{navigator.currentNode.relative_id}}">
   <mat-form-field>
     <mat-label>Chart</mat-label>
     <mat-select (selectionChange)="navigator.moveChart($event.value)" [value]="navigator.currentChart.id">
