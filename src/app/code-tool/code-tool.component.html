@@ -58,5 +58,10 @@
       <mat-option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">{{entry.chart.name}}</mat-option>
     </mat-select>
   </mat-form-field>
-  <img src="assets/charts/{{navigator.currentChart.image}}">
+  <app-cbuchart *ngIf="navigator.currentChart.file == 'cbuchart'"></app-cbuchart>
+  <app-cbuthraxisopt *ngIf="navigator.currentChart.file == 'cbuthraxisopt'"></app-cbuthraxisopt>
+  <app-chart *ngIf="navigator.currentChart.file == 'chart'"></app-chart>
+  <app-jnw *ngIf="navigator.currentChart.file == 'jnw'"></app-jnw>
+  <app-twiddler-mim-code2 *ngIf="navigator.currentChart.file == 'twiddler_mim_code2'"></app-twiddler-mim-code2>
+  <app-tso0112 *ngIf="navigator.currentChart.file == 'tso0112'"></app-tso0112>
 </div>

@@ -9,7 +9,7 @@ export class ChartNavigatorService {
       .createTable('chart')
       .addColumn('id', lf.Type.INTEGER)
       .addColumn('name', lf.Type.STRING)
-      .addColumn('image', lf.Type.STRING)
+      .addColumn('file', lf.Type.STRING)
       .addPrimaryKey(['id'], true);
     schema
       .createTable('node')
@@ -42,13 +42,13 @@ export class ChartNavigatorService {
         .insert()
         .into(chart)
         .values([
-          ['Madison’s CBU Chart', 'cbuchart.gif'], // 1
-          ['Thraxis optimized by Madison', 'cbuthraxisopt.gif'], // 2
-          ['The Hermione CBU Chart', 'chart.gif'], // 3
-          ['Jandrea\'s NEVER WRONG Codebreaker Chart', 'jnw.jpg'], // 4
-          ['Twiddler\'s CBU Code Smasher 4.0', 'twiddler_mim_code2.gif'], // 5
-          ['tso0112\'s chart', ''] // 6
-        ].map(r => chart.createRow({ name: r[0], image: r[1] })))
+          ['Madison’s CBU Chart', 'cbuchart'], // 1
+          ['Thraxis optimized by Madison', 'cbuthraxisopt'], // 2
+          ['The Hermione CBU Chart', 'chart'], // 3
+          ['Jandrea\'s NEVER WRONG Codebreaker Chart', 'jnw'], // 4
+          ['Twiddler\'s CBU Code Smasher 4.0', 'twiddler_mim_code2'], // 5
+          ['tso0112\'s chart', 'tso0112'], // 6
+        ].map(r => chart.createRow({ name: r[0], file: r[1] })))
         .exec();
 
       const node = db.getSchema().table('node');
