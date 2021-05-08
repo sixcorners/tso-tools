@@ -341,18 +341,20 @@ export class ChartNavigatorService {
     });
   });
 
-  currentNode: any = { combination: 'AAA' };
+  currentNode: any = {};
   private currentNodeQuery = this.db.then(db => {
     const node = db.getSchema().table('node');
+    const chart = db.getSchema().table('chart');
     const history = db.getSchema().table('history');
     const query = db
       .select()
       .from(node)
+      .innerJoin(chart, chart.id.eq(node.chart_id))
       .innerJoin(history, history.node_id.eq(node.id))
       .orderBy(history.id, lf.Order.DESC)
       .limit(1);
     db.observe(query, changes => {
-      this.currentNode = changes[changes.length - 1].object[0].node;
+      this.currentNode = changes[changes.length - 1].object[0];
     });
   });
 
@@ -373,8 +375,8 @@ export class ChartNavigatorService {
   async moveChart(id: number) {
     const db = await this.db;
     const history = db.getSchema().table('history');
-    const row = { chart_id: id, node_id: this.currentNode.id };
-    if (!this.currentNode.parent_id) {
+    const row = { chart_id: id, node_id: this.currentNode.node.id };
+    if (!this.currentNode.node.parent_id) {
       row.node_id = this.availableCharts[id - 1].node.id;
     }
     db.insert()

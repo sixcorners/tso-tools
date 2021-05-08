@@ -1,13 +1,13 @@
 <div class="tool">
   <div class="letters">
     <span class="body" [class.active]="body">{{
-      navigator.currentNode.combination[0]
+      navigator.currentNode.node.combination[0]
     }}</span>
     <span class="mech" [class.active]="mech">{{
-      navigator.currentNode.combination[1]
+      navigator.currentNode.node.combination[1]
     }}</span>
     <span class="logic" [class.active]="logic">{{
-      navigator.currentNode.combination[2]
+      navigator.currentNode.node.combination[2]
     }}</span>
   </div>
   <div class="checkboxes">
@@ -51,7 +51,7 @@
       }}</button>
   </div>
 </div>
-<div class="chart node-{{navigator.currentNode.relative_id}}">
+<div class="chart node-{{navigator.currentNode.node.relative_id}}">
   <mat-form-field>
     <mat-label>Chart</mat-label>
     <mat-select (selectionChange)="navigator.moveChart($event.value)" [value]="navigator.currentChart.id">
