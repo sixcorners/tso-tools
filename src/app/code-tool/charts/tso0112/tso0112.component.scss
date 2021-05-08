@@ -24,7 +24,7 @@ label[for=short] {
 }
 
 @for $i from 0 through 30 {
-    :host-context(.node-#{$i}) [data-node='#{$i}'] {
+    :host-context(.chart-tso0112.node-#{$i}) [data-node='#{$i}'] {
         color: red;
     }
 }
