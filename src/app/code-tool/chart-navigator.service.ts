@@ -10,7 +10,7 @@ export class ChartNavigatorService {
       .addColumn('id', lf.Type.INTEGER)
       .addColumn('name', lf.Type.STRING)
       .addColumn('title', lf.Type.STRING)
-      .addPrimaryKey(['id'], true);
+      .addPrimaryKey(['id']);
     schema
       .createTable('node')
       .addColumn('chart_id', lf.Type.INTEGER)
@@ -20,7 +20,7 @@ export class ChartNavigatorService {
       .addColumn('matches', lf.Type.INTEGER)
       .addColumn('combination', lf.Type.STRING)
       .addNullable(['parent_id'])
-      .addPrimaryKey(['id'], true)
+      .addPrimaryKey(['id'])
       .addForeignKey('fk_chart_id', { local: 'chart_id', ref: 'chart.id' })
       // .addForeignKey('fk_parent_id', { local: 'parent_id', ref: 'node.id' })
       .addUnique('unk_relative_id', ['relative_id', 'chart_id'])
@@ -43,13 +43,13 @@ export class ChartNavigatorService {
         .insert()
         .into(chart)
         .values([
-          ['cbuchart', 'Madison’s CBU Chart'], // 1
-          ['cbuthraxisopt', 'Thraxis optimized by Madison'], // 2
-          ['chart', 'The Hermione CBU Chart'], // 3
-          ['jnw', 'Jandrea\'s NEVER WRONG Codebreaker Chart'], // 4
-          ['twiddler_mim_code2', 'Twiddler\'s CBU Code Smasher 4.0'], // 5
-          ['tso0112', 'tso0112\'s chart'], // 6
-        ].map(r => chart.createRow({ name: r[0], title: r[1] })))
+          ['cbuchart', 'Madison’s CBU Chart'], // 0
+          ['cbuthraxisopt', 'Thraxis optimized by Madison'], // 1
+          ['chart', 'The Hermione CBU Chart'], // 2
+          ['jnw', 'Jandrea\'s NEVER WRONG Codebreaker Chart'], // 3
+          ['twiddler_mim_code2', 'Twiddler\'s CBU Code Smasher 4.0'], // 4
+          ['tso0112', 'tso0112\'s chart'], // 5
+        ].map((r, i) => chart.createRow({ id: i, name: r[0], title: r[1] })))
         .exec();
 
       const node = db.getSchema().table('node');
@@ -96,7 +96,7 @@ export class ChartNavigatorService {
           [26, 1, 'ACA'], // 27
           [23, 2, 'ABA'], // 28
           [28, 1, 'AAC'], // 29
-        ].map(createRowForChart(1)))
+        ].map(createRowForChart(0)))
         .exec();
       await db
         .insert()
@@ -130,7 +130,7 @@ export class ChartNavigatorService {
           [24, 2, 'CAA'], // 25
           [23, 2, 'ACA'], // 26
           [22, 2, 'AAC'], // 27
-        ].map(createRowForChart(2)))
+        ].map(createRowForChart(1)))
         .exec();
       await db
         .insert()
@@ -166,7 +166,7 @@ export class ChartNavigatorService {
           [26, 1, 'ACA'], // 27
           [23, 2, 'AAB'], // 28
           [28, 1, 'ABA'], // 29
-        ].map(createRowForChart(3)))
+        ].map(createRowForChart(2)))
         .exec();
       await db
         .insert()
@@ -199,7 +199,7 @@ export class ChartNavigatorService {
           [23, 2, 'CAA'], // 24
           [22, 2, 'ACA'], // 25
           [21, 2, 'AAC'], // 26
-        ].map(createRowForChart(4)))
+        ].map(createRowForChart(3)))
         .exec();
       await db
         .insert()
@@ -232,7 +232,7 @@ export class ChartNavigatorService {
           [23, 1, 'BCC'], // 24
           [24, 1, 'CBC'], // 25
           [19, 0, 'CCC'], // 26
-        ].map(createRowForChart(5)))
+        ].map(createRowForChart(4)))
         .exec();
       await db
         .insert()
@@ -269,7 +269,7 @@ export class ChartNavigatorService {
           [27, 1, 'ACA'], // 28
           [24, 2, 'AAC'], // 29
           [29, 1, 'ABA'], // 30
-        ].map(createRowForChart(6)))
+        ].map(createRowForChart(5)))
         .exec();
 
       const { chart_id, id } = (await db.select()
