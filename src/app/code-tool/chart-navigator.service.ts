@@ -23,7 +23,8 @@ export class ChartNavigatorService {
       .addPrimaryKey(['id'], true)
       .addForeignKey('fk_chart_id', { local: 'chart_id', ref: 'chart.id' })
       // .addForeignKey('fk_parent_id', { local: 'parent_id', ref: 'node.id' })
-      .addUnique('unk_matches', ['chart_id', 'parent_id', 'matches']);
+      .addUnique('unk_relative_id', ['relative_id', 'chart_id'])
+      .addUnique('unk_matches', ['parent_id', 'matches', 'chart_id']);
     schema
       .createTable('history')
       .addColumn('id', lf.Type.INTEGER)
