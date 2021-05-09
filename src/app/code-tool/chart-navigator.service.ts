@@ -294,7 +294,8 @@ export class ChartNavigatorService {
       .select()
       .from(chart)
       .innerJoin(node, node.chart_id.eq(chart.id))
-      .where(node.matches.eq(3));
+      .where(node.relative_id.eq(0))
+      .orderBy(chart.id);
     db.observe(query, changes => {
       this.availableCharts = changes[changes.length - 1].object;
     });
