@@ -12,11 +12,11 @@ label[for=short] {
 }
 
 #short ~ label:after {
-    content: "✗";
+    content: "☐";
 }
 
 #short:checked ~ label:after {
-    content: "✓";
+    content: "☑";
 }
 
 :checked ~ span:not([data-node]) {
