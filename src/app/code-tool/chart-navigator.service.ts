@@ -379,7 +379,7 @@ export class ChartNavigatorService {
     const history = db.getSchema().table('history');
     const row = { chart_id: id, node_id: this.currentNode.node.id };
     if (!this.currentNode.node.parent_id) {
-      row.node_id = this.availableCharts[id - 1].node.id;
+      row.node_id = this.availableCharts[id].node.id;
     }
     db.insert()
       .into(history)
