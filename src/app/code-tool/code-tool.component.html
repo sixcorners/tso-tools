@@ -1,19 +1,19 @@
 <div class="tool">
   <div class="letters">
-    <span class="body" [class.active]="body">{{
+    <span class="body" [class.active]="body.checked">{{
       navigator.currentNode.node.combination[0]
     }}</span>
-    <span class="mech" [class.active]="mech">{{
+    <span class="mech" [class.active]="mech.checked">{{
       navigator.currentNode.node.combination[1]
     }}</span>
-    <span class="logic" [class.active]="logic">{{
+    <span class="logic" [class.active]="logic.checked">{{
       navigator.currentNode.node.combination[2]
     }}</span>
   </div>
   <div class="checkboxes">
-    <mat-checkbox [(ngModel)]="body">body</mat-checkbox>
-    <mat-checkbox [(ngModel)]="mech">mech</mat-checkbox>
-    <mat-checkbox [(ngModel)]="logic">logic</mat-checkbox>
+    <mat-checkbox #body>body</mat-checkbox>
+    <mat-checkbox #mech>mech</mat-checkbox>
+    <mat-checkbox #logic>logic</mat-checkbox>
   </div>
   <div class="buttons">
     <button
