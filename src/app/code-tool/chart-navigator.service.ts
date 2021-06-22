@@ -368,7 +368,8 @@ export class ChartNavigatorService {
       .select()
       .from(history)
       .innerJoin(node, node.id.eq(history.node_id))
-      .orderBy(history.id);
+      .orderBy(history.id, lf.Order.DESC)
+      .limit(120);
     db.observe(query, changes => {
       this.history = changes[changes.length - 1].object;
     });
@@ -391,7 +392,7 @@ export class ChartNavigatorService {
     const db = await this.db;
     const history = db.getSchema().table('history');
     const row = {
-      chart_id: this.history[this.history.length - 1].history.chart_id,
+      chart_id: this.history[0].history.chart_id,
       node_id: id
     };
     db.insert()
