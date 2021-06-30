@@ -5,18 +5,22 @@ import {
   RouterStateSnapshot,
   Router
 } from '@angular/router';
-import { nanoid } from 'nanoid'
 
 // https://juristr.com/blog/2018/11/better-route-guard-redirects/
 @Injectable({
   providedIn: 'root'
 })
 export class RoomGuard implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    let response = await fetch("https://edge-chat-demo.cloudflareworkers.com/api/room", { method: "POST" });
+    let room = 'offline';
+    if (response.ok) {
+      room = await response.text();
+    }
     return this.router.createUrlTree(
-      [getResolvedUrl(next) + '/' + nanoid()]
+      [getResolvedUrl(next) + '/' + room]
     );
   }
 }
