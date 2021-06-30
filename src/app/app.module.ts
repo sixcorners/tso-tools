@@ -29,6 +29,7 @@ import { PizzaSideComponent } from './pizza-tool/pizza-side/pizza-side.component
 import { PizzaTopComponent } from './pizza-tool/pizza-top/pizza-top.component';
 import { AboutComponent } from './about/about.component';
 import { AboutSideComponent } from './about/about-side/about-side.component';
+import { AboutTopComponent } from './about/about-top/about-top.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AboutSideComponent } from './about/about-side/about-side.component';
     PizzaSideComponent,
     PizzaTopComponent,
     AboutComponent,
-    AboutSideComponent
+    AboutSideComponent,
+    AboutTopComponent
   ],
   imports: [
     BrowserModule,
