@@ -28,6 +28,7 @@ import { CodeTopComponent } from './code-tool/code-top/code-top.component';
 import { PizzaSideComponent } from './pizza-tool/pizza-side/pizza-side.component';
 import { PizzaTopComponent } from './pizza-tool/pizza-top/pizza-top.component';
 import { AboutComponent } from './about/about.component';
+import { AboutSideComponent } from './about/about-side/about-side.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { AboutComponent } from './about/about.component';
     CodeTopComponent,
     PizzaSideComponent,
     PizzaTopComponent,
-    AboutComponent
+    AboutComponent,
+    AboutSideComponent
   ],
   imports: [
     BrowserModule,
