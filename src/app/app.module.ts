@@ -24,6 +24,7 @@ import { ChartComponent } from './code-tool/charts/chart/chart.component';
 import { JnwComponent } from './code-tool/charts/jnw/jnw.component';
 import { TwiddlerMimCode2Component } from './code-tool/charts/twiddler-mim-code2/twiddler-mim-code2.component';
 import { Tso0112Component } from './code-tool/charts/tso0112/tso0112.component';
+import { CodeTopComponent } from './code-tool/code-top/code-top.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { Tso0112Component } from './code-tool/charts/tso0112/tso0112.component';
     ChartComponent,
     JnwComponent,
     TwiddlerMimCode2Component,
-    Tso0112Component
+    Tso0112Component,
+    CodeTopComponent
   ],
   imports: [
     BrowserModule,
