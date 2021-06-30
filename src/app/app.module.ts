@@ -17,7 +17,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ChartNavigatorService } from './code-tool/chart-navigator.service';
 import { RoomComponent } from './room/room.component';
 import { PizzaToolComponent } from './pizza-tool/pizza-tool.component';
-import { CodeHistoryComponent } from './code-history/code-history.component';
+import { CodeSideComponent } from './code-tool/code-side/code-side.component';
 import { CbuchartComponent } from './code-tool/charts/cbuchart/cbuchart.component';
 import { CbuthraxisoptComponent } from './code-tool/charts/cbuthraxisopt/cbuthraxisopt.component';
 import { ChartComponent } from './code-tool/charts/chart/chart.component';
@@ -31,7 +31,7 @@ import { Tso0112Component } from './code-tool/charts/tso0112/tso0112.component';
     CodeToolComponent,
     RoomComponent,
     PizzaToolComponent,
-    CodeHistoryComponent,
+    CodeSideComponent,
     CbuchartComponent,
     CbuthraxisoptComponent,
     ChartComponent,

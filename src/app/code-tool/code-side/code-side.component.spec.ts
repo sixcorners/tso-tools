@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CodeHistoryComponent } from './code-history.component';
+import { CodeSideComponent } from './code-side.component';
 
-describe('CodeHistoryComponent', () => {
-  let component: CodeHistoryComponent;
-  let fixture: ComponentFixture<CodeHistoryComponent>;
+describe('CodeSideComponent', () => {
+  let component: CodeSideComponent;
+  let fixture: ComponentFixture<CodeSideComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CodeHistoryComponent ]
+      declarations: [ CodeSideComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CodeHistoryComponent);
+    fixture = TestBed.createComponent(CodeSideComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
