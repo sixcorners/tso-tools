@@ -27,6 +27,7 @@ import { Tso0112Component } from './code-tool/charts/tso0112/tso0112.component';
 import { CodeTopComponent } from './code-tool/code-top/code-top.component';
 import { PizzaSideComponent } from './pizza-tool/pizza-side/pizza-side.component';
 import { PizzaTopComponent } from './pizza-tool/pizza-top/pizza-top.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { PizzaTopComponent } from './pizza-tool/pizza-top/pizza-top.component';
     Tso0112Component,
     CodeTopComponent,
     PizzaSideComponent,
-    PizzaTopComponent
+    PizzaTopComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
