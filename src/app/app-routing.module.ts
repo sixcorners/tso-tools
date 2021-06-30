@@ -6,6 +6,8 @@ import { CodeToolComponent } from './code-tool/code-tool.component';
 import { CodeSideComponent } from './code-tool/code-side/code-side.component';
 import { PizzaToolComponent } from './pizza-tool/pizza-tool.component';
 import { CodeTopComponent } from './code-tool/code-top/code-top.component';
+import { PizzaSideComponent } from './pizza-tool/pizza-side/pizza-side.component';
+import { PizzaTopComponent } from './pizza-tool/pizza-top/pizza-top.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'code' },
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'pizza', pathMatch: 'full', canActivate: [RoomGuard], children: [] },
   { path: 'pizza/:room', component: RoomComponent, children: [
     { path: '', component: PizzaToolComponent },
+    { path: '', component: PizzaSideComponent, outlet: 'side' },
+    { path: '', component: PizzaTopComponent, outlet: 'top' },
   ]},
 ];
 
