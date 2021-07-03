@@ -6,13 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pizza-tool.component.scss']
 })
 export class PizzaToolComponent implements OnInit {
-  readonly roles = ['body', 'cooking1', 'chrisma', 'cooking2'];
-  readonly model = {};
+  readonly model = {
+    body: [],
+    cooking1: [],
+    chrisma: [],
+    cooking2: [],
+  };
+  readonly roles = Object.keys(this.model);
 
-  constructor() {
-    for (let role of this.roles)
-      this.model[role] = [];
-  }
+  constructor() { }
 
   ngOnInit() {
   }
