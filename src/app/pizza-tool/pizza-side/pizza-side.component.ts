@@ -8,8 +8,8 @@ import { RoomService } from 'src/app/room/room.service';
 })
 export class PizzaSideComponent implements OnInit {
   private lastTimestamp = -Number.MAX_VALUE;
-  private lastRoomName: string;
-  readonly history = [];
+  private lastRoomName?: string;
+  readonly history: any[] = [];
   constructor(room: RoomService) {
     room.addEventListener('message', ({ data }) => {
       if (this.lastRoomName != room.name) {

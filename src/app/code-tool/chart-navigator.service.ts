@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import lf from 'lovefield';
+import * as lf from 'lovefield';
 
 @Injectable()
 export class ChartNavigatorService {
@@ -276,7 +276,7 @@ export class ChartNavigatorService {
         .from(node)
         .orderBy(node.id)
         .limit(1)
-        .exec())[0];
+        .exec())[0] as any;
       const history = db.getSchema().table('history');
       await db
         .insert()
@@ -413,11 +413,12 @@ export class ChartNavigatorService {
   async moveNodeRelative(relative_id: number) {
     const db = await this.db;
     const node = db.getSchema().table('node');
-    return this.moveNode((await db.select()
+    const { id } = (await db.select()
       .from(node)
       .where(lf.op.and(
         node.chart_id.eq(this.currentChart.id),
         node.relative_id.eq(relative_id)))
-      .exec())[0].id)
+      .exec())[0] as any;
+    return this.moveNode(id);
   }
 }
