@@ -1,0 +1,14 @@
+table {
+    display: inline-table;
+    border: 1px solid;
+    user-select: none;
+}
+
+input[type=radio] {
+    display: none;
+}
+
+input[type=radio]:checked + label {
+    color: black;
+    background-color: yellow;
+}
