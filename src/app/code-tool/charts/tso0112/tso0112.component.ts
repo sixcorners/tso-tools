@@ -14,7 +14,7 @@ export class Tso0112Component implements OnInit {
   ngOnInit(): void {
   }
 
-  @HostListener("click", ['$event.target.dataset.node']) onClick(node) {
+  @HostListener("click", ['$event.target.dataset.node']) onClick(node: number) {
     if (node) this.navigator.moveNodeRelative(node);
   }
 }

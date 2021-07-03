@@ -30,6 +30,6 @@ export class RoomComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => this.room.changeRoom(params.get('room'), '{}'));
+    this.route.paramMap.subscribe(params => this.room.changeRoom(params.get('room') ?? undefined, '{}'));
   }
 }

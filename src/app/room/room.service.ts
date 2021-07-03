@@ -8,15 +8,15 @@ export class RoomService {
 
   constructor(private snackBar: MatSnackBar) { }
 
-  name: string;
+  name?: string;
   private timeSinceLastJoin = -Number.MAX_VALUE;
   private lastTimestamp = -Number.MAX_VALUE;
-  private ws: WebSocket;
-  private lastJoin: ReturnType<typeof setTimeout>;
+  private ws?: WebSocket;
+  private lastJoin?: ReturnType<typeof setTimeout>;
   private eventListeners: Parameters<WebSocket['addEventListener']>[] = [];
 
   addEventListener<K extends keyof WebSocketEventMap>(...args: [type: K, listener: (this: WebSocket, ev: WebSocketEventMap[K]) => any, options?: boolean | AddEventListenerOptions]) {
-    this.eventListeners.push(args);
+    this.eventListeners.push(args as any);
   }
 
   send(args: any) {
@@ -37,21 +37,21 @@ export class RoomService {
       }
       return;
     }
-    this.ws.send(JSON.stringify(args));
+    this.ws!.send(JSON.stringify(args));
   }
 
-  changeRoom(name: string, ...initialSend: Parameters<RoomService['send']> | []) {
+  changeRoom(name?: string, ...initialSend: Parameters<RoomService['send']> | []) {
     // cancel pending changes
     if (this.lastJoin) {
       clearTimeout(this.lastJoin);
-      this.lastJoin = null;
+      this.lastJoin = undefined;
     }
 
     // cleanup
     if (this.name != name) {
       if (this.ws) {
         this.ws.close();
-        this.ws = null;
+        this.ws = undefined;
       }
       this.name = name;
     }
