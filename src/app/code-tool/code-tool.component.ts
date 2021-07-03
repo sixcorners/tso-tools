@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RoomService } from '../room/room.service';
 import { ChartNavigatorService } from './chart-navigator.service';
 
 @Component({
@@ -7,13 +8,13 @@ import { ChartNavigatorService } from './chart-navigator.service';
   styleUrls: ['./code-tool.component.scss']
 })
 export class CodeToolComponent implements OnInit {
-  constructor(readonly navigator: ChartNavigatorService) { }
+  constructor(readonly navigator: ChartNavigatorService, private room: RoomService) { }
 
   ngOnInit() {
   }
 
   moveNode(node: any) {
     if (!node) return;
-    this.navigator.moveNode(node.id);
+    this.room.send({ message: `!moveNode ${node.id}` });
   }
 }
