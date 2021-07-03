@@ -17,7 +17,7 @@ export class RoomGuard implements CanActivate {
   async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     let room = 'offline';
     try {
-      let response = await fetch("https://edge-chat-demo.cloudflareworkers.com/api/room", { method: "POST" });
+      let response = await fetch('/api/room', { method: 'POST' });
       if (response.ok)
         room = await response.text();
       else {
