@@ -12,4 +12,8 @@ export class CodeToolComponent implements OnInit {
   ngOnInit() {
   }
 
+  moveNode(node: any) {
+    if (!node) return;
+    this.navigator.moveNode(node.id);
+  }
 }
