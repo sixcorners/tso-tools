@@ -70,7 +70,7 @@ export class RoomService {
     this.timeSinceLastJoin = now;
 
     // connect
-    this.ws = new WebSocket(`wss://edge-chat-demo.cloudflareworkers.com/api/room/${name}/websocket`)
+    this.ws = new WebSocket(`wss://${window.location.host}/api/room/${name}/websocket`)
     this.ws.addEventListener('error', event => {
       console.error('WebSocket error:', event);
       this.snackBar.open(`WebSocket error: ${event}`, 'OK');
