@@ -48,11 +48,11 @@ export class RoomService {
 
     // cleanup
     if (this.name != name) {
-      this.name = name;
       if (this.ws) {
         this.ws.close();
         this.ws = null;
       }
+      this.name = name;
     }
 
     // check if this is a disconnect
