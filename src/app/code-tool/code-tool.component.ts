@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RoomService } from '../room/room.service';
 import { ChartNavigatorService } from './chart-navigator.service';
 
 @Component({
@@ -7,13 +8,18 @@ import { ChartNavigatorService } from './chart-navigator.service';
   styleUrls: ['./code-tool.component.scss']
 })
 export class CodeToolComponent implements OnInit {
-  constructor(readonly navigator: ChartNavigatorService) { }
+  constructor(readonly navigator: ChartNavigatorService, private room: RoomService) { }
 
   ngOnInit() {
   }
 
   moveNode(node: any) {
     if (!node) return;
-    this.navigator.moveNode(node.id);
+    if (this.room.name == 'offline')
+      this.navigator.moveNode(node.id);
+    else
+      this.room.send(JSON.stringify({
+        message: `!moveNode ${node.id}`,
+      }));
   }
 }

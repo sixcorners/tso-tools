@@ -7,18 +7,21 @@ export class RoomService {
 
   constructor() { }
 
-  room: string;
-  private ws: WebSocket;
-  private lastTimestamp = -Number.MAX_VALUE;
+  name: string;
   private timeSinceLastJoin = -Number.MAX_VALUE;
+  private ws: WebSocket;
   private lastJoin: ReturnType<typeof setTimeout>;
-  readonly messages = [];
+  private eventListeners: Parameters<WebSocket['addEventListener']>[] = [];
 
-  send(msg: string | ArrayBufferLike | Blob | ArrayBufferView) {
-    this.ws.send(msg);
+  addEventListener<K extends keyof WebSocketEventMap>(...args: [type: K, listener: (this: WebSocket, ev: WebSocketEventMap[K]) => any, options?: boolean | AddEventListenerOptions]) {
+    this.eventListeners.push(args);
   }
 
-  changeRoom(room: string, initialMsg: string | ArrayBuffer | Blob | ArrayBufferView = null) {
+  send(...args: Parameters<WebSocket['send']>) {
+    this.ws.send(...args);
+  }
+
+  changeRoom(name: string, ...initialSend: Parameters<RoomService['send']> | []) {
     // cancel pending changes
     if (this.lastJoin) {
       clearTimeout(this.lastJoin);
@@ -26,10 +29,8 @@ export class RoomService {
     }
 
     // cleanup
-    if (this.room != room) {
-      this.room = room;
-      this.lastTimestamp = -Number.MAX_VALUE;
-      this.messages.length = 0;
+    if (this.name != name) {
+      this.name = name;
       if (this.ws) {
         this.ws.close();
         this.ws = null;
@@ -37,35 +38,24 @@ export class RoomService {
     }
 
     // check if this is a disconnect
-    if (!room) {
+    if (!name || name === 'offline')
       return;
-    }
 
     // rate limit
     let now = Date.now();
     let timeUntilNextJoin = 10000 - now + this.timeSinceLastJoin;
     if (timeUntilNextJoin > 0) {
-      this.lastJoin = setTimeout(() => {
-        this.changeRoom(room, initialMsg);
-      }, timeUntilNextJoin + 500);
+      this.lastJoin = setTimeout(() => this.changeRoom(name, ...initialSend), timeUntilNextJoin + 500);
       return;
     }
     this.timeSinceLastJoin = now;
 
     // connect
-    this.ws = new WebSocket(`wss://edge-chat-demo.cloudflareworkers.com/api/room/${room}/websocket`)
-    if (initialMsg) this.ws.addEventListener('open', e => this.send(initialMsg));
-    this.ws.addEventListener('close', e => this.changeRoom(this.room));
-    this.ws.addEventListener('error', e => this.changeRoom(this.room));
-    this.ws.addEventListener('message', ({data}) => {
-      if (this.lastTimestamp >= data.timestamp) {
-        return;
-      }
-      this.lastTimestamp = data.timestamp;
-      this.messages.push(data);
-      if (this.messages.length >= 200) {
-        this.messages.shift();
-      }
-    });
-  }  
+    this.ws = new WebSocket(`wss://edge-chat-demo.cloudflareworkers.com/api/room/${name}/websocket`)
+    this.ws.addEventListener('error', e => this.changeRoom(this.name));
+    for (let listener of this.eventListeners)
+      this.ws.addEventListener(...listener);
+    if (initialSend.length)
+      this.ws.addEventListener('open', e => this.send(...initialSend));
+  }
 }

@@ -30,6 +30,7 @@ import { PizzaTopComponent } from './pizza-tool/pizza-top/pizza-top.component';
 import { AboutComponent } from './about/about.component';
 import { AboutSideComponent } from './about/about-side/about-side.component';
 import { AboutTopComponent } from './about/about-top/about-top.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { AboutTopComponent } from './about/about-top/about-top.component';
     MatIconModule,
     MatListModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSnackBarModule
   ],
   providers: [ChartNavigatorService],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import lf from 'lovefield';
+import { RoomService } from '../room/room.service';
 
 @Injectable()
 export class ChartNavigatorService {
@@ -36,7 +37,10 @@ export class ChartNavigatorService {
     return schema.connect({ storeType: lf.schema.DataStoreType.MEMORY });
   })();
 
-  constructor() {
+  private lastTimestamp = -Number.MAX_VALUE;
+  private lastRoomName: string;
+
+  constructor(room: RoomService) {
     this.db.then(async db => {
       const chart = db.getSchema().table('chart');
       await db
@@ -284,6 +288,22 @@ export class ChartNavigatorService {
         .values([history.createRow({ chart_id, node_id: id })])
         .exec();
     });
+
+    room.addEventListener('message', ({data}) => {
+      if (this.lastRoomName != room.name) {
+        this.lastRoomName = room.name;
+        this.lastTimestamp = -Number.MAX_VALUE;
+        this.reset();
+      }
+      data = JSON.parse(data);
+      if (!data.timestamp) return;
+      if (this.lastTimestamp >= data.timestamp) return;
+      this.lastTimestamp = data.timestamp;
+      if (!data.message) return;
+      let match = data.message.match(/!moveNode (\d+)/);
+      if (!match) return;
+      this.moveNode(+match[1]);
+    });
   }
 
   availableCharts = [];
@@ -398,6 +418,15 @@ export class ChartNavigatorService {
     db.insert()
       .into(history)
       .values([history.createRow(row)])
+      .exec();
+  }
+
+  async reset() {
+    const db = await this.db;
+    const history = db.getSchema().table('history');
+    db.delete()
+      .from(history)
+      .where(history.id.gt(1))
       .exec();
   }
 
