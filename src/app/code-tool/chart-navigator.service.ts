@@ -382,7 +382,7 @@ export class ChartNavigatorService {
     if (!this.currentNode.node.parent_id) {
       row.node_id = this.availableCharts[id].node.id;
     }
-    db.insert()
+    return db.insert()
       .into(history)
       .values([history.createRow(row)])
       .exec();
@@ -395,16 +395,25 @@ export class ChartNavigatorService {
       chart_id: this.history[0].history.chart_id,
       node_id: id
     };
-    db.insert()
+    return db.insert()
       .into(history)
       .values([history.createRow(row)])
+      .exec();
+  }
+
+  async reset() {
+    const db = await this.db;
+    const history = db.getSchema().table('history');
+    return db.delete()
+      .from(history)
+      .where(history.id.gt(1))
       .exec();
   }
 
   async moveNodeRelative(relative_id: number) {
     const db = await this.db;
     const node = db.getSchema().table('node');
-    this.moveNode((await db.select()
+    return this.moveNode((await db.select()
       .from(node)
       .where(lf.op.and(
         node.chart_id.eq(this.currentChart.id),
