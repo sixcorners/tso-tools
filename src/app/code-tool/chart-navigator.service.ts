@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import lf from 'lovefield';
-import { RoomService } from '../room/room.service';
 
 @Injectable()
 export class ChartNavigatorService {
@@ -37,10 +36,7 @@ export class ChartNavigatorService {
     return schema.connect({ storeType: lf.schema.DataStoreType.MEMORY });
   })();
 
-  private lastTimestamp = -Number.MAX_VALUE;
-  private lastRoomName: string;
-
-  constructor(room: RoomService) {
+  constructor() {
     this.db.then(async db => {
       const chart = db.getSchema().table('chart');
       await db
@@ -288,22 +284,6 @@ export class ChartNavigatorService {
         .values([history.createRow({ chart_id, node_id: id })])
         .exec();
     });
-
-    room.addEventListener('message', ({data}) => {
-      if (this.lastRoomName != room.name) {
-        this.lastRoomName = room.name;
-        this.lastTimestamp = -Number.MAX_VALUE;
-        this.reset();
-      }
-      data = JSON.parse(data);
-      if (!data.timestamp) return;
-      if (this.lastTimestamp >= data.timestamp) return;
-      this.lastTimestamp = data.timestamp;
-      if (!data.message) return;
-      let match = data.message.match(/!moveNode (\d+)/);
-      if (!match) return;
-      this.moveNode(+match[1]);
-    });
   }
 
   availableCharts = [];
@@ -402,7 +382,7 @@ export class ChartNavigatorService {
     if (!this.currentNode.node.parent_id) {
       row.node_id = this.availableCharts[id].node.id;
     }
-    db.insert()
+    return db.insert()
       .into(history)
       .values([history.createRow(row)])
       .exec();
@@ -415,7 +395,7 @@ export class ChartNavigatorService {
       chart_id: this.history[0].history.chart_id,
       node_id: id
     };
-    db.insert()
+    return db.insert()
       .into(history)
       .values([history.createRow(row)])
       .exec();
@@ -424,7 +404,7 @@ export class ChartNavigatorService {
   async reset() {
     const db = await this.db;
     const history = db.getSchema().table('history');
-    db.delete()
+    return db.delete()
       .from(history)
       .where(history.id.gt(1))
       .exec();
@@ -433,7 +413,7 @@ export class ChartNavigatorService {
   async moveNodeRelative(relative_id: number) {
     const db = await this.db;
     const node = db.getSchema().table('node');
-    this.moveNode((await db.select()
+    return this.moveNode((await db.select()
       .from(node)
       .where(lf.op.and(
         node.chart_id.eq(this.currentChart.id),
