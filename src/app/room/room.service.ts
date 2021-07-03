@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoomService {
 
-  constructor() { }
+  constructor(private snackBar: MatSnackBar) { }
 
   name: string;
   private timeSinceLastJoin = -Number.MAX_VALUE;
@@ -70,7 +71,11 @@ export class RoomService {
 
     // connect
     this.ws = new WebSocket(`wss://edge-chat-demo.cloudflareworkers.com/api/room/${name}/websocket`)
-    this.ws.addEventListener('error', _ => this.changeRoom(this.name));
+    this.ws.addEventListener('error', event => {
+      console.error('WebSocket error:', event);
+      this.snackBar.open(`WebSocket error: ${event}`, 'OK');
+      this.changeRoom(this.name);
+    });
     for (let listener of this.eventListeners)
       this.ws.addEventListener(...listener);
     if (initialSend.length)

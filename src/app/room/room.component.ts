@@ -22,7 +22,10 @@ export class RoomComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver, readonly route: ActivatedRoute, readonly room: RoomService, snackBar: MatSnackBar) {
     room.addEventListener('message', ({ data }) => {
       data = JSON.parse(data);
-      if (data.error) snackBar.open(data.error, 'OK', { duration: 5000 });
+      if (data.error) {
+        console.error('Server sent error:', data.error);
+        snackBar.open(`Server sent error: ${data.error}`, 'OK');
+      }
     });
   }
 
