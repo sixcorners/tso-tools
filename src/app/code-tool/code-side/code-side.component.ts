@@ -43,6 +43,6 @@ export class CodeSideComponent implements OnInit {
   click(entry: any) {
     console.log(JSON.stringify(entry));
     if (entry.node)
-      this.room.send(JSON.stringify({ message: `!moveNode ${entry.node.id}` }));
+      this.room.send({ message: `!moveNode ${entry.node.id}` });
   }
 }

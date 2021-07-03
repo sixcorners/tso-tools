@@ -9,6 +9,7 @@ export class RoomService {
 
   name: string;
   private timeSinceLastJoin = -Number.MAX_VALUE;
+  private lastTimestamp = -Number.MAX_VALUE;
   private ws: WebSocket;
   private lastJoin: ReturnType<typeof setTimeout>;
   private eventListeners: Parameters<WebSocket['addEventListener']>[] = [];
@@ -17,8 +18,25 @@ export class RoomService {
     this.eventListeners.push(args);
   }
 
-  send(...args: Parameters<WebSocket['send']>) {
-    this.ws.send(...args);
+  send(args: any) {
+    if (this.name == 'offline') {
+      let now = Date.now();
+      if (now <= this.lastTimestamp)
+        now = ++this.lastTimestamp;
+      args.timestamp = now;
+
+      let event = {data: JSON.stringify(args)} as any;
+      for (let [type, listener] of this.eventListeners) {
+        if (type != 'message')
+          continue;
+        if ('handleEvent' in listener)
+          listener.handleEvent(event);
+        else
+          listener(event);
+      }
+      return;
+    }
+    this.ws.send(JSON.stringify(args));
   }
 
   changeRoom(name: string, ...initialSend: Parameters<RoomService['send']> | []) {
@@ -52,10 +70,10 @@ export class RoomService {
 
     // connect
     this.ws = new WebSocket(`wss://edge-chat-demo.cloudflareworkers.com/api/room/${name}/websocket`)
-    this.ws.addEventListener('error', e => this.changeRoom(this.name));
+    this.ws.addEventListener('error', _ => this.changeRoom(this.name));
     for (let listener of this.eventListeners)
       this.ws.addEventListener(...listener);
     if (initialSend.length)
-      this.ws.addEventListener('open', e => this.send(...initialSend));
+      this.ws.addEventListener('open', _ => this.send(...initialSend));
   }
 }

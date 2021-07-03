@@ -15,11 +15,6 @@ export class CodeToolComponent implements OnInit {
 
   moveNode(node: any) {
     if (!node) return;
-    if (this.room.name == 'offline')
-      this.navigator.moveNode(node.id);
-    else
-      this.room.send(JSON.stringify({
-        message: `!moveNode ${node.id}`,
-      }));
+    this.room.send({ message: `!moveNode ${node.id}` });
   }
 }
