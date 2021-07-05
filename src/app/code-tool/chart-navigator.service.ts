@@ -53,7 +53,7 @@ export class ChartNavigatorService {
         .exec();
 
       const node = db.getSchema().table('node');
-      const createRowForChart = chartId => (r, i) =>
+      const createRowForChart = (chartId: number) => (r: any[], i: number) =>
         node.createRow({
           chart_id: chartId,
           id: i + chartId * 100,
@@ -286,7 +286,7 @@ export class ChartNavigatorService {
     });
   }
 
-  availableCharts = [];
+  availableCharts: any[] = [];
   private availableChartsQuery = this.db.then(db => {
     const chart = db.getSchema().table('chart');
     const node = db.getSchema().table('node');
@@ -296,7 +296,7 @@ export class ChartNavigatorService {
       .innerJoin(node, node.chart_id.eq(chart.id))
       .where(node.relative_id.eq(0))
       .orderBy(chart.id);
-    db.observe(query, changes => {
+    db.observe(query, (changes: any[]) => {
       this.availableCharts = changes[changes.length - 1].object;
     });
   });
@@ -311,12 +311,12 @@ export class ChartNavigatorService {
       .innerJoin(history, history.chart_id.eq(chart.id))
       .orderBy(history.id, lf.Order.DESC)
       .limit(1);
-    db.observe(query, changes => {
+    db.observe(query, (changes: any[]) => {
       this.currentChart = changes[changes.length - 1].object[0].chart;
     });
   });
 
-  currentChoices = [];
+  currentChoices: any[] = [];
   private currentChoicesQuery = this.db.then(db => {
     const node = db.getSchema().table('node');
     const history = db.getSchema().table('history');
@@ -332,8 +332,8 @@ export class ChartNavigatorService {
       )
       .orderBy(history.id, lf.Order.DESC)
       .limit(4);
-    db.observe(query, changes => {
-      this.currentChoices = [null, null, null, null];
+    db.observe(query, (changes: any[]) => {
+      this.currentChoices = [undefined, undefined, undefined, undefined];
       let results = changes[changes.length - 1].object;
       let last_history_id = results[0].history.id;
       for (let result of results) {
@@ -355,12 +355,12 @@ export class ChartNavigatorService {
       .innerJoin(history, history.node_id.eq(node.id))
       .orderBy(history.id, lf.Order.DESC)
       .limit(1);
-    db.observe(query, changes => {
+    db.observe(query, (changes: any[]) => {
       this.currentNode = changes[changes.length - 1].object[0];
     });
   });
 
-  history = [];
+  history: any[] = [];
   private historyQuery = this.db.then(db => {
     const history = db.getSchema().table('history');
     const node = db.getSchema().table('node');
@@ -370,7 +370,7 @@ export class ChartNavigatorService {
       .innerJoin(node, node.id.eq(history.node_id))
       .orderBy(history.id, lf.Order.DESC)
       .limit(120);
-    db.observe(query, changes => {
+    db.observe(query, (changes: any[]) => {
       this.history = changes[changes.length - 1].object;
     });
   });

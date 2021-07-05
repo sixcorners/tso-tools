@@ -8,6 +8,7 @@ import { PizzaModelService } from './pizza-model.service';
   styleUrls: ['./pizza-tool.component.scss']
 })
 export class PizzaToolComponent implements OnInit {
+  readonly slots = [1, 2, 3] as const;
   constructor(private room: RoomService, private modelService: PizzaModelService) { }
 
   ngOnInit() {

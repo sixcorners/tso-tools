@@ -28,7 +28,7 @@ export class PizzaSideComponent implements OnInit {
         let match = data.message.match(/!ingredients (.+?) (..) (..) (..)/);
         if (match) {
           let role = tool.model[match[1]];
-          for (let i = 1; i <= 4; i++)
+          for (let i of [1, 2, 3] as const)
             role[i] = match[i + 1];
           data.parsed = `${match[1]} has ${match[2]} ${match[3]} ${match[4]}`;
         }
