@@ -1,14 +1,13 @@
-table {
-    display: inline-table;
-    border: 1px solid;
-    user-select: none;
+.decision {
+    display: inline-grid;
+    grid-template-columns: repeat(3, 48px);
 }
 
-input[type=radio] {
-    display: none;
+.slot {
+    display: inline-grid;
+    grid-template-columns: repeat(4, 48px);
 }
 
-input[type=radio]:checked + label {
-    color: black;
-    background-color: yellow;
+[mat-raised-button], mat-button-toggle-group {
+    margin: 4px;
 }
