@@ -25,7 +25,7 @@ export class PizzaSideComponent implements OnInit {
         return;
       this.lastTimestamp = data.timestamp;
       {
-        let match = data.message.match(/!ingrediants (.+?) (..) (..) (..)/);
+        let match = data.message.match(/!ingredients (.+?) (..) (..) (..)/);
         if (match) {
           let role = tool.model[match[1]];
           for (let i = 1; i <= 4; i++)
