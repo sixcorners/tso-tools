@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomService } from 'src/app/room/room.service';
+import { PizzaToolComponent } from '../pizza-tool.component';
 
 @Component({
   selector: 'app-pizza-side',
@@ -10,7 +11,7 @@ export class PizzaSideComponent implements OnInit {
   private lastTimestamp = -Number.MAX_VALUE;
   private lastRoomName?: string;
   readonly history: any[] = [];
-  constructor(room: RoomService) {
+  constructor(room: RoomService, tool: PizzaToolComponent) {
     room.addEventListener('message', ({ data }) => {
       if (this.lastRoomName != room.name) {
         this.lastRoomName = room.name;
@@ -23,6 +24,24 @@ export class PizzaSideComponent implements OnInit {
       if (!data.message)
         return;
       this.lastTimestamp = data.timestamp;
+      {
+        let match = data.message.match(/!ingrediants (.+?) (..) (..) (..)/);
+        if (match) {
+          let role = tool.model[match[1]];
+          for (let i = 1; i <= 4; i++)
+            role[i] = match[i + 1];
+          data.parsed = `${match[1]} has ${match[2]} ${match[3]} ${match[4]}`;
+        }
+      }
+      {
+        let match = data.message.match(/!bake (\d) (\d) (\d) (\d)/);
+        if (match) {
+          for (let i = 0; i < 4; i++)
+            tool.model[tool.roles[i]].selection = match[i + 1];
+          tool.bake();
+          data.parsed = `Bake ${match[1]} ${match[2]} ${match[3]} ${match[4]}`;
+        }
+      }
       this.history.push(data);
       if (this.history.length >= 120)
         this.history.shift();

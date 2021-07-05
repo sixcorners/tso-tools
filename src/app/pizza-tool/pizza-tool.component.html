@@ -1,4 +1,3 @@
-<p>under construction</p>
 <button mat-raised-button (click)="bake()" [disabled]="!ready">
     Bake: <span *ngFor="let role of roles" [class]="role"> {{model[role][model[role].selection]}}</span>
 </button>
