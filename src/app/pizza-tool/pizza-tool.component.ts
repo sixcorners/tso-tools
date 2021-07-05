@@ -18,6 +18,7 @@ export class PizzaToolComponent implements OnInit {
       3?: string,
       selection?: number,
       lastSelection?: number,
+      lastSelectionIngredient?: string,
     }
   } = {};
 
@@ -39,17 +40,19 @@ export class PizzaToolComponent implements OnInit {
   bake() {
     this.room.sendMessage(`!bake ${Object.values(this.model).map(r => r.selection).join(' ')}`);
     for (let value of Object.values(this.model)) {
-      value.lastSelection = value[value.selection];
+      value.lastSelection = value.selection;
+      value.lastSelectionIngredient = value[value.selection]
       value[value.selection] = undefined;
       value.selection = undefined;
     }
   }
 
-  newIngrediant(role: string) {
+  newIngredient(role: string) {
     let value = this.model[role];
     value.lastSelection = undefined;
+    value.lastSelectionIngredient = undefined;
     let ingrediants = `${value[1]} ${value[2]} ${value[3]}`
     if (ingrediants.length == 8)
-      this.room.sendMessage(`!ingrediants ${role} ${ingrediants}`);
+      this.room.sendMessage(`!ingredients ${role} ${ingrediants}`);
   }
 }
