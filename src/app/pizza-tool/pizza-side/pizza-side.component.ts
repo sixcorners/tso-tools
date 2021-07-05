@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomService } from 'src/app/room/room.service';
-import { PizzaToolComponent } from '../pizza-tool.component';
+import { PizzaModelService } from '../pizza-model.service';
 
 @Component({
   selector: 'app-pizza-side',
@@ -11,7 +11,7 @@ export class PizzaSideComponent implements OnInit {
   private lastTimestamp = -Number.MAX_VALUE;
   private lastRoomName?: string;
   readonly history: any[] = [];
-  constructor(room: RoomService, tool: PizzaToolComponent) {
+  constructor(room: RoomService, tool: PizzaModelService) {
     room.addEventListener('message', ({ data }) => {
       if (this.lastRoomName != room.name) {
         this.lastRoomName = room.name;

@@ -1,33 +1,24 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RoomService } from '../room/room.service';
+import { PizzaModelService } from './pizza-model.service';
 
 @Component({
   selector: 'app-pizza-tool',
   templateUrl: './pizza-tool.component.html',
   styleUrls: ['./pizza-tool.component.scss']
 })
-@Injectable({
-  providedIn: 'root'
-})
 export class PizzaToolComponent implements OnInit {
-  readonly roles = ['body', 'cooking1', 'chrisma', 'cooking2'];
-  readonly model: {
-    [key: string]: {
-      1?: string,
-      2?: string,
-      3?: string,
-      selection?: number,
-      lastSelection?: number,
-      lastSelectionIngredient?: string,
-    }
-  } = {};
-
-  constructor(private room: RoomService) {
-    for (let role of this.roles)
-      this.model[role] = {};
-  }
+  constructor(private room: RoomService, private modelService: PizzaModelService) { }
 
   ngOnInit() {
+  }
+
+  get roles() {
+    return this.modelService.roles;
+  }
+
+  get model() {
+    return this.modelService.model;
   }
 
   get ready() {
@@ -39,12 +30,6 @@ export class PizzaToolComponent implements OnInit {
 
   bake() {
     this.room.sendMessage(`!bake ${Object.values(this.model).map(r => r.selection).join(' ')}`);
-    for (let value of Object.values(this.model)) {
-      value.lastSelection = value.selection;
-      value.lastSelectionIngredient = value[value.selection]
-      value[value.selection] = undefined;
-      value.selection = undefined;
-    }
   }
 
   newIngredient(role: string) {
