@@ -31,6 +31,7 @@ import { AboutComponent } from './about/about.component';
 import { AboutSideComponent } from './about/about-side/about-side.component';
 import { AboutTopComponent } from './about/about-top/about-top.component';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/mater
     MatListModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatButtonToggleModule
   ],
   providers: [
     ChartNavigatorService,

@@ -1,26 +1,23 @@
 <p>under construction</p>
-<form>
-    <table>
-        <tr *ngFor="let role of roles">
-            <td *ngFor="let slot of [1, 2, 3]">
-                <input type="radio" id="{{role}}_{{slot}}" name="{{role}}" [value]="slot" [(ngModel)]="model[role][0]">
-                <label for="{{role}}_{{slot}}" (click)="click(role)">{{model[role][slot]}}</label>
-            </td>
-        </tr>
-    </table>
-    To contribute: <span *ngFor="let role of roles" [class]="role"> {{model[role][model[role][0]]}}</span>
-</form>
-<form>
-    <div *ngFor="let role of roles">
-        <table *ngFor="let slot of [1, 2, 3]">
-            <tr *ngFor="let size of ['L', 'M', 'S']">
-                <td *ngFor="let variety of ['D', 'S', 'C', 'T']">
-                    <input type="radio" id="{{role}}_{{slot}}_{{size}}{{variety}}" name="{{role}}_{{slot}}"
-                        value="{{size}}{{variety}}" [(ngModel)]="model[role][slot]">
-                    <label for="{{role}}_{{slot}}_{{size}}{{variety}}" (click)="click(role)">{{size}}{{variety}}</label>
-                </td>
-            </tr>
-        </table>
-        <mat-checkbox>{{role}}</mat-checkbox>
-    </div>
-</form>
+<button mat-raised-button (click)="bake()" [disabled]="!ready">
+    Bake: <span *ngFor="let role of roles" [class]="role"> {{model[role][model[role].selection]}}</span>
+</button>
+<div class="role" *ngFor="let role of roles">
+    <mat-button-toggle-group class="decision" [name]="role" [(ngModel)]="model[role].selection">
+        <mat-button-toggle *ngFor="let slot of [1, 2, 3]" [value]="slot" [disabled]="!model[role][slot]">
+            {{model[role][slot] ?? '??'}}
+        </mat-button-toggle>
+    </mat-button-toggle-group>
+</div>
+<div class="role" *ngFor="let role of roles">
+    <mat-button-toggle-group class="slot" *ngFor="let slot of [1, 2, 3]" name="{{role}}_{{slot}}"
+        [(ngModel)]="model[role][slot]" [disabled]="!checkbox.checked">
+        <ng-container *ngFor="let size of ['L', 'M', 'S']">
+            <mat-button-toggle *ngFor="let variety of ['D', 'S', 'C', 'T']" value="{{size}}{{variety}}"
+                (click)="newIngrediant(role)">
+                {{size}}{{variety}}
+            </mat-button-toggle>
+        </ng-container>
+    </mat-button-toggle-group>
+    <mat-checkbox #checkbox>{{role}}</mat-checkbox>
+</div>
