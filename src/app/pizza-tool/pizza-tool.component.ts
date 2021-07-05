@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { RoomService } from '../room/room.service';
 
 @Component({
   selector: 'app-pizza-tool',
   templateUrl: './pizza-tool.component.html',
   styleUrls: ['./pizza-tool.component.scss']
+})
+@Injectable({
+  providedIn: 'root'
 })
 export class PizzaToolComponent implements OnInit {
   readonly roles = ['body', 'cooking1', 'chrisma', 'cooking2'];
@@ -17,7 +21,7 @@ export class PizzaToolComponent implements OnInit {
     }
   } = {};
 
-  constructor() {
+  constructor(private room: RoomService) {
     for (let role of this.roles)
       this.model[role] = {};
   }
@@ -33,7 +37,7 @@ export class PizzaToolComponent implements OnInit {
   }
 
   bake() {
-    console.log(`!bake ${Object.values(this.model).map(r => r.selection).join(' ')}`);
+    this.room.sendMessage(`!bake ${Object.values(this.model).map(r => r.selection).join(' ')}`);
     for (let value of Object.values(this.model)) {
       value.lastSelection = value[value.selection];
       value[value.selection] = undefined;
@@ -46,6 +50,6 @@ export class PizzaToolComponent implements OnInit {
     value.lastSelection = undefined;
     let ingrediants = `${value[1]} ${value[2]} ${value[3]}`
     if (ingrediants.length == 8)
-      console.log(`!ingrediants ${role} ${ingrediants}`);
+      this.room.sendMessage(`!ingrediants ${role} ${ingrediants}`);
   }
 }
