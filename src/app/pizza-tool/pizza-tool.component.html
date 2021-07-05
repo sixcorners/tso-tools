@@ -10,6 +10,10 @@
     </mat-button-toggle-group>
 </div>
 <div class="role" *ngFor="let role of roles">
+    <div>
+        <mat-checkbox #checkbox>{{role}}</mat-checkbox>
+        <span class="last-selection" [class.hidden]="!checkbox.checked || !model[role].lastSelection">You should add: {{model[role].lastSelection}}</span>
+    </div>
     <mat-button-toggle-group class="slot" *ngFor="let slot of [1, 2, 3]" name="{{role}}_{{slot}}"
         [(ngModel)]="model[role][slot]" [disabled]="!checkbox.checked">
         <ng-container *ngFor="let size of ['L', 'M', 'S']">
@@ -19,5 +23,4 @@
             </mat-button-toggle>
         </ng-container>
     </mat-button-toggle-group>
-    <mat-checkbox #checkbox>{{role}}</mat-checkbox>
 </div>

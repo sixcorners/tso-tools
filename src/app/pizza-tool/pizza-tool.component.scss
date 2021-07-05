@@ -8,6 +8,14 @@
     grid-template-columns: repeat(4, 48px);
 }
 
-[mat-raised-button], mat-button-toggle-group {
+[mat-raised-button], mat-button-toggle-group, mat-checkbox {
     margin: 4px;
+}
+
+.hidden {
+    display: none;
+}
+
+.last-selection {
+    margin-left: 32px;
 }
