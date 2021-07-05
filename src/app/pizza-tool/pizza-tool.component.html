@@ -1,9 +1,9 @@
 <button mat-raised-button (click)="bake()" [disabled]="!ready">
-    Bake: <span *ngFor="let role of roles" [class]="role"> {{model[role][model[role].selection]}}</span>
+    Bake: <span *ngFor="let role of roles" [class]="role"> {{model[role][model[role].selection!]}}</span>
 </button>
 <div class="role" *ngFor="let role of roles">
     <mat-button-toggle-group class="decision" [name]="role" [(ngModel)]="model[role].selection">
-        <mat-button-toggle *ngFor="let slot of [1, 2, 3]" [value]="slot" [disabled]="!model[role][slot]">
+        <mat-button-toggle *ngFor="let slot of slots" [value]="slot" [disabled]="!model[role][slot]">
             {{model[role][slot] ?? '??'}}
         </mat-button-toggle>
     </mat-button-toggle-group>
@@ -13,7 +13,7 @@
         <mat-checkbox #checkbox>{{role}}</mat-checkbox>
         <span class="last-selection" [class.hidden]="!checkbox.checked || !model[role].lastSelection">You should click slot: {{model[role].lastSelection}} ({{model[role].lastSelectionIngredient}})</span>
     </div>
-    <mat-button-toggle-group class="slot" *ngFor="let slot of [1, 2, 3]" name="{{role}}_{{slot}}"
+    <mat-button-toggle-group class="slot" *ngFor="let slot of slots" name="{{role}}_{{slot}}"
         [(ngModel)]="model[role][slot]" [disabled]="!checkbox.checked">
         <ng-container *ngFor="let size of ['L', 'M', 'S']">
             <mat-button-toggle *ngFor="let variety of ['D', 'S', 'C', 'T']" value="{{size}}{{variety}}"
