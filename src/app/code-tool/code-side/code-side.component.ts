@@ -11,7 +11,7 @@ export class CodeSideComponent implements OnInit {
   private lastTimestamp = -Number.MAX_VALUE;
   private lastRoomName?: string;
   readonly history: any[] = [];
-  constructor(private navigator: ChartNavigatorService, private room: RoomService) {
+  constructor(private room: RoomService, private navigator: ChartNavigatorService) {
     room.addEventListener('message', async ({ data }) => {
       if (this.lastRoomName != room.name) {
         this.lastRoomName = room.name;
@@ -25,11 +25,13 @@ export class CodeSideComponent implements OnInit {
       if (!data.message)
         return;
       this.lastTimestamp = data.timestamp;
-      let match = data.message.match(/!moveNode (\d+)/);
-      if (match) {
-        await this.navigator.moveNode(+match[1]);
-        data.node = this.navigator.currentNode.node;
-        data.parsed = `Moved to ${data.node.combination}`;
+      {
+        let match = data.message.match(/!moveNode (\d+)/);
+        if (match) {
+          await this.navigator.moveNode(+match[1]);
+          data.node = this.navigator.currentNode.node;
+          data.parsed = `Moved to ${data.node.combination}`;
+        }
       }
       this.history.push(data);
       if (this.history.length >= 120)
@@ -41,8 +43,7 @@ export class CodeSideComponent implements OnInit {
   }
 
   click(entry: any) {
-    console.log(JSON.stringify(entry));
     if (entry.node)
-      this.room.send({ message: `!moveNode ${entry.node.id}` });
+      this.room.sendMessage(`!moveNode ${entry.node.id}`);
   }
 }

@@ -15,6 +15,6 @@ export class CodeToolComponent implements OnInit {
 
   moveNode(node: any) {
     if (!node) return;
-    this.room.send({ message: `!moveNode ${node.id}` });
+    this.room.sendMessage(`!moveNode ${node.id}`);
   }
 }
