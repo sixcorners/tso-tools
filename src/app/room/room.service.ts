@@ -19,7 +19,11 @@ export class RoomService {
     this.eventListeners.push(args as any);
   }
 
-  send(args: any) {
+  sendMessage(message: string) {
+    this.send({ message });
+  }
+
+  private send(args: any) {
     if (this.name == 'offline') {
       let now = Date.now();
       if (now <= this.lastTimestamp)
