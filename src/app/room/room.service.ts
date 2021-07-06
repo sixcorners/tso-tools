@@ -51,14 +51,15 @@ export class RoomService {
       this.lastJoin = undefined;
     }
 
+    if (this.name == name)
+      return;
+
     // cleanup
-    if (this.name != name) {
-      if (this.ws) {
-        this.ws.close();
-        this.ws = undefined;
-      }
-      this.name = name;
+    if (this.ws) {
+      this.ws.close(1000, name);
+      this.ws = undefined;
     }
+    this.name = name;
 
     // check if this is a disconnect
     if (!name || name === 'offline')
