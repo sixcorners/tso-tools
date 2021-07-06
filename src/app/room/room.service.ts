@@ -30,7 +30,7 @@ export class RoomService {
         now = ++this.lastTimestamp;
       args.timestamp = now;
 
-      let event = {data: JSON.stringify(args)} as any;
+      let event = { data: JSON.stringify(args) } as any;
       for (let [type, listener] of this.eventListeners) {
         if (type != 'message')
           continue;
@@ -74,7 +74,7 @@ export class RoomService {
     this.timeSinceLastJoin = now;
 
     // connect
-    this.ws = new WebSocket(`wss://${location.host}/api/room/${name}/websocket`)
+    this.ws = new WebSocket(`${location.protocol == 'http:' ? 'ws' : 'wss'}://${location.host}/api/room/${name}/websocket`);
     this.ws.addEventListener('error', event => {
       console.error('WebSocket error:', event);
       this.snackBar.open(`WebSocket error: ${event}`, 'OK');
