@@ -14,7 +14,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ChartNavigatorService } from './code-tool/chart-navigator.service';
 import { RoomComponent } from './room/room.component';
 import { PizzaToolComponent } from './pizza-tool/pizza-tool.component';
 import { CodeSideComponent } from './code-tool/code-side/code-side.component';
@@ -70,7 +69,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatButtonToggleModule
   ],
   providers: [
-    ChartNavigatorService,
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } }
   ],
   bootstrap: [AppComponent]

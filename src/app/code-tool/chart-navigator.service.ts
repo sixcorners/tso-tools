@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import * as lf from 'lovefield';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ChartNavigatorService {
   private db = (() => {
     const schema = lf.schema.create('code', 1);
