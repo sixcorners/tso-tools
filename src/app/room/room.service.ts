@@ -17,6 +17,8 @@ export class RoomService {
 
   addEventListener<K extends keyof WebSocketEventMap>(...args: [type: K, listener: (this: WebSocket, ev: WebSocketEventMap[K]) => any, options?: boolean | AddEventListenerOptions]) {
     this.eventListeners.push(args as any);
+    if (this.ws)
+      this.ws.addEventListener(...args);
   }
 
   sendMessage(message: string) {
