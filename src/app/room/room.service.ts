@@ -26,25 +26,25 @@ export class RoomService {
   }
 
   private send(data: any) {
-    if (this.name == 'offline') {
-      let now = Date.now();
-      if (now <= this.lastTimestamp)
-        now = ++this.lastTimestamp;
-      data.timestamp = now;
+    if (this.ws)
+      return this.ws.send(JSON.stringify(data));
 
-      data = JSON.stringify(data);
-      let event = new MessageEvent('message', { data });
-      for (let [type, listener] of this.eventListeners) {
-        if (type != 'message')
-          continue;
-        if ('handleEvent' in listener)
-          listener.handleEvent(event);
-        else
-          listener(event);
-      }
-      return;
+    // simulated send
+    let now = Date.now();
+    if (now <= this.lastTimestamp)
+      now = ++this.lastTimestamp;
+    data.timestamp = now;
+
+    data = JSON.stringify(data);
+    let event = new MessageEvent('message', { data });
+    for (let [type, listener] of this.eventListeners) {
+      if (type != 'message')
+        continue;
+      if ('handleEvent' in listener)
+        listener.handleEvent(event);
+      else
+        listener(event);
     }
-    this.ws!.send(JSON.stringify(data));
   }
 
   changeRoom(name?: string, ...initialSend: Parameters<RoomService['send']> | []) {
