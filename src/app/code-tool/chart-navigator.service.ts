@@ -303,22 +303,6 @@ export class ChartNavigatorService {
     });
   });
 
-  /** chart of the last item in the history table */
-  currentChart: any = {};
-  private currentChartQuery = this.db.then(db => {
-    const chart = db.getSchema().table('chart');
-    const history = db.getSchema().table('history');
-    const query = db
-      .select()
-      .from(chart)
-      .innerJoin(history, history.chart_id.eq(chart.id))
-      .orderBy(history.id, lf.Order.DESC)
-      .limit(1);
-    db.observe(query, (changes: any[]) => {
-      this.currentChart = changes[changes.length - 1].object[0];
-    });
-  });
-
   currentChoices: any[] = [];
   private currentChoicesQuery = this.db.then(db => {
     const node = db.getSchema().table('node');
@@ -346,29 +330,31 @@ export class ChartNavigatorService {
     });
   });
 
-  currentNode: any = {};
-  private currentNodeQuery = this.db.then(db => {
-    const node = db.getSchema().table('node');
-    const chart = db.getSchema().table('chart');
+  current: any = {};
+  private currentQuery = this.db.then(db => {
     const history = db.getSchema().table('history');
+    const chart = db.getSchema().table('chart');
+    const node = db.getSchema().table('node');
+    const nodeChart = chart.as('nodeChart');
     const query = db
       .select()
-      .from(node)
-      .innerJoin(chart, chart.id.eq(node.chart_id))
-      .innerJoin(history, history.node_id.eq(node.id))
+      .from(history)
+      .innerJoin(chart, chart.id.eq(history.chart_id))
+      .innerJoin(node, node.id.eq(history.node_id))
+      .innerJoin(nodeChart, nodeChart.id.eq(node.chart_id))
       .orderBy(history.id, lf.Order.DESC)
       .limit(1);
     db.observe(query, (changes: any[]) => {
-      this.currentNode = changes[changes.length - 1].object[0];
+      this.current = changes[changes.length - 1].object[0];
     });
   });
 
   async moveChart(id: number) {
     const db = await this.db;
     const history = db.getSchema().table('history');
-    const row = { chart_id: id, node_id: this.currentNode.node.id };
+    const row = { chart_id: id, node_id: this.current.node.id };
     // swap current node if we are still on AAA
-    if (!this.currentNode.node.parent_id) {
+    if (!this.current.node.parent_id) {
       row.node_id = this.availableCharts[id].node.id;
     }
     return db.insert()
@@ -381,7 +367,7 @@ export class ChartNavigatorService {
     const db = await this.db;
     const history = db.getSchema().table('history');
     const row = {
-      chart_id: this.currentChart.chart.id,
+      chart_id: this.current.chart.id,
       node_id: id
     };
     return db.insert()
@@ -405,7 +391,7 @@ export class ChartNavigatorService {
     const { id } = (await db.select()
       .from(node)
       .where(lf.op.and(
-        node.chart_id.eq(this.currentChart.chart.id),
+        node.chart_id.eq(this.current.chart.id),
         node.relative_id.eq(relative_id)))
       .exec())[0] as any;
     return this.moveNode(id);
