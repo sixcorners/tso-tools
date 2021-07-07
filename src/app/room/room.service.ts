@@ -23,14 +23,15 @@ export class RoomService {
     this.send({ message });
   }
 
-  private send(args: any) {
+  private send(data: any) {
     if (this.name == 'offline') {
       let now = Date.now();
       if (now <= this.lastTimestamp)
         now = ++this.lastTimestamp;
-      args.timestamp = now;
+      data.timestamp = now;
 
-      let event = { data: JSON.stringify(args) } as any;
+      data = JSON.stringify(data);
+      let event = new MessageEvent('message', { data });
       for (let [type, listener] of this.eventListeners) {
         if (type != 'message')
           continue;
@@ -41,7 +42,7 @@ export class RoomService {
       }
       return;
     }
-    this.ws!.send(JSON.stringify(args));
+    this.ws!.send(JSON.stringify(data));
   }
 
   changeRoom(name?: string, ...initialSend: Parameters<RoomService['send']> | []) {
