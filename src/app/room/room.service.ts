@@ -82,6 +82,13 @@ export class RoomService {
       this.snackBar.open(`WebSocket error: ${event}`, 'OK');
       this.changeRoom(this.name);
     });
+    this.ws.addEventListener('message', ({ data }) => {
+      data = JSON.parse(data);
+      if (data.error) {
+        console.error('Server sent error:', data.error);
+        this.snackBar.open(`Server sent error: ${data.error}`, 'OK');
+      }
+    });
     for (let listener of this.eventListeners)
       this.ws.addEventListener(...listener);
     if (initialSend.length)

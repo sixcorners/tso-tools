@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as lf from 'lovefield';
+import { RoomService } from '../room/room.service';
 
 @Injectable({
   providedIn: 'root'
@@ -37,8 +38,37 @@ export class ChartNavigatorService {
       .addForeignKey('fk_node_id', { local: 'node_id', ref: 'node.id' });
     return schema.connect({ storeType: lf.schema.DataStoreType.MEMORY });
   })();
+  private lastTimestamp = -Number.MAX_VALUE;
+  private lastRoomName?: string;
+  readonly history: any[] = [];
 
-  constructor() {
+  constructor(room: RoomService) {
+    room.addEventListener('message', async ({ data }) => {
+      if (this.lastRoomName != room.name) {
+        this.lastRoomName = room.name;
+        this.lastTimestamp = -Number.MAX_VALUE;
+        this.history.length = 0;
+        this.reset();
+      }
+      data = JSON.parse(data);
+      if (this.lastTimestamp >= data.timestamp)
+        return;
+      if (!data.message)
+        return;
+      this.lastTimestamp = data.timestamp;
+      {
+        let match = data.message.match(/!moveNode (\d+)/);
+        if (match) {
+          await this.moveNode(+match[1]);
+          data.node = this.current.node;
+          data.parsed = `Moved to ${data.node.combination}`;
+        }
+      }
+      this.history.push(data);
+      if (this.history.length >= 120)
+        this.history.shift();
+    });
+
     this.db.then(async db => {
       const chart = db.getSchema().table('chart');
       await db

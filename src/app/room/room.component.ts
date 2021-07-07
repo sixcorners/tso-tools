@@ -4,7 +4,6 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { RoomService } from './room.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-room',
@@ -19,15 +18,7 @@ export class RoomComponent implements OnInit {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, readonly route: ActivatedRoute, readonly room: RoomService, snackBar: MatSnackBar) {
-    room.addEventListener('message', ({ data }) => {
-      data = JSON.parse(data);
-      if (data.error) {
-        console.error('Server sent error:', data.error);
-        snackBar.open(`Server sent error: ${data.error}`, 'OK');
-      }
-    });
-  }
+  constructor(private breakpointObserver: BreakpointObserver, readonly route: ActivatedRoute, readonly room: RoomService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => this.room.changeRoom(params.get('room') ?? undefined, '{}'));
