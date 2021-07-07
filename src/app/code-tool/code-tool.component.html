@@ -54,11 +54,11 @@
 <div class="chart chart-{{navigator.currentNode.chart.name}} node-{{navigator.currentNode.node.relative_id}}">
   <mat-form-field>
     <mat-label>Chart</mat-label>
-    <mat-select (selectionChange)="navigator.moveChart($event.value)" [value]="navigator.currentChart.id">
+    <mat-select (selectionChange)="navigator.moveChart($event.value)" [value]="navigator.currentChart.chart.id">
       <mat-option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">{{entry.chart.title}}</mat-option>
     </mat-select>
   </mat-form-field>
-  <ng-container [ngSwitch]="navigator.currentChart.name">
+  <ng-container [ngSwitch]="navigator.currentChart.chart.name">
     <app-cbuchart *ngSwitchCase="'cbuchart'"></app-cbuchart>
     <app-cbuthraxisopt *ngSwitchCase="'cbuthraxisopt'"></app-cbuthraxisopt>
     <app-chart *ngSwitchCase="'chart'"></app-chart>
