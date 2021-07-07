@@ -29,7 +29,7 @@ export class CodeSideComponent implements OnInit {
         let match = data.message.match(/!moveNode (\d+)/);
         if (match) {
           await this.navigator.moveNode(+match[1]);
-          data.node = this.navigator.currentNode.node;
+          data.node = this.navigator.current.node;
           data.parsed = `Moved to ${data.node.combination}`;
         }
       }
