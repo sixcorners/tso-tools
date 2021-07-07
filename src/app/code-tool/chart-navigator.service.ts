@@ -303,6 +303,7 @@ export class ChartNavigatorService {
     });
   });
 
+  /** chart of the last item in the history table */
   currentChart: any = {};
   private currentChartQuery = this.db.then(db => {
     const chart = db.getSchema().table('chart');
@@ -314,7 +315,7 @@ export class ChartNavigatorService {
       .orderBy(history.id, lf.Order.DESC)
       .limit(1);
     db.observe(query, (changes: any[]) => {
-      this.currentChart = changes[changes.length - 1].object[0].chart;
+      this.currentChart = changes[changes.length - 1].object[0];
     });
   });
 
@@ -362,25 +363,11 @@ export class ChartNavigatorService {
     });
   });
 
-  history: any[] = [];
-  private historyQuery = this.db.then(db => {
-    const history = db.getSchema().table('history');
-    const node = db.getSchema().table('node');
-    const query = db
-      .select()
-      .from(history)
-      .innerJoin(node, node.id.eq(history.node_id))
-      .orderBy(history.id, lf.Order.DESC)
-      .limit(120);
-    db.observe(query, (changes: any[]) => {
-      this.history = changes[changes.length - 1].object;
-    });
-  });
-
   async moveChart(id: number) {
     const db = await this.db;
     const history = db.getSchema().table('history');
     const row = { chart_id: id, node_id: this.currentNode.node.id };
+    // swap current node if we are still on AAA
     if (!this.currentNode.node.parent_id) {
       row.node_id = this.availableCharts[id].node.id;
     }
@@ -394,7 +381,7 @@ export class ChartNavigatorService {
     const db = await this.db;
     const history = db.getSchema().table('history');
     const row = {
-      chart_id: this.history[0].history.chart_id,
+      chart_id: this.currentChart.chart.id,
       node_id: id
     };
     return db.insert()
@@ -418,7 +405,7 @@ export class ChartNavigatorService {
     const { id } = (await db.select()
       .from(node)
       .where(lf.op.and(
-        node.chart_id.eq(this.currentChart.id),
+        node.chart_id.eq(this.currentChart.chart.id),
         node.relative_id.eq(relative_id)))
       .exec())[0] as any;
     return this.moveNode(id);
