@@ -5,15 +5,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root'
 })
 export class RoomService {
-
-  constructor(private snackBar: MatSnackBar) { }
-
   name?: string;
   private timeSinceLastJoin = -Number.MAX_VALUE;
   private lastTimestamp = -Number.MAX_VALUE;
   private ws?: WebSocket;
   private lastJoin?: ReturnType<typeof setTimeout>;
   private eventListeners: Parameters<WebSocket['addEventListener']>[] = [];
+
+  constructor(private snackBar: MatSnackBar) { }
 
   addEventListener<K extends keyof WebSocketEventMap>(...args: [type: K, listener: (this: WebSocket, ev: WebSocketEventMap[K]) => any, options?: boolean | AddEventListenerOptions]) {
     this.eventListeners.push(args as any);
