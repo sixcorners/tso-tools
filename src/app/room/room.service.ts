@@ -16,8 +16,7 @@ export class RoomService {
 
   addEventListener<K extends keyof WebSocketEventMap>(...args: [type: K, listener: (this: WebSocket, ev: WebSocketEventMap[K]) => any, options?: boolean | AddEventListenerOptions]) {
     this.eventListeners.push(args as any);
-    if (this.ws)
-      this.ws.addEventListener(...args);
+    this.ws?.addEventListener(...args);
   }
 
   sendMessage(message: string) {
@@ -55,13 +54,11 @@ export class RoomService {
 
     if (this.name == name)
       return;
+    this.name = name;
 
     // cleanup
-    if (this.ws) {
-      this.ws.close(1000, name);
-      this.ws = undefined;
-    }
-    this.name = name;
+    this.ws?.close();
+    this.ws = undefined;
 
     // check if this is a disconnect
     if (!name || name === 'offline')
