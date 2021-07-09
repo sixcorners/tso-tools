@@ -11,12 +11,18 @@ export class RoomService {
   private ws?: WebSocket;
   private lastJoin?: ReturnType<typeof setTimeout>;
   private eventListeners: Parameters<WebSocket['addEventListener']>[] = [];
+  readonly history: MessageEvent[] = [];
 
   constructor(private snackBar: MatSnackBar) { }
 
   addEventListener<K extends keyof WebSocketEventMap>(...args: [type: K, listener: (this: WebSocket, ev: WebSocketEventMap[K]) => any, options?: boolean | AddEventListenerOptions]) {
     this.eventListeners.push(args as any);
     this.ws?.addEventListener(...args);
+    let [type, listener] = args;
+    if (type != 'message')
+      return;
+    for (let item of this.history)
+      listener.call(this.ws!, item as any);
   }
 
   sendMessage(message: string) {
@@ -59,6 +65,7 @@ export class RoomService {
     // cleanup
     this.ws?.close();
     this.ws = undefined;
+    this.history.length = 0;
 
     // check if this is a disconnect
     if (!name || name === 'offline')
@@ -80,8 +87,9 @@ export class RoomService {
       this.snackBar.open(`WebSocket error: ${event}`, 'OK');
       this.changeRoom(this.name);
     });
-    this.ws.addEventListener('message', ({ data }) => {
-      data = JSON.parse(data);
+    this.ws.addEventListener('message', event => {
+      this.history.push(event);
+      let data = JSON.parse(event.data);
       if (data.error) {
         console.error('Server sent error:', data.error);
         this.snackBar.open(`Server sent error: ${data.error}`, 'OK');
