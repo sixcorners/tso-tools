@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-cbuthraxisopt',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cbuthraxisopt.component.scss']
 })
 export class CbuthraxisoptComponent implements OnInit {
+  @Input() current: any;
 
   constructor() { }
 

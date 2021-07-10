@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Input, HostBinding } from '@angular/core';
 import { ChartNavigatorService } from '../../chart-navigator.service';
 
 @Component({
@@ -8,6 +8,12 @@ import { ChartNavigatorService } from '../../chart-navigator.service';
   preserveWhitespaces: true
 })
 export class Tso0112Component implements OnInit {
+  @Input() current: any;
+  @HostBinding('class') get class() {
+    if (this.current.nodeChart.name != 'tso0112')
+      return '';
+    return `node-${this.current.node.relative_id}`;
+  }
 
   constructor(private navigator: ChartNavigatorService) { }
 
