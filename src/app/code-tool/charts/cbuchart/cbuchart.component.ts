@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-cbuchart',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cbuchart.component.scss']
 })
 export class CbuchartComponent implements OnInit {
+  @Input() current: any;
 
   constructor() { }
 

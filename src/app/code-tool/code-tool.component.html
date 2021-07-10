@@ -51,7 +51,7 @@
       }}</button>
   </div>
 </div>
-<div class="chart chart-{{navigator.current.nodeChart.name}} node-{{navigator.current.node.relative_id}}">
+<div class="chart">
   <mat-form-field>
     <mat-label>Chart</mat-label>
     <mat-select (selectionChange)="navigator.moveChart($event.value)" [value]="navigator.current.chart.id">
@@ -59,11 +59,11 @@
     </mat-select>
   </mat-form-field>
   <ng-container [ngSwitch]="navigator.current.chart.name">
-    <app-cbuchart *ngSwitchCase="'cbuchart'"></app-cbuchart>
-    <app-cbuthraxisopt *ngSwitchCase="'cbuthraxisopt'"></app-cbuthraxisopt>
-    <app-chart *ngSwitchCase="'chart'"></app-chart>
-    <app-jnw *ngSwitchCase="'jnw'"></app-jnw>
-    <app-twiddler-mim-code2 *ngSwitchCase="'twiddler_mim_code2'"></app-twiddler-mim-code2>
-    <app-tso0112 *ngSwitchCase="'tso0112'"></app-tso0112>
+    <app-cbuchart *ngSwitchCase="'cbuchart'" [current]="navigator.current"></app-cbuchart>
+    <app-cbuthraxisopt *ngSwitchCase="'cbuthraxisopt'" [current]="navigator.current"></app-cbuthraxisopt>
+    <app-chart *ngSwitchCase="'chart'" [current]="navigator.current"></app-chart>
+    <app-jnw *ngSwitchCase="'jnw'" [current]="navigator.current"></app-jnw>
+    <app-twiddler-mim-code2 *ngSwitchCase="'twiddler_mim_code2'" [current]="navigator.current"></app-twiddler-mim-code2>
+    <app-tso0112 *ngSwitchCase="'tso0112'" [current]="navigator.current"></app-tso0112>
   </ng-container>
 </div>

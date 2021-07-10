@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-twiddler-mim-code2',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./twiddler-mim-code2.component.scss']
 })
 export class TwiddlerMimCode2Component implements OnInit {
+  @Input() current: any;
 
   constructor() { }
 
