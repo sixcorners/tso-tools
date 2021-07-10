@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RoomService } from '../room/room.service';
 import { ChartNavigatorService } from './chart-navigator.service';
 
@@ -7,11 +7,8 @@ import { ChartNavigatorService } from './chart-navigator.service';
   templateUrl: './code-tool.component.html',
   styleUrls: ['./code-tool.component.scss']
 })
-export class CodeToolComponent implements OnInit {
+export class CodeToolComponent {
   constructor(readonly navigator: ChartNavigatorService, private room: RoomService) { }
-
-  ngOnInit() {
-  }
 
   moveNode(node: any) {
     if (!node) return;

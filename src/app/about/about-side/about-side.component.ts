@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AboutService } from '../about.service';
 
 @Component({
@@ -6,11 +6,8 @@ import { AboutService } from '../about.service';
   templateUrl: './about-side.component.html',
   styleUrls: ['./about-side.component.scss']
 })
-export class AboutSideComponent implements OnInit {
+export class AboutSideComponent {
   constructor(readonly about: AboutService) { }
-
-  ngOnInit(): void {
-  }
 
   click(entry: any) {
     console.log(entry);
