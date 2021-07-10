@@ -20,7 +20,7 @@ export class PizzaModelService {
   private lastRoomName?: string;
   readonly history: any[] = [];
 
-  constructor(private room: RoomService) {
+  constructor(room: RoomService) {
     for (let role of this.roles)
       this.model[role] = {};
 
@@ -60,7 +60,7 @@ export class PizzaModelService {
     });
   }
 
-  bake() {
+  private bake() {
     for (let value of Object.values(this.model)) {
       value.lastSelection = value.selection;
       value.lastSelectionIngredient = value[value.selection!]
