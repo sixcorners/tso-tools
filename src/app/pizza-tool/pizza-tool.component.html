@@ -11,7 +11,7 @@
 <div class="role" *ngFor="let role of roles">
     <div>
         <mat-checkbox #checkbox>{{role}}</mat-checkbox>
-        <span class="last-selection" [class.hidden]="!checkbox.checked || !model[role].lastSelection">You should click slot: {{model[role].lastSelection}} ({{model[role].lastSelectionIngredient}})</span>
+        <span class="last-selection" [class.hidden]="!checkbox.checked || !model[role].lastSelection">In the game you should click slot: {{model[role].lastSelection}} ({{model[role].lastSelectionIngredient}})</span>
     </div>
     <mat-button-toggle-group class="slot" *ngFor="let slot of slots" name="{{role}}_{{slot}}"
         [(ngModel)]="model[role][slot]" [disabled]="!checkbox.checked">
