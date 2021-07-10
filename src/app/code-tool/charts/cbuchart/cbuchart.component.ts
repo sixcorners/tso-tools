@@ -1,16 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-cbuchart',
   templateUrl: './cbuchart.component.html',
   styleUrls: ['./cbuchart.component.scss']
 })
-export class CbuchartComponent implements OnInit {
+export class CbuchartComponent {
   @Input() current: any;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

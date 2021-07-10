@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RoomService } from '../room/room.service';
 import { PizzaModelService } from './pizza-model.service';
 
@@ -7,12 +7,9 @@ import { PizzaModelService } from './pizza-model.service';
   templateUrl: './pizza-tool.component.html',
   styleUrls: ['./pizza-tool.component.scss']
 })
-export class PizzaToolComponent implements OnInit {
+export class PizzaToolComponent {
   readonly slots = [1, 2, 3] as const;
   constructor(private room: RoomService, private modelService: PizzaModelService) { }
-
-  ngOnInit() {
-  }
 
   get roles() {
     return this.modelService.roles;

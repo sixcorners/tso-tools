@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PizzaModelService } from '../pizza-model.service';
 
 @Component({
@@ -6,10 +6,6 @@ import { PizzaModelService } from '../pizza-model.service';
   templateUrl: './pizza-side.component.html',
   styleUrls: ['./pizza-side.component.scss']
 })
-export class PizzaSideComponent implements OnInit {
+export class PizzaSideComponent {
   constructor(readonly model: PizzaModelService) { }
-
-  ngOnInit(): void {
-  }
-
 }
