@@ -1,7 +1,7 @@
 <div class="ingredient input">
     <div class="role" *ngFor="let role of roles">
         <div>
-            <mat-checkbox #checkbox>{{role}}</mat-checkbox>
+            <mat-checkbox #checkbox>{{role | titlecase}}</mat-checkbox>
             <span class="last-selection" [class.hidden]="!checkbox.checked || !model[role].lastSelection">In the game
                 you should click slot: {{model[role].lastSelection}} ({{model[role].lastSelectionIngredient}})</span>
         </div>
