@@ -50,7 +50,7 @@
       3
       }}</button>
   </div>
-  <div class="info" #info (window:load)="showHideInfo()" (window:resize)="showHideInfo()">
+  <div class="info" *ngIf="showInfo">
     {{navigator.current.chart.title}}
   </div>
 </div>
