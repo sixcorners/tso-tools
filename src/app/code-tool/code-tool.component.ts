@@ -104,7 +104,7 @@ ${this.navigator.current.chart.title}
 This chart has ${count["#UnknownTable"]["COUNT(*)"]} nodes.
 This chart averages ${(combinations.map(c => c[1]).reduce((a, b) => a + b) / combinations.length).toFixed(3)} guesses per match.
 
-${combinations.map(c => `${c[0]} is ${c[1]} guess${c[1] == 1 ? '' : 'es'}`).join('\n')}
+${combinations.map(c => `${c[0]} takes ${c[1]} guess${c[1] == 1 ? '' : 'es'}`).join('\n')}
 `;
   }
 
