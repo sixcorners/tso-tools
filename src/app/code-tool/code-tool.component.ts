@@ -95,7 +95,7 @@ export class CodeToolComponent {
     let count = (await db.select(lf.fn.count())
       .from(node)
       .innerJoin(history, history.chart_id.eq(node.chart_id))
-      .groupBy(history.chart_id)
+      .groupBy(history.id)
       .orderBy(history.id, lf.Order.DESC)
       .limit(1)
       .exec())[0] as any;
