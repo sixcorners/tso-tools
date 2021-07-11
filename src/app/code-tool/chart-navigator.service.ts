@@ -6,7 +6,7 @@ import { RoomService } from '../room/room.service';
   providedIn: 'root'
 })
 export class ChartNavigatorService {
-  private db = (() => {
+  db = (() => {
     const schema = lf.schema.create('code', 1);
     schema
       .createTable('chart')
