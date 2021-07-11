@@ -1,3 +1,9 @@
-img {
+canvas {
+    position: absolute;
+    width: 521px;
+    height: 744px;
+}
+
+img, canvas {
     max-width: 100%;
 }
