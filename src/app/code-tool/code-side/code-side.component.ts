@@ -8,10 +8,10 @@ import { ChartNavigatorService } from '../chart-navigator.service';
   styleUrls: ['./code-side.component.scss']
 })
 export class CodeSideComponent {
-  constructor(private room: RoomService, readonly navigator: ChartNavigatorService) { }
+  constructor(readonly navigator: ChartNavigatorService) { }
 
   click(entry: any) {
     if (entry.node)
-      this.room.sendMessage(`!moveNode ${entry.node.id}`);
+      this.navigator.moveNode(entry.node.id);
   }
 }

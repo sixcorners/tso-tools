@@ -1,6 +1,5 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import * as lf from 'lovefield';
-import { RoomService } from '../room/room.service';
 import { ChartNavigatorService } from './chart-navigator.service';
 
 @Component({
@@ -40,7 +39,7 @@ export class CodeToolComponent {
   ] as const;
   @ViewChild('chart') chart!: ElementRef<HTMLDivElement>;
 
-  constructor(readonly navigator: ChartNavigatorService, private room: RoomService) { }
+  constructor(readonly navigator: ChartNavigatorService) { }
 
   private _currentChartInfo = '';
   private lastChartId = -1;
@@ -110,7 +109,7 @@ ${combinations.map(c => `${c[0]} takes ${c[1]} guess${c[1] == 1 ? '' : 'es'}`).j
 
   moveNode(node: any) {
     if (!node) return;
-    this.room.sendMessage(`!moveNode ${node.id}`);
+    this.navigator.moveNode(node.id);
   }
 
   showInfo = false;

@@ -42,7 +42,7 @@ export class ChartNavigatorService {
   private lastRoomName?: string;
   readonly history: any[] = [];
 
-  constructor(room: RoomService) {
+  constructor(private room: RoomService) {
     room.addEventListener('message', async ({ data }) => {
       if (this.lastRoomName != room.name) {
         this.lastRoomName = room.name;
@@ -59,7 +59,7 @@ export class ChartNavigatorService {
       {
         let match = data.message.match(/!moveNode (\d+)/);
         if (match) {
-          await this.moveNode(+match[1]);
+          await this.moveNodeInternal(+match[1]);
           data.node = this.current.node;
           data.parsed = `Moved to ${data.node.combination}`;
         }
@@ -393,7 +393,7 @@ export class ChartNavigatorService {
       .exec();
   }
 
-  async moveNode(id: number) {
+  private async moveNodeInternal(id: number) {
     const db = await this.db;
     const history = db.getSchema().table('history');
     const row = {
@@ -413,6 +413,10 @@ export class ChartNavigatorService {
       .from(history)
       .where(history.id.gt(1))
       .exec();
+  }
+
+  async moveNode(id: number) {
+    this.room.sendMessage(`!moveNode ${id}`);
   }
 
   async moveNodeRelative(relative_id: number) {
