@@ -89,8 +89,19 @@ export class CodeToolComponent {
 
   private async calculateChartInfo() {
     let combinations = await Promise.all(this.combinations.map(c => this.calculateSteps(c)));
+    let db = await this.navigator.db;
+    let node = db.getSchema().table('node');
+    let history = db.getSchema().table('history');
+    let count = (await db.select(lf.fn.count())
+      .from(node)
+      .innerJoin(history, history.chart_id.eq(node.chart_id))
+      .groupBy(history.chart_id)
+      .orderBy(history.id, lf.Order.DESC)
+      .limit(1)
+      .exec())[0] as any;
     this._currentChartInfo = `
 ${this.navigator.current.chart.title}
+This chart has ${count["#UnknownTable"]["COUNT(*)"]} nodes.
 This chart averages ${(combinations.map(c => c[1]).reduce((a, b) => a + b) / combinations.length).toFixed(3)} guesses per match.
 
 ${combinations.map(c => `${c[0]} is ${c[1]} guess${c[1] == 1 ? '' : 'es'}`).join('\n')}
