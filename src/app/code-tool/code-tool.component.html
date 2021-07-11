@@ -64,11 +64,11 @@
     </mat-select>
   </mat-form-field>
   <ng-container [ngSwitch]="navigator.current.chart.name">
-    <app-cbuchart *ngSwitchCase="'cbuchart'" [navigator]="navigator"></app-cbuchart>
-    <app-cbuthraxisopt *ngSwitchCase="'cbuthraxisopt'" [navigator]="navigator"></app-cbuthraxisopt>
-    <app-chart *ngSwitchCase="'chart'" [navigator]="navigator"></app-chart>
-    <app-jnw *ngSwitchCase="'jnw'" [navigator]="navigator"></app-jnw>
-    <app-twiddler-mim-code2 *ngSwitchCase="'twiddler_mim_code2'" [navigator]="navigator"></app-twiddler-mim-code2>
-    <app-tso0112 *ngSwitchCase="'tso0112'" [navigator]="navigator"></app-tso0112>
+    <app-cbuchart *ngSwitchCase="'cbuchart'"></app-cbuchart>
+    <app-cbuthraxisopt *ngSwitchCase="'cbuthraxisopt'"></app-cbuthraxisopt>
+    <app-chart *ngSwitchCase="'chart'"></app-chart>
+    <app-jnw *ngSwitchCase="'jnw'"></app-jnw>
+    <app-twiddler-mim-code2 *ngSwitchCase="'twiddler_mim_code2'"></app-twiddler-mim-code2>
+    <app-tso0112 *ngSwitchCase="'tso0112'"></app-tso0112>
   </ng-container>
 </div>

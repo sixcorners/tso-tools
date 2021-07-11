@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { ChartNavigatorService } from '../../chart-navigator.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-twiddler-mim-code2',
@@ -7,7 +6,5 @@ import { ChartNavigatorService } from '../../chart-navigator.service';
   styleUrls: ['./twiddler-mim-code2.component.scss']
 })
 export class TwiddlerMimCode2Component {
-  @Input() navigator!: ChartNavigatorService;
-
   constructor() { }
 }
