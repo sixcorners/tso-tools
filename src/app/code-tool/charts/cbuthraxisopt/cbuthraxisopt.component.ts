@@ -27,6 +27,13 @@ export class CbuthraxisoptComponent implements AfterViewInit, DoCheck {
   }
 
   private draw() {
+    if (!this.ctx) return;
+    if (this.navigator.current.nodeChart.name != 'cbuthraxisopt') return;
+    let { relative_id } = this.navigator.current.node;
+    if (relative_id == 0) {
+      let { width, height } = this.canvas.nativeElement;
+      this.ctx.clearRect(0, 0, width, height);
+    }
   }
 
   private nodes = [
