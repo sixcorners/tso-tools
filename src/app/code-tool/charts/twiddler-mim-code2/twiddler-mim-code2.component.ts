@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, ElementRef, ViewChild } from '@angular/core';
 import { ChartNavigatorService } from '../../chart-navigator.service';
 
 @Component({
@@ -6,8 +6,28 @@ import { ChartNavigatorService } from '../../chart-navigator.service';
   templateUrl: './twiddler-mim-code2.component.html',
   styleUrls: ['./twiddler-mim-code2.component.scss']
 })
-export class TwiddlerMimCode2Component {
+export class TwiddlerMimCode2Component implements AfterViewInit, DoCheck {
+  @ViewChild('canvas') canvas!: ElementRef<HTMLCanvasElement>;
+  private ctx?: CanvasRenderingContext2D;
+
   constructor(private navigator: ChartNavigatorService) { }
+
+  ngAfterViewInit() {
+    this.ctx = this.canvas.nativeElement.getContext('2d') ?? undefined;
+    if (this.ctx) this.ctx.strokeStyle = 'red';
+    this.draw();
+  }
+
+  private lastNodeId = -1;
+  ngDoCheck() {
+    if (this.lastNodeId == this.navigator.current.node.id)
+      return;
+    this.lastNodeId = this.navigator.current.node.id;
+    this.draw();
+  }
+
+  private draw() {
+  }
 
   private nodes = [
     [60, 276],
