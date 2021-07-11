@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class TwiddlerMimCode2Component {
   constructor() { }
+
+  click({offsetX, offsetY}: MouseEvent) {
+    console.log([offsetX, offsetY]);
+  }
 }
