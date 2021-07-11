@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, HostBinding } from '@angular/core';
+import { Component, HostListener, HostBinding } from '@angular/core';
 import { ChartNavigatorService } from '../../chart-navigator.service';
 
 @Component({
@@ -8,14 +8,13 @@ import { ChartNavigatorService } from '../../chart-navigator.service';
   preserveWhitespaces: true
 })
 export class Tso0112Component {
-  @Input() navigator!: ChartNavigatorService;
   @HostBinding('class') get class() {
     if (this.navigator.current.nodeChart.name != 'tso0112')
       return '';
     return `node-${this.navigator.current.node.relative_id}`;
   }
 
-  constructor() { }
+  constructor(private navigator: ChartNavigatorService) { }
 
   @HostListener("click", ['$event.target.dataset.node']) onClick(node: number) {
     if (node) this.navigator.moveNodeRelative(node);

@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { ChartNavigatorService } from '../../chart-navigator.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-chart',
@@ -7,7 +6,5 @@ import { ChartNavigatorService } from '../../chart-navigator.service';
   styleUrls: ['./chart.component.scss']
 })
 export class ChartComponent {
-  @Input() navigator!: ChartNavigatorService;
-
   constructor() { }
 }
