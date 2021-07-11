@@ -384,7 +384,7 @@ export class ChartNavigatorService {
     const history = db.getSchema().table('history');
     const row = { chart_id: id, node_id: this.current.node.id };
     // swap current node if we are still on AAA
-    if (!this.current.node.parent_id) {
+    if (!this.current.node.relative_id) {
       row.node_id = this.availableCharts[id].node.id;
     }
     return db.insert()
