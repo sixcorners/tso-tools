@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ChartNavigatorService } from '../../chart-navigator.service';
 
 @Component({
   selector: 'app-jnw',
@@ -6,7 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./jnw.component.scss']
 })
 export class JnwComponent {
-  @Input() current: any;
+  @Input() navigator!: ChartNavigatorService;
 
   constructor() { }
 }

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ChartNavigatorService } from '../../chart-navigator.service';
 
 @Component({
   selector: 'app-cbuchart',
@@ -6,7 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./cbuchart.component.scss']
 })
 export class CbuchartComponent {
-  @Input() current: any;
+  @Input() navigator!: ChartNavigatorService;
 
   constructor() { }
 }
