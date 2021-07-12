@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, DoCheck, ElementRef, ViewChild } from '@angular/core';
 import { ChartNavigatorService } from '../../chart-navigator.service';
+import { TwiddlerMimCode2Service } from './twiddler-mim-code2.service';
 
 @Component({
   selector: 'app-twiddler-mim-code2',
@@ -10,7 +11,7 @@ export class TwiddlerMimCode2Component implements AfterViewInit, DoCheck {
   @ViewChild('canvas') canvas!: ElementRef<HTMLCanvasElement>;
   private ctx?: CanvasRenderingContext2D;
 
-  constructor(private navigator: ChartNavigatorService) { }
+  constructor(private chart: TwiddlerMimCode2Service, private navigator: ChartNavigatorService) { }
 
   ngAfterViewInit() {
     this.ctx = this.canvas.nativeElement.getContext('2d') ?? undefined;
@@ -36,39 +37,9 @@ export class TwiddlerMimCode2Component implements AfterViewInit, DoCheck {
     }
   }
 
-  private nodes = [
-    [60, 276], // 0
-    [148, 196], // 1
-    [425, 174], // 2
-    [243, 234], // 3
-    [425, 216], // 4
-    [327, 246], // 5
-    [425, 257], // 6
-    [148, 400], // 7
-    [243, 319], // 8
-    [425, 332], // 9
-    [243, 386], // 10
-    [425, 377], // 11
-    [425, 400], // 12
-    [328, 431], // 13
-    [425, 442], // 14
-    [243, 482], // 15
-    [425, 495], // 16
-    [425, 518], // 17
-    [425, 541], // 18
-    [147, 648], // 19
-    [244, 602], // 20
-    [326, 625], // 21
-    [425, 636], // 22
-    [244, 677], // 23
-    [326, 691], // 24
-    [425, 703], // 25
-    [425, 725], // 26
-  ];
-
   click({ offsetX, offsetY }: MouseEvent) {
-    for (let i = this.nodes.length - 1; i >= 0; i--) {
-      let [x, y] = this.nodes[i];
+    for (let i = this.chart.locations.length - 1; i >= 0; i--) {
+      let [x, y] = this.chart.locations[i];
       x = offsetX - x;
       y = offsetY - y;
       if (x >= 0 && x <= 37 && y >= 0 && y <= 18)
