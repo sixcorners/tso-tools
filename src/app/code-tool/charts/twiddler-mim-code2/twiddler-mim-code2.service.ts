@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TwiddlerMimCode2Service {
+  readonly name = 'twiddler_mim_code2';
+  readonly title = 'Twiddler\'s CBU Code Smasher 4.0';
   readonly width = 37;
   readonly height = 18;
   readonly locations = [

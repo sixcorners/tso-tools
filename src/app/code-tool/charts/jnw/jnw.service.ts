@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class JnwService {
+  readonly name = 'jnw';
+  readonly title = 'Jandrea\'s NEVER WRONG Codebreaker Chart';
   readonly width = 61;
   readonly height = 49;
   readonly locations = [

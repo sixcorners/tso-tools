@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import * as lf from 'lovefield';
 import { RoomService } from '../room/room.service';
+import { CbuchartService } from './charts/cbuchart/cbuchart.service';
+import { CbuthraxisoptService } from './charts/cbuthraxisopt/cbuthraxisopt.service';
+import { ChartService } from './charts/chart/chart.service';
+import { JnwService } from './charts/jnw/jnw.service';
+import { Tso0112Service } from './charts/tso0112/tso0112.service';
+import { TwiddlerMimCode2Service } from './charts/twiddler-mim-code2/twiddler-mim-code2.service';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +48,7 @@ export class ChartNavigatorService {
   private lastRoomName?: string;
   readonly history: any[] = [];
 
-  constructor(private room: RoomService) {
+  constructor(private room: RoomService, chart1: CbuchartService, chart2: CbuthraxisoptService, chart3: ChartService, chart4: JnwService, chart5: TwiddlerMimCode2Service, chart6: Tso0112Service) {
     room.addEventListener('message', async ({ data }) => {
       if (this.lastRoomName != room.name) {
         this.lastRoomName = room.name;
@@ -70,18 +76,12 @@ export class ChartNavigatorService {
     });
 
     this.db.then(async db => {
+      const charts = [chart1, chart2, chart3, chart4, chart5, chart6];
       const chart = db.getSchema().table('chart');
       await db
         .insert()
         .into(chart)
-        .values([
-          ['cbuchart', 'Madison’s CBU Chart'], // 0
-          ['cbuthraxisopt', 'Thraxis optimized by Madison'], // 1
-          ['chart', 'The Hermione CBU Chart'], // 2
-          ['jnw', 'Jandrea\'s NEVER WRONG Codebreaker Chart'], // 3
-          ['twiddler_mim_code2', 'Twiddler\'s CBU Code Smasher 4.0'], // 4
-          ['tso0112', 'tso0112\'s chart'], // 5
-        ].map((r, i) => chart.createRow({ id: i, name: r[0], title: r[1] })))
+        .values(charts.map(({ name, title }, id) => chart.createRow({ id, name, title })))
         .exec();
 
       const node = db.getSchema().table('node');
