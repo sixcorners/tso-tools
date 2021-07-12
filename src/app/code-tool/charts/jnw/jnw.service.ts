@@ -6,6 +6,35 @@ import { Injectable } from '@angular/core';
 export class JnwService {
   readonly name = 'jnw';
   readonly title = 'Jandrea\'s NEVER WRONG Codebreaker Chart';
+  readonly nodes = [
+    [null, 3, 'AAA'], // 0
+    [0, 0, 'BBB'], // 1
+    [1, 0, 'CCC'], // 2
+    [1, 1, 'BCC'], // 3
+    [3, 1, 'CBC'], // 4
+    [4, 1, 'CCB'], // 5
+    [1, 2, 'BBC'], // 6
+    [6, 1, 'BCB'], // 7
+    [7, 1, 'CBB'], // 8
+    [0, 1, 'ABB'], // 9
+    [9, 0, 'BAC'], // 10
+    [10, 0, 'CCA'], // 11
+    [10, 1, 'BCA'], // 12
+    [10, 2, 'CAC'], // 13
+    [9, 1, 'CBA'], // 14
+    [14, 0, 'ACC'], // 15
+    [15, 0, 'BAB'], // 16
+    [14, 1, 'CAB'], // 17
+    [14, 2, 'BBA'], // 18
+    [9, 2, 'ABC'], // 19
+    [19, 1, 'ACB'], // 20
+    [0, 2, 'AAB'], // 21
+    [21, 1, 'ABA'], // 22
+    [22, 1, 'BAA'], // 23
+    [23, 2, 'CAA'], // 24
+    [22, 2, 'ACA'], // 25
+    [21, 2, 'AAC'], // 26
+  ] as const;
   readonly width = 61;
   readonly height = 49;
   readonly locations = [

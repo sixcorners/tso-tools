@@ -6,6 +6,38 @@ import { Injectable } from '@angular/core';
 export class ChartService {
   readonly name = 'chart';
   readonly title = 'The Hermione CBU Chart';
+  readonly nodes = [
+    [null, 3, 'AAA'], // 0
+    [0, 0, 'BBB'], // 1
+    [1, 0, 'CCC'], // 2
+    [1, 1, 'ABC'], // 3
+    [3, 0, 'CCB'], // 4
+    [3, 1, 'BCC'], // 5
+    [3, 2, 'CBC'], // 6
+    [1, 2, 'ABC'], // 7
+    [7, 0, 'BCB'], // 8
+    [7, 1, 'CBB'], // 9
+    [7, 2, 'BBC'], // 10
+    [0, 1, 'ABB'], // 11
+    [11, 0, 'BAC'], // 12
+    [12, 0, 'CCA'], // 13
+    [12, 1, 'BCA'], // 14
+    [12, 2, 'CAC'], // 15
+    [11, 1, 'BAB'], // 16
+    [16, 0, 'ACC'], // 17
+    [17, 0, 'CBA'], // 18
+    [16, 1, 'BBA'], // 19
+    [16, 2, 'CAB'], // 20
+    [11, 2, 'ABC'], // 21
+    [21, 1, 'ACB'], // 22
+    [0, 2, 'ABB'], // 23
+    [23, 0, 'BAA'], // 24
+    [24, 2, 'CAA'], // 25
+    [23, 1, 'AAC'], // 26
+    [26, 1, 'ACA'], // 27
+    [23, 2, 'AAB'], // 28
+    [28, 1, 'ABA'], // 29
+  ] as const;
   readonly width = 58;
   readonly height = 24;
   readonly locations = [

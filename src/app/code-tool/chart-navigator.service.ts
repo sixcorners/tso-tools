@@ -77,6 +77,7 @@ export class ChartNavigatorService {
 
     this.db.then(async db => {
       const charts = [chart1, chart2, chart3, chart4, chart5, chart6];
+      // load charts
       const chart = db.getSchema().table('chart');
       await db
         .insert()
@@ -84,226 +85,22 @@ export class ChartNavigatorService {
         .values(charts.map(({ name, title }, id) => chart.createRow({ id, name, title })))
         .exec();
 
+      // load nodes
       const node = db.getSchema().table('node');
-      const createRowForChart = (chartId: number) => (r: any[], i: number) =>
-        node.createRow({
-          chart_id: chartId,
-          id: i + chartId * 100,
-          relative_id: i,
-          parent_id: r[0] === null ? null : r[0] + chartId * 100,
-          matches: r[1],
-          combination: r[2]
-        });
       await db
         .insert()
         .into(node)
-        .values([
-          [null, 3, 'AAA'], // 0
-          [0, 0, 'BBB'], // 1
-          [1, 0, 'CCC'], // 2
-          [1, 1, 'ABC'], // 3
-          [3, 0, 'CCB'], // 4
-          [3, 1, 'BCC'], // 5
-          [3, 2, 'CBC'], // 6
-          [1, 2, 'ABC'], // 7
-          [7, 0, 'BCB'], // 8
-          [7, 1, 'CBB'], // 9
-          [7, 2, 'BBC'], // 10
-          [0, 1, 'ABC'], // 11
-          [11, 0, 'BAB'], // 12
-          [12, 0, 'CCA'], // 13
-          [12, 1, 'BCA'], // 14
-          [12, 2, 'CAB'], // 15
-          [11, 1, 'BBA'], // 16
-          [16, 0, 'ACB'], // 17
-          [17, 0, 'CAC'], // 18
-          [16, 1, 'BAC'], // 19
-          [16, 2, 'CBA'], // 20
-          [11, 2, 'ABB'], // 21
-          [21, 1, 'ACC'], // 22
-          [0, 2, 'ABC'], // 23
-          [23, 0, 'BAA'], // 24
-          [24, 2, 'CAA'], // 25
-          [23, 1, 'AAB'], // 26
-          [26, 1, 'ACA'], // 27
-          [23, 2, 'ABA'], // 28
-          [28, 1, 'AAC'], // 29
-        ].map(createRowForChart(0)))
-        .exec();
-      await db
-        .insert()
-        .into(node)
-        .values([
-          [null, 3, 'AAA'], // 0
-          [0, 0, 'BBB'], // 1
-          [1, 0, 'CCC'], // 2
-          [1, 1, 'BCC'], // 3
-          [3, 1, 'CBC'], // 4
-          [4, 1, 'CCB'], // 5
-          [1, 2, 'BBC'], // 6
-          [6, 1, 'BCB'], // 7
-          [7, 1, 'CBB'], // 8
-          [0, 1, 'BBB'], // 9
-          [9, 0, 'ACC'], // 10
-          [10, 1, 'CAC'], // 11
-          [11, 1, 'CCA'], // 12
-          [9, 1, 'ABC'], // 13
-          [13, 0, 'BCA'], // 14
-          [14, 0, 'CAB'], // 15
-          [13, 1, 'ACB'], // 16
-          [16, 0, 'CBA'], // 17
-          [17, 0, 'BAC'], // 18
-          [9, 2, 'ABB'], // 19
-          [19, 1, 'BAB'], // 20
-          [20, 1, 'BBA'], // 21
-          [0, 2, 'AAB'], // 22
-          [22, 1, 'ABA'], // 23
-          [23, 1, 'BAA'], // 24
-          [24, 2, 'CAA'], // 25
-          [23, 2, 'ACA'], // 26
-          [22, 2, 'AAC'], // 27
-        ].map(createRowForChart(1)))
-        .exec();
-      await db
-        .insert()
-        .into(node)
-        .values([
-          [null, 3, 'AAA'], // 0
-          [0, 0, 'BBB'], // 1
-          [1, 0, 'CCC'], // 2
-          [1, 1, 'ABC'], // 3
-          [3, 0, 'CCB'], // 4
-          [3, 1, 'BCC'], // 5
-          [3, 2, 'CBC'], // 6
-          [1, 2, 'ABC'], // 7
-          [7, 0, 'BCB'], // 8
-          [7, 1, 'CBB'], // 9
-          [7, 2, 'BBC'], // 10
-          [0, 1, 'ABB'], // 11
-          [11, 0, 'BAC'], // 12
-          [12, 0, 'CCA'], // 13
-          [12, 1, 'BCA'], // 14
-          [12, 2, 'CAC'], // 15
-          [11, 1, 'BAB'], // 16
-          [16, 0, 'ACC'], // 17
-          [17, 0, 'CBA'], // 18
-          [16, 1, 'BBA'], // 19
-          [16, 2, 'CAB'], // 20
-          [11, 2, 'ABC'], // 21
-          [21, 1, 'ACB'], // 22
-          [0, 2, 'ABB'], // 23
-          [23, 0, 'BAA'], // 24
-          [24, 2, 'CAA'], // 25
-          [23, 1, 'AAC'], // 26
-          [26, 1, 'ACA'], // 27
-          [23, 2, 'AAB'], // 28
-          [28, 1, 'ABA'], // 29
-        ].map(createRowForChart(2)))
-        .exec();
-      await db
-        .insert()
-        .into(node)
-        .values([
-          [null, 3, 'AAA'], // 0
-          [0, 0, 'BBB'], // 1
-          [1, 0, 'CCC'], // 2
-          [1, 1, 'BCC'], // 3
-          [3, 1, 'CBC'], // 4
-          [4, 1, 'CCB'], // 5
-          [1, 2, 'BBC'], // 6
-          [6, 1, 'BCB'], // 7
-          [7, 1, 'CBB'], // 8
-          [0, 1, 'ABB'], // 9
-          [9, 0, 'BAC'], // 10
-          [10, 0, 'CCA'], // 11
-          [10, 1, 'BCA'], // 12
-          [10, 2, 'CAC'], // 13
-          [9, 1, 'CBA'], // 14
-          [14, 0, 'ACC'], // 15
-          [15, 0, 'BAB'], // 16
-          [14, 1, 'CAB'], // 17
-          [14, 2, 'BBA'], // 18
-          [9, 2, 'ABC'], // 19
-          [19, 1, 'ACB'], // 20
-          [0, 2, 'AAB'], // 21
-          [21, 1, 'ABA'], // 22
-          [22, 1, 'BAA'], // 23
-          [23, 2, 'CAA'], // 24
-          [22, 2, 'ACA'], // 25
-          [21, 2, 'AAC'], // 26
-        ].map(createRowForChart(3)))
-        .exec();
-      await db
-        .insert()
-        .into(node)
-        .values([
-          [null, 3, 'AAA'], // 0
-          [0, 2, 'AAB'], // 1
-          [1, 2, 'AAC'], // 2
-          [1, 1, 'ABA'], // 3
-          [3, 2, 'ACA'], // 4
-          [3, 1, 'BAA'], // 5
-          [5, 2, 'CAA'], // 6
-          [0, 1, 'ABB'], // 7
-          [7, 2, 'ABC'], // 8
-          [8, 1, 'ACB'], // 9
-          [7, 1, 'CBA'], // 10
-          [10, 2, 'BBA'], // 11
-          [10, 1, 'CAB'], // 12
-          [10, 0, 'ACC'], // 13
-          [13, 0, 'BAB'], // 14
-          [7, 0, 'BAC'], // 15
-          [15, 2, 'CAC'], // 16
-          [15, 1, 'BCA'], // 17
-          [15, 0, 'CCA'], // 18
-          [0, 0, 'BBB'], // 19
-          [19, 2, 'BBC'], // 20
-          [20, 1, 'CBB'], // 21
-          [21, 1, 'BCB'], // 22
-          [19, 1, 'CCB'], // 23
-          [23, 1, 'BCC'], // 24
-          [24, 1, 'CBC'], // 25
-          [19, 0, 'CCC'], // 26
-        ].map(createRowForChart(4)))
-        .exec();
-      await db
-        .insert()
-        .into(node)
-        .values([
-          [null, 3, 'AAA'], // 0
-          [0, 0, 'BBB'], // 1
-          [1, 0, 'CCC'], // 2
-          [1, 1, 'ABC'], // 3
-          [3, 0, 'CCB'], // 4
-          [3, 1, 'BCC'], // 5
-          [3, 2, 'CBC'], // 6
-          [1, 2, 'ABC'], // 7
-          [7, 0, 'BCB'], // 8
-          [7, 1, 'CBB'], // 9
-          [7, 2, 'BBC'], // 10
-          [0, 1, 'AAB'], // 11
-          [11, 0, 'BBA'], // 12
-          [12, 1, 'CCA'], // 13
-          [12, 2, 'BCA'], // 14
-          [14, 1, 'CBA'], // 15
-          [11, 1, 'ABC'], // 16
-          [16, 1, 'CAC'], // 17
-          [17, 2, 'BAC'], // 18
-          [16, 2, 'ACC'], // 19
-          [11, 2, 'ABB'], // 20
-          [20, 1, 'BAB'], // 21
-          [21, 2, 'CAB'], // 22
-          [20, 2, 'ACB'], // 23
-          [0, 2, 'ABC'], // 24
-          [24, 0, 'BAA'], // 25
-          [25, 2, 'CAA'], // 26
-          [24, 1, 'AAB'], // 27
-          [27, 1, 'ACA'], // 28
-          [24, 2, 'AAC'], // 29
-          [29, 1, 'ABA'], // 30
-        ].map(createRowForChart(5)))
+        .values(charts.flatMap(({ nodes }, chart_id) => nodes.map(([parent_id, matches, combination], relative_id) => node.createRow({
+          chart_id,
+          id: relative_id + chart_id * 100,
+          relative_id,
+          parent_id: parent_id === null ? null : parent_id + chart_id * 100,
+          matches,
+          combination,
+        }))))
         .exec();
 
+      // initialize history table to point to the first node in the first chart
       const { chart_id, id } = (await db.select()
         .from(node)
         .orderBy(node.id)
