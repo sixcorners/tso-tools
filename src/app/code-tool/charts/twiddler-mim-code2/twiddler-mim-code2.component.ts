@@ -16,25 +16,20 @@ export class TwiddlerMimCode2Component implements AfterViewInit, DoCheck {
   ngAfterViewInit() {
     this.ctx = this.canvas.nativeElement.getContext('2d') ?? undefined;
     if (this.ctx) this.ctx.strokeStyle = 'red';
-    this.draw();
+    this.ngDoCheck();
   }
 
   private lastNodeId = -1;
   ngDoCheck() {
-    if (this.lastNodeId == this.navigator.current.node.id)
-      return;
-    this.lastNodeId = this.navigator.current.node.id;
-    this.draw();
-  }
-
-  private draw() {
     if (!this.ctx) return;
-    if (this.navigator.current.nodeChart.name != 'twiddler_mim_code2') return;
-    let { relative_id } = this.navigator.current.node;
+    if (this.navigator.current.nodeChart.name != this.chart.name) return;
+    let { id, relative_id } = this.navigator.current.node;
+    if (this.lastNodeId == id) return;
     if (relative_id == 0) {
       let { width, height } = this.canvas.nativeElement;
       this.ctx.clearRect(0, 0, width, height);
     }
+    this.lastNodeId = id;
   }
 
   click({ offsetX, offsetY }: MouseEvent) {
