@@ -36,8 +36,8 @@ export class CbuthraxisoptService {
     [23, 2, 'ACA'], // 26
     [22, 2, 'AAC'], // 27
   ] as const;
-  readonly width = 55;
-  readonly height = 31;
+  readonly width = 65;
+  readonly height = 33;
   readonly locations = [
     [1, 402], // 0
     [129, 169], // 1
