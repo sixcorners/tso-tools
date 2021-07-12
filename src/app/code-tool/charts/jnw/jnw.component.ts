@@ -22,12 +22,17 @@ export class JnwComponent implements AfterViewInit, DoCheck {
   private lastNodeId = -1;
   ngDoCheck() {
     if (!this.ctx) return;
-    if (this.navigator.current.nodeChart.name != this.chart.name) return;
-    let { id, relative_id } = this.navigator.current.node;
+    let { id, relative_id, parent_id } = this.navigator.current.node;
     if (this.lastNodeId == id) return;
     if (relative_id == 0) {
       let { width, height } = this.canvas.nativeElement;
       this.ctx.clearRect(0, 0, width, height);
+    }
+    if (this.navigator.current.nodeChart.name == this.chart.name) {
+      let [circle, arrow] = this.chart.drawings[relative_id];
+      this.ctx.stroke(circle);
+      if (arrow && this.lastNodeId == parent_id)
+        this.ctx.stroke(arrow);
     }
     this.lastNodeId = id;
   }
