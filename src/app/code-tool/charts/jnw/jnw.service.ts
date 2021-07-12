@@ -35,8 +35,8 @@ export class JnwService {
     [22, 2, 'ACA'], // 25
     [21, 2, 'AAC'], // 26
   ] as const;
-  readonly width = 61;
-  readonly height = 49;
+  readonly width = 62;
+  readonly height = 50;
   readonly locations = [
     [9, 489], // 0
     [177, 57], // 1

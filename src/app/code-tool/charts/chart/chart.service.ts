@@ -38,8 +38,8 @@ export class ChartService {
     [23, 2, 'AAB'], // 28
     [28, 1, 'ABA'], // 29
   ] as const;
-  readonly width = 58;
-  readonly height = 24;
+  readonly width = 59;
+  readonly height = 25;
   readonly locations = [
     [0, 457], // 0
     [202, 157], // 1

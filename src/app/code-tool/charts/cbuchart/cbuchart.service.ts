@@ -38,8 +38,8 @@ export class CbuchartService {
     [23, 2, 'ABA'], // 28
     [28, 1, 'AAC'], // 29
   ] as const;
-  readonly width = 55;
-  readonly height = 31;
+  readonly width = 65;
+  readonly height = 33;
   readonly locations = [
     [1, 619], // 0
     [137, 177], // 1

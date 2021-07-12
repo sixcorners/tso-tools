@@ -35,8 +35,8 @@ export class TwiddlerMimCode2Service {
     [24, 1, 'CBC'], // 25
     [19, 0, 'CCC'], // 26
   ] as const;
-  readonly width = 37;
-  readonly height = 18;
+  readonly width = 39;
+  readonly height = 19;
   readonly locations = [
     [60, 276], // 0
     [148, 196], // 1
