@@ -6,6 +6,36 @@ import { Injectable } from '@angular/core';
 export class CbuthraxisoptService {
   readonly name = 'cbuthraxisopt';
   readonly title = 'Thraxis optimized by Madison';
+  readonly nodes = [
+    [null, 3, 'AAA'], // 0
+    [0, 0, 'BBB'], // 1
+    [1, 0, 'CCC'], // 2
+    [1, 1, 'BCC'], // 3
+    [3, 1, 'CBC'], // 4
+    [4, 1, 'CCB'], // 5
+    [1, 2, 'BBC'], // 6
+    [6, 1, 'BCB'], // 7
+    [7, 1, 'CBB'], // 8
+    [0, 1, 'BBB'], // 9
+    [9, 0, 'ACC'], // 10
+    [10, 1, 'CAC'], // 11
+    [11, 1, 'CCA'], // 12
+    [9, 1, 'ABC'], // 13
+    [13, 0, 'BCA'], // 14
+    [14, 0, 'CAB'], // 15
+    [13, 1, 'ACB'], // 16
+    [16, 0, 'CBA'], // 17
+    [17, 0, 'BAC'], // 18
+    [9, 2, 'ABB'], // 19
+    [19, 1, 'BAB'], // 20
+    [20, 1, 'BBA'], // 21
+    [0, 2, 'AAB'], // 22
+    [22, 1, 'ABA'], // 23
+    [23, 1, 'BAA'], // 24
+    [24, 2, 'CAA'], // 25
+    [23, 2, 'ACA'], // 26
+    [22, 2, 'AAC'], // 27
+  ] as const;
   readonly width = 55;
   readonly height = 31;
   readonly locations = [

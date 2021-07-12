@@ -6,6 +6,38 @@ import { Injectable } from '@angular/core';
 export class CbuchartService {
   readonly name = 'cbuchart';
   readonly title = 'Madison’s CBU Chart';
+  readonly nodes = [
+    [null, 3, 'AAA'], // 0
+    [0, 0, 'BBB'], // 1
+    [1, 0, 'CCC'], // 2
+    [1, 1, 'ABC'], // 3
+    [3, 0, 'CCB'], // 4
+    [3, 1, 'BCC'], // 5
+    [3, 2, 'CBC'], // 6
+    [1, 2, 'ABC'], // 7
+    [7, 0, 'BCB'], // 8
+    [7, 1, 'CBB'], // 9
+    [7, 2, 'BBC'], // 10
+    [0, 1, 'ABC'], // 11
+    [11, 0, 'BAB'], // 12
+    [12, 0, 'CCA'], // 13
+    [12, 1, 'BCA'], // 14
+    [12, 2, 'CAB'], // 15
+    [11, 1, 'BBA'], // 16
+    [16, 0, 'ACB'], // 17
+    [17, 0, 'CAC'], // 18
+    [16, 1, 'BAC'], // 19
+    [16, 2, 'CBA'], // 20
+    [11, 2, 'ABB'], // 21
+    [21, 1, 'ACC'], // 22
+    [0, 2, 'ABC'], // 23
+    [23, 0, 'BAA'], // 24
+    [24, 2, 'CAA'], // 25
+    [23, 1, 'AAB'], // 26
+    [26, 1, 'ACA'], // 27
+    [23, 2, 'ABA'], // 28
+    [28, 1, 'AAC'], // 29
+  ] as const;
   readonly width = 55;
   readonly height = 31;
   readonly locations = [

@@ -6,6 +6,35 @@ import { Injectable } from '@angular/core';
 export class TwiddlerMimCode2Service {
   readonly name = 'twiddler_mim_code2';
   readonly title = 'Twiddler\'s CBU Code Smasher 4.0';
+  readonly nodes = [
+    [null, 3, 'AAA'], // 0
+    [0, 2, 'AAB'], // 1
+    [1, 2, 'AAC'], // 2
+    [1, 1, 'ABA'], // 3
+    [3, 2, 'ACA'], // 4
+    [3, 1, 'BAA'], // 5
+    [5, 2, 'CAA'], // 6
+    [0, 1, 'ABB'], // 7
+    [7, 2, 'ABC'], // 8
+    [8, 1, 'ACB'], // 9
+    [7, 1, 'CBA'], // 10
+    [10, 2, 'BBA'], // 11
+    [10, 1, 'CAB'], // 12
+    [10, 0, 'ACC'], // 13
+    [13, 0, 'BAB'], // 14
+    [7, 0, 'BAC'], // 15
+    [15, 2, 'CAC'], // 16
+    [15, 1, 'BCA'], // 17
+    [15, 0, 'CCA'], // 18
+    [0, 0, 'BBB'], // 19
+    [19, 2, 'BBC'], // 20
+    [20, 1, 'CBB'], // 21
+    [21, 1, 'BCB'], // 22
+    [19, 1, 'CCB'], // 23
+    [23, 1, 'BCC'], // 24
+    [24, 1, 'CBC'], // 25
+    [19, 0, 'CCC'], // 26
+  ] as const;
   readonly width = 37;
   readonly height = 18;
   readonly locations = [
