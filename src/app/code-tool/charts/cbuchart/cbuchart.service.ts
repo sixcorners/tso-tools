@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CbuchartService {
+  readonly width = 55;
+  readonly height = 31;
   readonly locations = [
     [1, 619], // 0
     [137, 177], // 1

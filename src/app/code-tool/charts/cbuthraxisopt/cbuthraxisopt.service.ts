@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CbuthraxisoptService {
+  readonly width = 55;
+  readonly height = 31;
   readonly locations = [
     [1, 402], // 0
     [129, 169], // 1
