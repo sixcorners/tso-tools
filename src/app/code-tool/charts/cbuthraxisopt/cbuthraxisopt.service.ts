@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CbuthraxisoptService {
+  readonly name = 'cbuthraxisopt';
+  readonly title = 'Thraxis optimized by Madison';
   readonly width = 55;
   readonly height = 31;
   readonly locations = [
