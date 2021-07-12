@@ -38,12 +38,12 @@ export class ChartComponent implements AfterViewInit, DoCheck {
   }
 
   click({ offsetX, offsetY }: MouseEvent) {
-    for (let i = this.chart.locations.length - 1; i >= 0; i--) {
-      let [x, y] = this.chart.locations[i];
+    let { width, height } = this.chart;
+    this.chart.locations.forEach(([x, y], relative_id) => {
       x = offsetX - x;
       y = offsetY - y;
-      if (x >= 0 && x <= this.chart.width && y >= 0 && y <= this.chart.height)
-        this.navigator.moveNodeRelative(i);
-    }
+      if (x >= 0 && x <= width && y >= 0 && y <= height)
+        this.navigator.moveNodeRelative(relative_id);
+    });
   }
 }
