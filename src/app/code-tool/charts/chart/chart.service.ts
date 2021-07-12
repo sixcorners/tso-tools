@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ChartService {
+  readonly width = 58;
+  readonly height = 24;
   readonly locations = [
     [0, 457], // 0
     [202, 157], // 1

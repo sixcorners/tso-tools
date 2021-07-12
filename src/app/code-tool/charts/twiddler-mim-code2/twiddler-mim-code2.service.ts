@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TwiddlerMimCode2Service {
+  readonly width = 37;
+  readonly height = 18;
   readonly locations = [
     [60, 276], // 0
     [148, 196], // 1

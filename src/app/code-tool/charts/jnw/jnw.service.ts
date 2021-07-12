@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class JnwService {
+  readonly width = 61;
+  readonly height = 49;
   readonly locations = [
     [9, 489], // 0
     [177, 57], // 1

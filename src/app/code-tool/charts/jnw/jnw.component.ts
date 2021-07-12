@@ -42,7 +42,7 @@ export class JnwComponent implements AfterViewInit, DoCheck {
       let [x, y] = this.chart.locations[i];
       x = offsetX - x;
       y = offsetY - y;
-      if (x >= 0 && x <= 61 && y >= 0 && y <= 49)
+      if (x >= 0 && x <= this.chart.width && y >= 0 && y <= this.chart.height)
         this.navigator.moveNodeRelative(i);
     }
   }
