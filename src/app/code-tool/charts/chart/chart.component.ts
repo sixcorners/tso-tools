@@ -19,15 +19,17 @@ export class ChartComponent implements AfterViewInit, DoCheck {
     this.ngDoCheck();
   }
 
+  private clear() {
+    let { width, height } = this.canvas.nativeElement;
+    this.ctx?.clearRect(0, 0, width, height);
+  }
+
   private lastNodeId = -1;
   ngDoCheck() {
     if (!this.ctx) return;
     let { id, relative_id, parent_id } = this.navigator.current.node;
     if (this.lastNodeId == id) return;
-    if (relative_id == 0) {
-      let { width, height } = this.canvas.nativeElement;
-      this.ctx.clearRect(0, 0, width, height);
-    }
+    if (relative_id == 0) this.clear();
     if (this.navigator.current.nodeChart.name == this.chart.name) {
       let [circle, arrow] = this.chart.drawings[relative_id];
       this.ctx.stroke(circle);
