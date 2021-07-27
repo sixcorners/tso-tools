@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, DoCheck, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { ChartNavigatorService } from '../../chart-navigator.service';
 import { TwiddlerMimCode2Service } from './twiddler-mim-code2.service';
 
@@ -39,6 +39,7 @@ export class TwiddlerMimCode2Component implements AfterViewInit, DoCheck {
     this.lastNodeId = id;
   }
 
+  @HostListener('click', ['$event'])
   click({ offsetX, offsetY }: MouseEvent) {
     let { width, height } = this.chart;
     this.chart.locations.forEach(([x, y], relative_id) => {
