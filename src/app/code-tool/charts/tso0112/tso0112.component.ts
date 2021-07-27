@@ -16,7 +16,8 @@ export class Tso0112Component {
 
   constructor(private navigator: ChartNavigatorService) { }
 
-  @HostListener("click", ['$event.target.dataset.node']) onClick(node: number) {
+  @HostListener("click", ['$event.target.dataset.node'])
+  click(node: number) {
     if (node) this.navigator.moveNodeRelative(node);
   }
 }
