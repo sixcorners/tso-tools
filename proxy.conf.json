@@ -1,10 +1,10 @@
 {
     "/api": {
-        "target": "https://tso-tools.sixcorners.info",
+        "target": "https://tsotools.sixcorners.info",
         "secure": false,
         "ws": true,
         "headers": {
-            "host": "tso-tools.sixcorners.info"
+            "host": "tsotools.sixcorners.info"
         }
     }
 }
