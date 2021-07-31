@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RoomService } from '../room/room.service';
 import { PizzaModelService } from './pizza-model.service';
 
+// https://github.com/riperiperi/FreeSO/blob/master/TSOClient/tso.simantics/NetPlay/EODs/Handlers/VMEODPizzaMakerPlugin.cs
 @Component({
   selector: 'app-pizza-tool',
   templateUrl: './pizza-tool.component.html',
