@@ -2,6 +2,7 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import * as lf from 'lovefield';
 import { ChartNavigatorService } from './chart-navigator.service';
 
+// https://github.com/riperiperi/FreeSO/blob/master/TSOClient/tso.simantics/NetPlay/EODs/Handlers/VMEODPaperChasePlugin.cs
 @Component({
   selector: 'app-code-tool',
   templateUrl: './code-tool.component.html',
