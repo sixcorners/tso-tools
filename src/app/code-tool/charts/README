@@ -1,0 +1,41 @@
+To create drawings:
+    load this program into paperjs sketch
+        http://sketch.paperjs.org/
+    convert the image to a data uri
+        https://websemantics.uk/tools/image-to-data-uri-converter/
+    load the data url into the raster object's source parameter
+    click the run button
+        run it twice if the image doesn't look right
+    draw on the image
+    export it as svg
+    optimize the result in svgo
+        https://jakearchibald.github.io/svgomg/
+        lowest precision
+        remove raster images
+        don't merge paths
+    copy the paths out of the file
+
+var r = new Raster({
+    source: `` // data url here
+});
+r.position = new Point(-r.bounds.x, -r.bounds.y);
+
+var paths = [];
+function onMouseDown({ point }) {
+	paths.push(new Path({
+		segments: [point],
+		strokeColor: 'black'
+	}));
+}
+
+function onMouseDrag({ point }) {
+	paths[paths.length - 1].add(point);
+}
+
+function onMouseUp() {
+	paths[paths.length - 1].simplify(10);
+}
+
+function onKeyDown({ key }) {
+    if (key == 'z' && paths.length) paths.pop().remove();
+}
