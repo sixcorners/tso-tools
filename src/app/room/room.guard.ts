@@ -26,7 +26,10 @@ export class RoomGuard implements CanActivate {
       }
     } catch (error) {
       console.error('failed to connect to server:', error);
-      this.snackBar.open(`failed to connect to server: ${error.message}`, 'OK');
+      let message = error;
+      if (error instanceof Error)
+        ({ message } = error);
+      this.snackBar.open(`failed to connect to server: ${message}`, 'OK');
     }
     return this.router.createUrlTree(
       [getResolvedUrl(next) + '/' + room]
