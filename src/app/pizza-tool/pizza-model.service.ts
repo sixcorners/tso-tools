@@ -18,9 +18,10 @@ export class PizzaModelService {
   } = {};
   private lastTimestamp = -Number.MAX_VALUE;
   private lastRoomName?: string;
+  private backfill?: ReturnType<typeof setTimeout>;
   readonly history: any[] = [];
 
-  constructor(room: RoomService) {
+  constructor(private room: RoomService) {
     for (let role of this.roles)
       this.model[role] = {};
 
@@ -39,9 +40,13 @@ export class PizzaModelService {
       {
         let match = data.message.match(/!ingredients (.+?) (..) (..) (..)/);
         if (match) {
+          if (this.backfill) {
+            clearTimeout(this.backfill);
+            this.backfill = undefined;
+          }
           let role = this.model[match[1]];
           for (let i of [1, 2, 3] as const)
-            role[i] = match[i + 1];
+            role[i] = match[i + 1] === '??' ? undefined : match[i + 1];
           data.parsed = `${match[1]} has ${match[2]} ${match[3]} ${match[4]}`;
         }
       }
@@ -52,6 +57,13 @@ export class PizzaModelService {
             this.model[this.roles[i]].selection = match[i + 1];
           this.bake();
           data.parsed = `Bake ${match[1]} ${match[2]} ${match[3]} ${match[4]}`;
+        }
+      }
+      {
+        let match = data.message.match(/!joined/);
+        if (match) {
+          data.parsed = `${data.clientId} joined`;
+          this.backfill = setTimeout(() => this.sendIngrediants(), Math.random() * 1000);
         }
       }
       this.history.push(data);
@@ -66,6 +78,16 @@ export class PizzaModelService {
       value.lastSelectionIngredient = value[value.selection!]
       value[value.selection!] = undefined;
       value.selection = undefined;
+    }
+  }
+
+  sendIngrediants(role?: string) {
+    let roles = role ? [role] : this.roles;
+    for (let role of roles) {
+      let value = this.model[role];
+      if (!value) continue;
+      if (value[1] || value[2] || value[3])
+        this.room.sendMessage(`!ingredients ${role} ${value[1] ?? '??'} ${value[2] ?? '??'} ${value[3] ?? '??'}`);
     }
   }
 }

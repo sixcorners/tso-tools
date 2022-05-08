@@ -21,6 +21,6 @@ export class RoomComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver, readonly route: ActivatedRoute, readonly room: RoomService) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => this.room.changeRoom(params.get('room') ?? undefined, '{}'));
+    this.route.paramMap.subscribe(params => this.room.changeRoom(params.get('room') ?? undefined, '!joined'));
   }
 }

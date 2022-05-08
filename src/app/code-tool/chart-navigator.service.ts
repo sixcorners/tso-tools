@@ -46,6 +46,7 @@ export class ChartNavigatorService {
   })();
   private lastTimestamp = -Number.MAX_VALUE;
   private lastRoomName?: string;
+  private backfill?: ReturnType<typeof setTimeout>;
   readonly history: any[] = [];
 
   constructor(private room: RoomService, chart1: CbuchartService, chart2: CbuthraxisoptService, chart3: ChartService, chart4: JnwService, chart5: TwiddlerMimCode2Service, chart6: Tso0112Service) {
@@ -65,9 +66,21 @@ export class ChartNavigatorService {
       {
         let match = data.message.match(/!moveNode (\d+)/);
         if (match) {
+          if (this.backfill) {
+            clearTimeout(this.backfill);
+            this.backfill = undefined;
+          }
           await this.moveNodeInternal(+match[1]);
           data.node = this.current.node;
           data.parsed = `Moved to ${data.node.combination}`;
+        }
+      }
+      {
+        let match = data.message.match(/!joined/);
+        if (match) {
+          data.parsed = `${data.clientId} joined`;
+          if (this.current.node.id)
+            this.backfill = setTimeout(() => this.moveNode(this.current.node.id), Math.random() * 1000);
         }
       }
       this.history.push(data);
@@ -212,7 +225,7 @@ export class ChartNavigatorService {
       .exec();
   }
 
-  async moveNode(id: number) {
+  moveNode(id: number) {
     this.room.sendMessage(`!moveNode ${id}`);
   }
 
