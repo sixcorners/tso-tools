@@ -53,7 +53,7 @@ export class RoomService {
     }
   }
 
-  changeRoom(name?: string, ...initialSend: Parameters<RoomService['send']> | []) {
+  changeRoom(name?: string, ...initialSend: Parameters<RoomService['sendMessage']> | []) {
     // cancel pending changes
     if (this.lastJoin) {
       clearTimeout(this.lastJoin);
@@ -100,6 +100,6 @@ export class RoomService {
     for (let listener of this.eventListeners)
       this.ws.addEventListener(...listener);
     if (initialSend.length)
-      this.ws.addEventListener('open', _ => this.send(...initialSend));
+      this.ws.addEventListener('open', _ => this.sendMessage(...initialSend));
   }
 }

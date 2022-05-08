@@ -35,8 +35,6 @@ export class PizzaToolComponent {
     let value = this.model[role];
     value.lastSelection = undefined;
     value.lastSelectionIngredient = undefined;
-    let ingrediants = `${value[1]} ${value[2]} ${value[3]}`
-    if (ingrediants.length == 8)
-      this.room.sendMessage(`!ingredients ${role} ${ingrediants}`);
+    this.modelService.sendIngrediants(role);
   }
 }
