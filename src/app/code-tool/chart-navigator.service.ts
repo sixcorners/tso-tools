@@ -103,7 +103,7 @@ export class ChartNavigatorService {
       // initialize history table to point to the first node in the first chart
       const { chart_id, id } = (await db.select()
         .from(node)
-        .orderBy(node.id)
+        .orderBy(node['id'])
         .limit(1)
         .exec())[0] as any;
       const history = db.getSchema().table('history');
@@ -122,9 +122,9 @@ export class ChartNavigatorService {
     const query = db
       .select()
       .from(chart)
-      .innerJoin(node, node.chart_id.eq(chart.id))
-      .where(node.relative_id.eq(0))
-      .orderBy(chart.id);
+      .innerJoin(node, node['chart_id'].eq(chart['id']))
+      .where(node['relative_id'].eq(0))
+      .orderBy(chart['id']);
     db.observe(query, (changes: any[]) => {
       this.availableCharts = changes[changes.length - 1].object;
     });
@@ -140,11 +140,11 @@ export class ChartNavigatorService {
       .innerJoin(
         history,
         lf.op.or(
-          node.parent_id.eq(history.node_id),
-          lf.op.and(node.parent_id.isNull(), node.chart_id.eq(history.chart_id))
+          node['parent_id'].eq(history['node_id']),
+          lf.op.and(node['parent_id'].isNull(), node['chart_id'].eq(history['chart_id']))
         )
       )
-      .orderBy(history.id, lf.Order.DESC)
+      .orderBy(history['id'], lf.Order.DESC)
       .limit(4);
     db.observe(query, (changes: any[]) => {
       this.currentChoices = [undefined, undefined, undefined, undefined];
@@ -166,10 +166,10 @@ export class ChartNavigatorService {
     const query = db
       .select()
       .from(history)
-      .innerJoin(chart, chart.id.eq(history.chart_id))
-      .innerJoin(node, node.id.eq(history.node_id))
-      .innerJoin(nodeChart, nodeChart.id.eq(node.chart_id))
-      .orderBy(history.id, lf.Order.DESC)
+      .innerJoin(chart, chart['id'].eq(history['chart_id']))
+      .innerJoin(node, node['id'].eq(history['node_id']))
+      .innerJoin(nodeChart, nodeChart['id'].eq(node['chart_id']))
+      .orderBy(history['id'], lf.Order.DESC)
       .limit(1);
     db.observe(query, (changes: any[]) => {
       this.current = changes[changes.length - 1].object[0];
@@ -208,7 +208,7 @@ export class ChartNavigatorService {
     const history = db.getSchema().table('history');
     return db.delete()
       .from(history)
-      .where(history.id.gt(1))
+      .where(history['id'].gt(1))
       .exec();
   }
 
@@ -222,8 +222,8 @@ export class ChartNavigatorService {
     const { id } = (await db.select()
       .from(node)
       .where(lf.op.and(
-        node.chart_id.eq(this.current.chart.id),
-        node.relative_id.eq(relative_id)))
+        node['chart_id'].eq(this.current.chart.id),
+        node['relative_id'].eq(relative_id)))
       .exec())[0] as any;
     return this.moveNode(id);
   }

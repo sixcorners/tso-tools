@@ -64,9 +64,9 @@ export class CodeToolComponent {
     let history = db.getSchema().table('history');
     let current = (await db.select()
       .from(node)
-      .innerJoin(history, history.chart_id.eq(node.chart_id))
-      .where(node.parent_id.isNull())
-      .orderBy(history.id, lf.Order.DESC)
+      .innerJoin(history, history['chart_id'].eq(node['chart_id']))
+      .where(node['parent_id'].isNull())
+      .orderBy(history['id'], lf.Order.DESC)
       .limit(1)
       .exec())[0] as any;
     let steps = 0;
@@ -76,11 +76,11 @@ export class CodeToolComponent {
         break;
       current = (await db.select()
         .from(node)
-        .innerJoin(history, history.chart_id.eq(node.chart_id))
+        .innerJoin(history, history['chart_id'].eq(node['chart_id']))
         .where(lf.op.and(
-          node.parent_id.eq(current.node.id),
-          node.matches.eq(matches)))
-        .orderBy(history.id, lf.Order.DESC)
+          node['parent_id'].eq(current.node.id),
+          node['matches'].eq(matches)))
+        .orderBy(history['id'], lf.Order.DESC)
         .limit(1)
         .exec())[0] as any;
     }
@@ -94,9 +94,9 @@ export class CodeToolComponent {
     let history = db.getSchema().table('history');
     let count = (await db.select(lf.fn.count())
       .from(node)
-      .innerJoin(history, history.chart_id.eq(node.chart_id))
-      .groupBy(history.id)
-      .orderBy(history.id, lf.Order.DESC)
+      .innerJoin(history, history['chart_id'].eq(node['chart_id']))
+      .groupBy(history['id'])
+      .orderBy(history['id'], lf.Order.DESC)
       .limit(1)
       .exec())[0] as any;
     this._currentChartInfo = `
