@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { nanoid } from 'nanoid';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ export class RoomService {
   name?: string;
   private timeSinceLastJoin = -Number.MAX_VALUE;
   private lastTimestamp = -Number.MAX_VALUE;
+  private clientId = nanoid();
   private ws?: WebSocket;
   private lastJoin?: ReturnType<typeof setTimeout>;
   private eventListeners: Parameters<WebSocket['addEventListener']>[] = [];
@@ -26,7 +28,7 @@ export class RoomService {
   }
 
   sendMessage(message: string) {
-    this.send({ message });
+    this.send({ message, clientId: this.clientId });
   }
 
   private send(data: any) {
