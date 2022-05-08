@@ -22,6 +22,7 @@
     "@angular/router": "~13.3.0",
     "@angular/service-worker": "~13.3.0",
     "lovefield": "^2.1.12",
+    "nanoid": "^3.3.4",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
