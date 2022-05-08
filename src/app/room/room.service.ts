@@ -28,7 +28,7 @@ export class RoomService {
   }
 
   sendMessage(message: string) {
-    this.send({ message, clientId: this.clientId });
+    this.send({ 'server-echo': true, message, clientId: this.clientId });
   }
 
   private send(data: any) {
