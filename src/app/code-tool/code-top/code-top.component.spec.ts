@@ -8,12 +8,10 @@ describe('CodeTopComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CodeTopComponent ]
+      imports: [CodeTopComponent]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+    
     fixture = TestBed.createComponent(CodeTopComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

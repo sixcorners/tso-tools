@@ -6,7 +6,8 @@ import { ChartNavigatorService } from './chart-navigator.service';
 @Component({
   selector: 'app-code-tool',
   templateUrl: './code-tool.component.html',
-  styleUrls: ['./code-tool.component.scss']
+  styleUrls: ['./code-tool.component.scss'],
+  standalone: true,
 })
 export class CodeToolComponent {
   private combinations = [

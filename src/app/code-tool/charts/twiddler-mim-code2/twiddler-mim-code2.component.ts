@@ -4,8 +4,10 @@ import { TwiddlerMimCode2Service } from './twiddler-mim-code2.service';
 
 @Component({
   selector: 'app-twiddler-mim-code2',
+  standalone: true,
+  imports: [],
   templateUrl: './twiddler-mim-code2.component.html',
-  styleUrls: ['./twiddler-mim-code2.component.scss']
+  styleUrl: './twiddler-mim-code2.component.scss'
 })
 export class TwiddlerMimCode2Component implements AfterViewInit, DoCheck {
   @ViewChild('canvas') canvas!: ElementRef<HTMLCanvasElement>;

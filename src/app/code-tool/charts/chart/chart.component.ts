@@ -4,8 +4,10 @@ import { ChartService } from './chart.service';
 
 @Component({
   selector: 'app-chart',
+  standalone: true,
+  imports: [],
   templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.scss']
+  styleUrl: './chart.component.scss'
 })
 export class ChartComponent implements AfterViewInit, DoCheck {
   @ViewChild('canvas') canvas!: ElementRef<HTMLCanvasElement>;

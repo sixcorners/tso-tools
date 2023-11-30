@@ -4,8 +4,10 @@ import { CbuthraxisoptService } from './cbuthraxisopt.service';
 
 @Component({
   selector: 'app-cbuthraxisopt',
+  standalone: true,
+  imports: [],
   templateUrl: './cbuthraxisopt.component.html',
-  styleUrls: ['./cbuthraxisopt.component.scss']
+  styleUrl: './cbuthraxisopt.component.scss'
 })
 export class CbuthraxisoptComponent implements AfterViewInit, DoCheck {
   @ViewChild('canvas') canvas!: ElementRef<HTMLCanvasElement>;

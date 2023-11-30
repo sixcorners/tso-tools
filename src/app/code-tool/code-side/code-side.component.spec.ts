@@ -8,12 +8,10 @@ describe('CodeSideComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CodeSideComponent ]
+      imports: [CodeSideComponent]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+    
     fixture = TestBed.createComponent(CodeSideComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

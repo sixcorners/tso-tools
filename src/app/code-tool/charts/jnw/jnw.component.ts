@@ -4,8 +4,10 @@ import { JnwService } from './jnw.service';
 
 @Component({
   selector: 'app-jnw',
+  standalone: true,
+  imports: [],
   templateUrl: './jnw.component.html',
-  styleUrls: ['./jnw.component.scss']
+  styleUrl: './jnw.component.scss'
 })
 export class JnwComponent implements AfterViewInit, DoCheck {
   @ViewChild('canvas') canvas!: ElementRef<HTMLCanvasElement>;
