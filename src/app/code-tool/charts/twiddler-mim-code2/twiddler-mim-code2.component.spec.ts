@@ -8,12 +8,10 @@ describe('TwiddlerMimCode2Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TwiddlerMimCode2Component ]
+      imports: [TwiddlerMimCode2Component]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+    
     fixture = TestBed.createComponent(TwiddlerMimCode2Component);
     component = fixture.componentInstance;
     fixture.detectChanges();

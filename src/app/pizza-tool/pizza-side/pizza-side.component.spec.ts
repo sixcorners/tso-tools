@@ -8,12 +8,10 @@ describe('PizzaSideComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PizzaSideComponent ]
+      imports: [PizzaSideComponent]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+    
     fixture = TestBed.createComponent(PizzaSideComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

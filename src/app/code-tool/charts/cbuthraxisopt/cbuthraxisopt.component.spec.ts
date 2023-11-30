@@ -8,12 +8,10 @@ describe('CbuthraxisoptComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CbuthraxisoptComponent ]
+      imports: [CbuthraxisoptComponent]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+    
     fixture = TestBed.createComponent(CbuthraxisoptComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

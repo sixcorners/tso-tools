@@ -5,8 +5,10 @@ import { PizzaModelService } from './pizza-model.service';
 // https://github.com/riperiperi/FreeSO/blob/master/TSOClient/tso.simantics/NetPlay/EODs/Handlers/VMEODPizzaMakerPlugin.cs
 @Component({
   selector: 'app-pizza-tool',
+  standalone: true,
+  imports: [],
   templateUrl: './pizza-tool.component.html',
-  styleUrls: ['./pizza-tool.component.scss']
+  styleUrl: './pizza-tool.component.scss'
 })
 export class PizzaToolComponent {
   readonly slots = [1, 2, 3] as const;

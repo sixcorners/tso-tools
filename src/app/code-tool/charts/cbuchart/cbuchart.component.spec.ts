@@ -8,12 +8,10 @@ describe('CbuchartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CbuchartComponent ]
+      imports: [CbuchartComponent]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+    
     fixture = TestBed.createComponent(CbuchartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

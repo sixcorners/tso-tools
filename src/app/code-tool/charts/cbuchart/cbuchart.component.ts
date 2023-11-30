@@ -4,8 +4,10 @@ import { CbuchartService } from './cbuchart.service';
 
 @Component({
   selector: 'app-cbuchart',
+  standalone: true,
+  imports: [],
   templateUrl: './cbuchart.component.html',
-  styleUrls: ['./cbuchart.component.scss']
+  styleUrl: './cbuchart.component.scss'
 })
 export class CbuchartComponent implements AfterViewInit, DoCheck {
   @ViewChild('canvas') canvas!: ElementRef<HTMLCanvasElement>;

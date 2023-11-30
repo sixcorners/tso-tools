@@ -4,8 +4,10 @@ import { ChartNavigatorService } from '../chart-navigator.service';
 
 @Component({
   selector: 'app-code-side',
+  standalone: true,
+  imports: [],
   templateUrl: './code-side.component.html',
-  styleUrls: ['./code-side.component.scss']
+  styleUrl: './code-side.component.scss'
 })
 export class CodeSideComponent {
   constructor(readonly navigator: ChartNavigatorService) { }
