@@ -88,9 +88,9 @@ export class CodeToolComponent {
   }
 
   private async calculateSteps(combination: string): Promise<[string, number]> {
-    let db = await this.navigator.db;
-    let node = db.getSchema().table('node');
-    let history = db.getSchema().table('history');
+    const db = await this.navigator.db;
+    const node = db.getSchema().table('node');
+    const history = db.getSchema().table('history');
     let current = (await db.select()
       .from(node)
       .innerJoin(history, history['chart_id'].eq(node['chart_id']))
@@ -100,7 +100,7 @@ export class CodeToolComponent {
       .exec())[0] as any;
     let steps = 0;
     for (; ;) {
-      let matches = this.matches(combination, current.node.combination);
+      const matches = this.matches(combination, current.node.combination);
       if (++steps >= 99 || matches == 3)
         break;
       current = (await db.select()
@@ -117,11 +117,11 @@ export class CodeToolComponent {
   }
 
   private async calculateChartInfo() {
-    let combinations = await Promise.all(this.combinations.map(c => this.calculateSteps(c)));
-    let db = await this.navigator.db;
-    let node = db.getSchema().table('node');
-    let history = db.getSchema().table('history');
-    let count = (await db.select(lf.fn.count())
+    const combinations = await Promise.all(this.combinations.map(c => this.calculateSteps(c)));
+    const db = await this.navigator.db;
+    const node = db.getSchema().table('node');
+    const history = db.getSchema().table('history');
+    const count = (await db.select(lf.fn.count())
       .from(node)
       .innerJoin(history, history['chart_id'].eq(node['chart_id']))
       .groupBy(history['id'])
