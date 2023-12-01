@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
-import { RoomService } from 'src/app/room/room.service';
 import { ChartNavigatorService } from '../chart-navigator.service';
+import { NgFor } from '@angular/common';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-code-side',
   standalone: true,
-  imports: [],
+  imports: [
+    NgFor,
+    MatToolbarModule,
+    MatListModule,
+  ],
   templateUrl: './code-side.component.html',
   styleUrl: './code-side.component.scss'
 })

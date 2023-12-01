@@ -1,6 +1,19 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import * as lf from 'lovefield';
 import { ChartNavigatorService } from './chart-navigator.service';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { CbuchartComponent } from './charts/cbuchart/cbuchart.component';
+import { CbuthraxisoptComponent } from './charts/cbuthraxisopt/cbuthraxisopt.component';
+import { ChartComponent } from './charts/chart/chart.component';
+import { JnwComponent } from './charts/jnw/jnw.component';
+import { TwiddlerMimCode2Component } from './charts/twiddler-mim-code2/twiddler-mim-code2.component';
+import { Tso0112Component } from './charts/tso0112/tso0112.component';
 
 // https://github.com/riperiperi/FreeSO/blob/master/TSOClient/tso.simantics/NetPlay/EODs/Handlers/VMEODPaperChasePlugin.cs
 @Component({
@@ -8,6 +21,21 @@ import { ChartNavigatorService } from './chart-navigator.service';
   templateUrl: './code-tool.component.html',
   styleUrls: ['./code-tool.component.scss'],
   standalone: true,
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    CbuchartComponent,
+    CbuthraxisoptComponent,
+    ChartComponent,
+    JnwComponent,
+    TwiddlerMimCode2Component,
+    Tso0112Component,
+  ]
 })
 export class CodeToolComponent {
   private combinations = [
