@@ -55,11 +55,12 @@
   </div>
 </div>
 <div class="chart" #chart>
-  <mat-form-field>
+  <mat-form-field subscriptSizing="dynamic">
     <mat-label>Chart</mat-label>
     <mat-select (selectionChange)="navigator.moveChart($event.value)" [value]="navigator.current.chart.id"
       (selectionChange)="showHideInfo()">
-      <mat-option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">{{entry.chart.title}}
+      <mat-option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">
+        {{entry.chart.title}}
       </mat-option>
     </mat-select>
   </mat-form-field>

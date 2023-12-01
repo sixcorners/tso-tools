@@ -1,0 +1,3 @@
+.active, :not(.active) + #online {
+    display: none;
+}
