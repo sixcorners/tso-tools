@@ -64,7 +64,7 @@ export class ChartNavigatorService {
         return;
       this.lastTimestamp = data.timestamp;
       {
-        let match = data.message.match(/!moveNode (\d+)/);
+        const match = data.message.match(/!moveNode (\d+)/);
         if (match) {
           if (this.backfill) {
             clearTimeout(this.backfill);
@@ -76,7 +76,7 @@ export class ChartNavigatorService {
         }
       }
       {
-        let match = data.message.match(/!joined/);
+        const match = data.message.match(/!joined/);
         if (match) {
           data.parsed = `${data.clientId} joined`;
           if (this.current.node.id)
@@ -161,9 +161,9 @@ export class ChartNavigatorService {
       .limit(4);
     db.observe(query, (changes: any[]) => {
       this.currentChoices = [undefined, undefined, undefined, undefined];
-      let results = changes[changes.length - 1].object;
-      let last_history_id = results[0].history.id;
-      for (let result of results) {
+      const results = changes[changes.length - 1].object;
+      const last_history_id = results[0].history.id;
+      for (const result of results) {
         if (result.history.id != last_history_id) break;
         this.currentChoices[result.node.matches] = result.node;
       }

@@ -35,7 +35,7 @@ export class PizzaToolComponent {
   }
 
   get ready() {
-    for (let { selection } of Object.values(this.model))
+    for (const { selection } of Object.values(this.model))
       if (!selection)
         return false;
     return true;
@@ -46,7 +46,7 @@ export class PizzaToolComponent {
   }
 
   newIngredient(role: string) {
-    let value = this.model[role];
+    const value = this.model[role];
     value.lastSelection = undefined;
     value.lastSelectionIngredient = undefined;
     this.modelService.sendIngrediants(role);
