@@ -160,7 +160,7 @@ export class ChartNavigatorService {
       .orderBy(history['id'], lf.Order.DESC)
       .limit(4);
     db.observe(query, (changes: any[]) => {
-      this.currentChoices = [undefined, undefined, undefined, undefined];
+      this.currentChoices.fill(undefined);
       const results = changes[changes.length - 1].object;
       const last_history_id = results[0].history.id;
       for (const result of results) {
