@@ -1,13 +1,13 @@
 <div class="tool">
   <div class="letters">
     <span class="body" [class.active]="body.checked">{{
-      navigator.current.node.combination[0]
+      navigator.current?.node.combination[0]
     }}</span>
     <span class="mech" [class.active]="mech.checked">{{
-      navigator.current.node.combination[1]
+      navigator.current?.node.combination[1]
     }}</span>
     <span class="logic" [class.active]="logic.checked">{{
-      navigator.current.node.combination[2]
+      navigator.current?.node.combination[2]
     }}</span>
   </div>
   <div class="checkboxes">
@@ -55,15 +55,16 @@
   </div>
 </div>
 <div class="chart" #chart>
-  <mat-form-field>
+  <mat-form-field subscriptSizing="dynamic">
     <mat-label>Chart</mat-label>
-    <mat-select (selectionChange)="navigator.moveChart($event.value)" [value]="navigator.current.chart.id"
+    <mat-select (selectionChange)="navigator.moveChart($event.value)" [value]="navigator.current?.chart.id"
       (selectionChange)="showHideInfo()">
-      <mat-option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">{{entry.chart.title}}
+      <mat-option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">
+        {{entry.chart.title}}
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <ng-container [ngSwitch]="navigator.current.chart.name">
+  <ng-container [ngSwitch]="navigator.current?.chart.name">
     <app-cbuchart *ngSwitchCase="'cbuchart'"></app-cbuchart>
     <app-cbuthraxisopt *ngSwitchCase="'cbuthraxisopt'"></app-cbuthraxisopt>
     <app-chart *ngSwitchCase="'chart'"></app-chart>

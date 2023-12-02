@@ -1,15 +1,17 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { CanActivateFn } from '@angular/router';
 
-import { RoomGuard } from './room.guard';
+import { roomGuard } from './room.guard';
 
-describe('RoomGuard', () => {
+describe('roomGuard', () => {
+  const executeGuard: CanActivateFn = (...guardParameters) => 
+      TestBed.runInInjectionContext(() => roomGuard(...guardParameters));
+
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [RoomGuard]
-    });
+    TestBed.configureTestingModule({});
   });
 
-  it('should ...', inject([RoomGuard], (guard: RoomGuard) => {
-    expect(guard).toBeTruthy();
-  }));
+  it('should be created', () => {
+    expect(executeGuard).toBeTruthy();
+  });
 });

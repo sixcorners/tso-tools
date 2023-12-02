@@ -1,12 +1,41 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import * as lf from 'lovefield';
 import { ChartNavigatorService } from './chart-navigator.service';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { CbuchartComponent } from './charts/cbuchart/cbuchart.component';
+import { CbuthraxisoptComponent } from './charts/cbuthraxisopt/cbuthraxisopt.component';
+import { ChartComponent } from './charts/chart/chart.component';
+import { JnwComponent } from './charts/jnw/jnw.component';
+import { TwiddlerMimCode2Component } from './charts/twiddler-mim-code2/twiddler-mim-code2.component';
+import { Tso0112Component } from './charts/tso0112/tso0112.component';
 
 // https://github.com/riperiperi/FreeSO/blob/master/TSOClient/tso.simantics/NetPlay/EODs/Handlers/VMEODPaperChasePlugin.cs
 @Component({
   selector: 'app-code-tool',
   templateUrl: './code-tool.component.html',
-  styleUrls: ['./code-tool.component.scss']
+  styleUrls: ['./code-tool.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    CbuchartComponent,
+    CbuthraxisoptComponent,
+    ChartComponent,
+    JnwComponent,
+    TwiddlerMimCode2Component,
+    Tso0112Component,
+  ]
 })
 export class CodeToolComponent {
   private combinations = [
@@ -59,9 +88,9 @@ export class CodeToolComponent {
   }
 
   private async calculateSteps(combination: string): Promise<[string, number]> {
-    let db = await this.navigator.db;
-    let node = db.getSchema().table('node');
-    let history = db.getSchema().table('history');
+    const db = await this.navigator.db;
+    const node = db.getSchema().table('node');
+    const history = db.getSchema().table('history');
     let current = (await db.select()
       .from(node)
       .innerJoin(history, history['chart_id'].eq(node['chart_id']))
@@ -71,7 +100,7 @@ export class CodeToolComponent {
       .exec())[0] as any;
     let steps = 0;
     for (; ;) {
-      let matches = this.matches(combination, current.node.combination);
+      const matches = this.matches(combination, current.node.combination);
       if (++steps >= 99 || matches == 3)
         break;
       current = (await db.select()
@@ -88,11 +117,11 @@ export class CodeToolComponent {
   }
 
   private async calculateChartInfo() {
-    let combinations = await Promise.all(this.combinations.map(c => this.calculateSteps(c)));
-    let db = await this.navigator.db;
-    let node = db.getSchema().table('node');
-    let history = db.getSchema().table('history');
-    let count = (await db.select(lf.fn.count())
+    const combinations = await Promise.all(this.combinations.map(c => this.calculateSteps(c)));
+    const db = await this.navigator.db;
+    const node = db.getSchema().table('node');
+    const history = db.getSchema().table('history');
+    const count = (await db.select(lf.fn.count())
       .from(node)
       .innerJoin(history, history['chart_id'].eq(node['chart_id']))
       .groupBy(history['id'])

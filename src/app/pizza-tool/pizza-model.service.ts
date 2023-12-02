@@ -22,7 +22,7 @@ export class PizzaModelService {
   readonly history: any[] = [];
 
   constructor(private room: RoomService) {
-    for (let role of this.roles)
+    for (const role of this.roles)
       this.model[role] = {};
 
     room.addEventListener('message', ({ data }) => {
@@ -38,20 +38,20 @@ export class PizzaModelService {
         return;
       this.lastTimestamp = data.timestamp;
       {
-        let match = data.message.match(/!ingredients (.+?) (..) (..) (..)/);
+        const match = data.message.match(/!ingredients (.+?) (..) (..) (..)/);
         if (match) {
           if (this.backfill) {
             clearTimeout(this.backfill);
             this.backfill = undefined;
           }
-          let role = this.model[match[1]];
-          for (let i of [1, 2, 3] as const)
+          const role = this.model[match[1]];
+          for (const i of [1, 2, 3] as const)
             role[i] = match[i + 1] === '??' ? undefined : match[i + 1];
           data.parsed = `${match[1]} has ${match[2]} ${match[3]} ${match[4]}`;
         }
       }
       {
-        let match = data.message.match(/!bake (\d) (\d) (\d) (\d)/);
+        const match = data.message.match(/!bake (\d) (\d) (\d) (\d)/);
         if (match) {
           for (let i = 0; i < 4; i++)
             this.model[this.roles[i]].selection = match[i + 1];
@@ -60,7 +60,7 @@ export class PizzaModelService {
         }
       }
       {
-        let match = data.message.match(/!joined/);
+        const match = data.message.match(/!joined/);
         if (match) {
           data.parsed = `${data.clientId} joined`;
           this.backfill = setTimeout(() => this.sendIngrediants(), Math.random() * 1000);
@@ -73,7 +73,7 @@ export class PizzaModelService {
   }
 
   private bake() {
-    for (let value of Object.values(this.model)) {
+    for (const value of Object.values(this.model)) {
       value.lastSelection = value.selection;
       value.lastSelectionIngredient = value[value.selection!]
       value[value.selection!] = undefined;
@@ -82,9 +82,9 @@ export class PizzaModelService {
   }
 
   sendIngrediants(role?: string) {
-    let roles = role ? [role] : this.roles;
-    for (let role of roles) {
-      let value = this.model[role];
+    const roles = role ? [role] : this.roles;
+    for (const role of roles) {
+      const value = this.model[role];
       if (!value) continue;
       if (value[1] || value[2] || value[3])
         this.room.sendMessage(`!ingredients ${role} ${value[1] ?? '??'} ${value[2] ?? '??'} ${value[3] ?? '??'}`);
