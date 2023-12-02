@@ -20,10 +20,10 @@ export class RoomService {
   addEventListener<K extends keyof WebSocketEventMap>(...args: [type: K, listener: (this: WebSocket, ev: WebSocketEventMap[K]) => any, options?: boolean | AddEventListenerOptions]) {
     this.eventListeners.push(args as any);
     this.ws?.addEventListener(...args);
-    let [type, listener] = args;
+    const [type, listener] = args;
     if (type != 'message')
       return;
-    for (let item of this.history)
+    for (const item of this.history)
       listener.call(this.ws!, item as any);
   }
 
@@ -42,8 +42,8 @@ export class RoomService {
     data.timestamp = now;
 
     data = JSON.stringify(data);
-    let event = new MessageEvent('message', { data });
-    for (let [type, listener] of this.eventListeners) {
+    const event = new MessageEvent('message', { data });
+    for (const [type, listener] of this.eventListeners) {
       if (type != 'message')
         continue;
       if ('handleEvent' in listener)
@@ -74,8 +74,8 @@ export class RoomService {
       return;
 
     // rate limit
-    let now = Date.now();
-    let timeUntilNextJoin = 10000 - now + this.timeSinceLastJoin;
+    const now = Date.now();
+    const timeUntilNextJoin = 10000 - now + this.timeSinceLastJoin;
     if (timeUntilNextJoin > 0) {
       this.lastJoin = setTimeout(() => this.changeRoom(name, ...initialSend), timeUntilNextJoin + 500);
       return;
@@ -91,13 +91,13 @@ export class RoomService {
     });
     this.ws.addEventListener('message', event => {
       this.history.push(event);
-      let data = JSON.parse(event.data);
+      const data = JSON.parse(event.data);
       if (data.error) {
         console.error('Server sent error:', data.error);
         this.snackBar.open(`Server sent error: ${data.error}`, 'OK');
       }
     });
-    for (let listener of this.eventListeners)
+    for (const listener of this.eventListeners)
       this.ws.addEventListener(...listener);
     if (initialSend.length)
       this.ws.addEventListener('open', _ => this.sendMessage(...initialSend));

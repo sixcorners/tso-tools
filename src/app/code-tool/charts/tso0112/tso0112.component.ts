@@ -3,8 +3,10 @@ import { ChartNavigatorService } from '../../chart-navigator.service';
 
 @Component({
   selector: 'app-tso0112',
+  standalone: true,
+  imports: [],
   templateUrl: './tso0112.component.html',
-  styleUrls: ['./tso0112.component.scss'],
+  styleUrl: './tso0112.component.scss',
   preserveWhitespaces: true
 })
 export class Tso0112Component {

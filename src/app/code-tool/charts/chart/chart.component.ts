@@ -4,8 +4,10 @@ import { ChartService } from './chart.service';
 
 @Component({
   selector: 'app-chart',
+  standalone: true,
+  imports: [],
   templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.scss']
+  styleUrl: './chart.component.scss'
 })
 export class ChartComponent implements AfterViewInit, DoCheck {
   @ViewChild('canvas') canvas!: ElementRef<HTMLCanvasElement>;
@@ -20,18 +22,18 @@ export class ChartComponent implements AfterViewInit, DoCheck {
   }
 
   private clear() {
-    let { width, height } = this.canvas.nativeElement;
+    const { width, height } = this.canvas.nativeElement;
     this.ctx?.clearRect(0, 0, width, height);
   }
 
   private lastNodeId = -1;
   ngDoCheck() {
     if (!this.ctx) return;
-    let { id, relative_id, parent_id } = this.navigator.current.node;
+    const { id, relative_id, parent_id } = this.navigator.current.node;
     if (this.lastNodeId == id) return;
     if (relative_id == 0) this.clear();
     if (this.navigator.current.nodeChart.name == this.chart.name) {
-      let [circle, arrow] = this.chart.drawings[relative_id];
+      const [circle, arrow] = this.chart.drawings[relative_id];
       this.ctx.stroke(circle);
       if (arrow && this.lastNodeId == parent_id)
         this.ctx.stroke(arrow);
@@ -41,7 +43,7 @@ export class ChartComponent implements AfterViewInit, DoCheck {
 
   @HostListener('click', ['$event'])
   click({ offsetX, offsetY }: MouseEvent) {
-    let { width, height } = this.chart;
+    const { width, height } = this.chart;
     this.chart.locations.forEach(([x, y], relative_id) => {
       x = offsetX - x;
       y = offsetY - y;

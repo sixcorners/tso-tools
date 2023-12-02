@@ -8,12 +8,10 @@ describe('PizzaTopComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PizzaTopComponent ]
+      imports: [PizzaTopComponent]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+    
     fixture = TestBed.createComponent(PizzaTopComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

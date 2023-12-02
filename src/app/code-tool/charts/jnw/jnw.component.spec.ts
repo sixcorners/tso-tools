@@ -8,12 +8,10 @@ describe('JnwComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ JnwComponent ]
+      imports: [JnwComponent]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+    
     fixture = TestBed.createComponent(JnwComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -49,7 +49,16 @@ export class ChartNavigatorService {
   private backfill?: ReturnType<typeof setTimeout>;
   readonly history: any[] = [];
 
-  constructor(private room: RoomService, chart1: CbuchartService, chart2: CbuthraxisoptService, chart3: ChartService, chart4: JnwService, chart5: TwiddlerMimCode2Service, chart6: Tso0112Service) {
+  constructor(
+    private room: RoomService,
+    _chart1: CbuchartService,
+    _chart2: CbuthraxisoptService,
+    _chart3: ChartService,
+    _chart4: JnwService,
+    _chart5: TwiddlerMimCode2Service,
+    _chart6: Tso0112Service,
+    // beware I do this later: const [_, ...charts] = arguments;
+  ) {
     room.addEventListener('message', async ({ data }) => {
       if (this.lastRoomName != room.name) {
         this.lastRoomName = room.name;
@@ -64,7 +73,7 @@ export class ChartNavigatorService {
         return;
       this.lastTimestamp = data.timestamp;
       {
-        let match = data.message.match(/!moveNode (\d+)/);
+        const match = data.message.match(/!moveNode (\d+)/);
         if (match) {
           if (this.backfill) {
             clearTimeout(this.backfill);
@@ -76,7 +85,7 @@ export class ChartNavigatorService {
         }
       }
       {
-        let match = data.message.match(/!joined/);
+        const match = data.message.match(/!joined/);
         if (match) {
           data.parsed = `${data.clientId} joined`;
           if (this.current.node.id)
@@ -89,7 +98,7 @@ export class ChartNavigatorService {
     });
 
     this.db.then(async db => {
-      const charts = [chart1, chart2, chart3, chart4, chart5, chart6];
+      const [_, ...charts] = arguments as unknown as ConstructorParameters<typeof ChartNavigatorService>;
       // load charts
       const chart = db.getSchema().table('chart');
       await db
@@ -160,17 +169,17 @@ export class ChartNavigatorService {
       .orderBy(history['id'], lf.Order.DESC)
       .limit(4);
     db.observe(query, (changes: any[]) => {
-      this.currentChoices = [undefined, undefined, undefined, undefined];
-      let results = changes[changes.length - 1].object;
-      let last_history_id = results[0].history.id;
-      for (let result of results) {
+      this.currentChoices.fill(undefined);
+      const results = changes[changes.length - 1].object;
+      const last_history_id = results[0].history.id;
+      for (const result of results) {
         if (result.history.id != last_history_id) break;
         this.currentChoices[result.node.matches] = result.node;
       }
     });
   });
 
-  current: any = {};
+  current?: any;
   private currentQuery = this.db.then(db => {
     const history = db.getSchema().table('history');
     const chart = db.getSchema().table('chart');

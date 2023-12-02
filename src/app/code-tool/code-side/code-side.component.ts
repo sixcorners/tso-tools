@@ -1,11 +1,19 @@
 import { Component } from '@angular/core';
-import { RoomService } from 'src/app/room/room.service';
 import { ChartNavigatorService } from '../chart-navigator.service';
+import { NgFor } from '@angular/common';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-code-side',
+  standalone: true,
+  imports: [
+    NgFor,
+    MatToolbarModule,
+    MatListModule,
+  ],
   templateUrl: './code-side.component.html',
-  styleUrls: ['./code-side.component.scss']
+  styleUrl: './code-side.component.scss'
 })
 export class CodeSideComponent {
   constructor(readonly navigator: ChartNavigatorService) { }
