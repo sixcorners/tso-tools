@@ -170,7 +170,7 @@ export class ChartNavigatorService {
     });
   });
 
-  current: any = {};
+  current?: any;
   private currentQuery = this.db.then(db => {
     const history = db.getSchema().table('history');
     const chart = db.getSchema().table('chart');
