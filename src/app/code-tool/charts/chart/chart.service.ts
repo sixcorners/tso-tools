@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ChartService {
-  readonly name = 'chart';
-  readonly title = 'The Hermione CBU Chart';
+  readonly name = 'chart' as const;
+  readonly title = 'The Hermione CBU Chart' as const;
   readonly nodes = [
     [null, 3, 'AAA'], // 0
     [0, 0, 'BBB'], // 1
@@ -38,8 +38,8 @@ export class ChartService {
     [23, 2, 'AAB'], // 28
     [28, 1, 'ABA'], // 29
   ] as const;
-  readonly width = 59;
-  readonly height = 25;
+  readonly width = 59 as const;
+  readonly height = 25 as const;
   readonly locations = [
     [0, 457], // 0
     [202, 157], // 1
@@ -71,7 +71,7 @@ export class ChartService {
     [602, 807], // 27
     [402, 857], // 28
     [602, 857], // 29
-  ];
+  ] as const;
   readonly drawings: Path2D[][] = [
     ['M53 435c-30 0-52 1-64 25-2 4-20 29-8 35 13 6 80 17 89-1 6-12-3-53-11-57-5-3-18 0-24 0'], // 0
     ['M245 140c-10 0-29-5-38 1-15 10-16 42-2 56 9 9 42 6 54 2 27-9 4-65-35-65', 'M61 456c9 0 30-55 37-66 16-24 29-50 41-74 10-21 17-49 33-65l1-2c6-12 17-24 22-38 1-2 4-4 2-5-1-1-20 8-20 9 0 2 3-1 5-2 4-2 10-5 14-5l5 21'], // 1

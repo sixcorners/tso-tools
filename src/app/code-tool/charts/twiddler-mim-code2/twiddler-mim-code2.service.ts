@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TwiddlerMimCode2Service {
-  readonly name = 'twiddler_mim_code2';
-  readonly title = 'Twiddler\'s CBU Code Smasher 4.0';
+  readonly name = 'twiddler_mim_code2' as const;
+  readonly title = 'Twiddler\'s CBU Code Smasher 4.0' as const;
   readonly nodes = [
     [null, 3, 'AAA'], // 0
     [0, 2, 'AAB'], // 1
@@ -35,8 +35,8 @@ export class TwiddlerMimCode2Service {
     [24, 1, 'CBC'], // 25
     [19, 0, 'CCC'], // 26
   ] as const;
-  readonly width = 39;
-  readonly height = 19;
+  readonly width = 39 as const;
+  readonly height = 19 as const;
   readonly locations = [
     [60, 276], // 0
     [148, 196], // 1
@@ -65,7 +65,7 @@ export class TwiddlerMimCode2Service {
     [326, 691], // 24
     [425, 703], // 25
     [425, 725], // 26
-  ];
+  ] as const;
   readonly drawings: Path2D[][] = [
     ['M91 267c-3-3-11-3-15-3-46 0-27 39 12 39 8 0 19-1 22-8 10-19-27-30-39-30'], // 0
     ['M170 186c-21 0-39 18-22 35 3 3 17 1 22 1 6 0 18 0 22-5 17-16-23-33-34-33', 'M102 279c0-6 46-51 54-59l-4 1-11 6 5-2c3-1 7-6 10-6l2 23'], // 1

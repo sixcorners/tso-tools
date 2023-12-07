@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class Tso0112Service {
-  readonly name = 'tso0112';
-  readonly title = 'tso0112\'s chart';
+  readonly name = 'tso0112' as const;
+  readonly title = 'tso0112\'s chart' as const;
   readonly nodes = [
     [null, 3, 'AAA'], // 0
     [0, 0, 'BBB'], // 1
