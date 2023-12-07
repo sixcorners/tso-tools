@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CbuthraxisoptService {
-  readonly name = 'cbuthraxisopt';
-  readonly title = 'Thraxis optimized by Madison';
+  readonly name = 'cbuthraxisopt' as const;
+  readonly title = 'Thraxis optimized by Madison' as const;
   readonly nodes = [
     [null, 3, 'AAA'], // 0
     [0, 0, 'BBB'], // 1
@@ -36,8 +36,8 @@ export class CbuthraxisoptService {
     [23, 2, 'ACA'], // 26
     [22, 2, 'AAC'], // 27
   ] as const;
-  readonly width = 65;
-  readonly height = 33;
+  readonly width = 65 as const;
+  readonly height = 33 as const;
   readonly locations = [
     [1, 402], // 0
     [129, 169], // 1
@@ -67,7 +67,7 @@ export class CbuthraxisoptService {
     [522, 643], // 25
     [394, 691], // 26
     [265, 731], // 27
-  ];
+  ] as const;
   readonly drawings: Path2D[][] = [
     ['M28 379c-49 0-66 74 5 74 6 0 33 3 36-2 21-43-27-68-61-68'], // 0
     ['M165 145c-10 0-22-2-30 1-14 5-14 17-20 23-2 2 0 9-2 11-29 29 81 47 98 21 29-43-49-59-80-59', 'M63 406c17-34 30-74 52-107 9-14 8-35 15-49 6-13 10-29 19-38l1-5c-3-3-14 9-17 10-2 1-6 6-6 4 0-4 17-16 21-12v2c2 2 0 5 1 8l10 24v4'], // 1

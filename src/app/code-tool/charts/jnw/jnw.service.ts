@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class JnwService {
-  readonly name = 'jnw';
-  readonly title = 'Jandrea\'s NEVER WRONG Codebreaker Chart';
+  readonly name = 'jnw' as const;
+  readonly title = 'Jandrea\'s NEVER WRONG Codebreaker Chart' as const;
   readonly nodes = [
     [null, 3, 'AAA'], // 0
     [0, 0, 'BBB'], // 1
@@ -35,8 +35,8 @@ export class JnwService {
     [22, 2, 'ACA'], // 25
     [21, 2, 'AAC'], // 26
   ] as const;
-  readonly width = 62;
-  readonly height = 50;
+  readonly width = 62 as const;
+  readonly height = 50 as const;
   readonly locations = [
     [9, 489], // 0
     [177, 57], // 1
@@ -65,7 +65,7 @@ export class JnwService {
     [681, 777], // 24
     [513, 849], // 25
     [345, 921], // 26
-  ];
+  ] as const;
   readonly drawings: Path2D[][] = [
     ['M57 468c-20 0-37 4-50 17-5 5-2 16-6 22-3 5-2 12-2 18 0 27 18 35 44 35 6 0 18 2 23 0 38-19 17-91-31-91'], // 0
     ['M205 39c-4 0-22-3-25 0-6 6-16 10-21 18-3 4-2 13-2 19 0 36 32 45 64 45 9 0 23 2 30-2 7-3 13-39 6-46-29-29-34-40-85-40', 'M73 497c0-28 27-115 40-141 4-7 3-18 6-25 15-30 25-83 34-118 5-20 22-63 22-79 0-1 3-10 2-11-6-3-20 10-20 10 3 3 18-12 21-12 2 0 5 16 7 18'], // 1

@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CbuchartService {
-  readonly name = 'cbuchart';
-  readonly title = 'Madison’s CBU Chart';
+  readonly name = 'cbuchart' as const;
+  readonly title = 'Madison’s CBU Chart' as const;
   readonly nodes = [
     [null, 3, 'AAA'], // 0
     [0, 0, 'BBB'], // 1
@@ -38,8 +38,8 @@ export class CbuchartService {
     [23, 2, 'ABA'], // 28
     [28, 1, 'AAC'], // 29
   ] as const;
-  readonly width = 65;
-  readonly height = 33;
+  readonly width = 65 as const;
+  readonly height = 33 as const;
   readonly locations = [
     [1, 619], // 0
     [137, 177], // 1
@@ -71,7 +71,7 @@ export class CbuchartService {
     [434, 844], // 27
     [281, 884], // 28
     [434, 884], // 29
-  ];
+  ] as const;
   readonly drawings: Path2D[][] = [
     ['M41 587c-29 0-80 50-52 78 8 8 18 10 27 14 7 3 28 6 37 3 53-18 22-94-37-94'], // 0
     ['M187 145c-40 0-42 17-64 39-7 7-14 29-3 36 23 15 96 10 107-12 18-36-18-64-48-64', 'M47 602c-3-3 7-24 8-29 7-28 18-52 25-80 14-54 24-110 49-159 7-15 6-35 14-50l12-54c0-1 4-5 2-7s-13 13-16 14-9 6-6 6c10 0 13-40 27-13 2 3 11 10 11 14'], // 1

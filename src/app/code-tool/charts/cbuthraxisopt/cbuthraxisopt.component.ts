@@ -44,9 +44,9 @@ export class CbuthraxisoptComponent implements AfterViewInit, DoCheck {
   @HostListener('click', ['$event'])
   click({ offsetX, offsetY }: MouseEvent) {
     const { width, height } = this.chart;
-    this.chart.locations.forEach(([x, y], relative_id) => {
-      x = offsetX - x;
-      y = offsetY - y;
+    this.chart.locations.forEach(([nodeX, nodeY], relative_id) => {
+      const x = offsetX - nodeX;
+      const y = offsetY - nodeY;
       if (x >= 0 && x <= width && y >= 0 && y <= height)
         this.navigator.moveNodeRelative(relative_id);
     });
