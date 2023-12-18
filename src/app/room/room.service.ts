@@ -83,7 +83,7 @@ export class RoomService {
     this.timeSinceLastJoin = now;
 
     // connect
-    this.ws = new WebSocket(`wss://togetherjs-hub.glitch.me/hub/${name}`);
+    this.ws = new WebSocket(`wss://togetherjs-hub.glitch.me/hub/tso-tools-${name}`);
     this.ws.addEventListener('error', event => {
       console.error('WebSocket error:', event);
       this.snackBar.open(`WebSocket error: ${event}`, 'OK');
