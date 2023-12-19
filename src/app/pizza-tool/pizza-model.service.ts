@@ -86,8 +86,7 @@ export class PizzaModelService {
     for (const role of roles) {
       const value = this.model[role];
       if (!value) continue;
-      if (value[1] || value[2] || value[3])
-        this.room.sendMessage(`!ingredients ${role} ${value[1] ?? '??'} ${value[2] ?? '??'} ${value[3] ?? '??'}`);
+      this.room.sendMessage(`!ingredients ${role} ${value[1] ?? '??'} ${value[2] ?? '??'} ${value[3] ?? '??'}`);
     }
   }
 }
