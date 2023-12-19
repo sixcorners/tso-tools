@@ -100,6 +100,6 @@ export class RoomService {
     for (const listener of this.eventListeners)
       this.ws.addEventListener(...listener);
     if (initialSend.length)
-      this.ws.addEventListener('open', _ => this.sendMessage(...initialSend));
+      this.ws.addEventListener('open', () => this.sendMessage(...initialSend));
   }
 }
