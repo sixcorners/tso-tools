@@ -51,10 +51,10 @@ export class PizzaModelService {
         }
       }
       {
-        const match = data.message.match(/!bake (\d) (\d) (\d) (\d)/);
+        const match = data.message.match(/!bake (.) (.) (.) (.)/);
         if (match) {
           for (let i = 0; i < 4; i++)
-            this.model[this.roles[i]].selection = match[i + 1];
+            this.model[this.roles[i]].selection = match[i + 1] === '?' ? undefined : match[i + 1];
           this.bake();
           data.parsed = `Bake ${match[1]} ${match[2]} ${match[3]} ${match[4]}`;
         }
@@ -74,6 +74,7 @@ export class PizzaModelService {
 
   private bake() {
     for (const value of Object.values(this.model)) {
+      if (!value.selection) continue;
       value.lastSelection = value.selection;
       value.lastSelectionIngredient = value[value.selection!]
       value[value.selection!] = undefined;

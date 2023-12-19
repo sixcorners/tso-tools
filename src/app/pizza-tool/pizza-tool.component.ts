@@ -36,13 +36,13 @@ export class PizzaToolComponent {
 
   get ready() {
     for (const { selection } of Object.values(this.model))
-      if (!selection)
-        return false;
-    return true;
+      if (selection)
+        return true;
+    return false;
   }
 
   bake() {
-    this.room.sendMessage(`!bake ${Object.values(this.model).map(r => r.selection).join(' ')}`);
+    this.room.sendMessage(`!bake ${Object.values(this.model).map(r => r.selection ?? '?').join(' ')}`);
   }
 
   newIngredient(role: string) {
