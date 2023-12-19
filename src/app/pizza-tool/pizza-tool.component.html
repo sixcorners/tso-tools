@@ -6,7 +6,8 @@
                 you should click slot: {{model[role].lastSelection}} ({{model[role].lastSelectionIngredient}})</span>
         </div>
         <mat-button-toggle-group class="slot" *ngFor="let slot of slots" name="{{role}}_{{slot}}"
-            [(ngModel)]="model[role][slot]" [disabled]="!checkbox.checked">
+            [(ngModel)]="model[role][slot]" [disabled]="!checkbox.checked"
+            #group="matButtonToggleGroup" [class.selected]="group.value">
             <ng-container *ngFor="let size of ['L', 'M', 'S']">
                 <mat-button-toggle *ngFor="let variety of ['D', 'S', 'C', 'T']" value="{{size}}{{variety}}"
                     (click)="newIngredient(role)">

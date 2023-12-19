@@ -12,6 +12,10 @@
     margin: 4px;
 }
 
+mat-button-toggle-group.selected {
+    opacity: .6;
+}
+
 .hidden {
     display: none;
 }
