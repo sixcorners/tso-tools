@@ -21,32 +21,28 @@
       (click)="moveNode(navigator.currentChoices[0])"
       (window:keydown.`)="moveNode(navigator.currentChoices[0])"
       (window:keydown.0)="moveNode(navigator.currentChoices[0])"
-      mat-raised-button
-      color="accent">{{
+      mat-flat-button>{{
       0
       }}</button>
     <button
       [disabled]="!navigator.currentChoices[1]"
       (click)="moveNode(navigator.currentChoices[1])"
       (window:keydown.1)="moveNode(navigator.currentChoices[1])"
-      mat-raised-button
-      color="accent">{{
+      mat-flat-button>{{
       1
       }}</button>
     <button
       [disabled]="!navigator.currentChoices[2]"
       (click)="moveNode(navigator.currentChoices[2])"
       (window:keydown.2)="moveNode(navigator.currentChoices[2])"
-      mat-raised-button
-      color="accent">{{
+      mat-flat-button>{{
       2
       }}</button>
     <button
       [disabled]="!navigator.currentChoices[3]"
       (click)="moveNode(navigator.currentChoices[3])"
       (window:keydown.3)="moveNode(navigator.currentChoices[3])"
-      mat-raised-button
-      color="warn">{{
+      mat-flat-button>{{
       3
       }}</button>
   </div>
