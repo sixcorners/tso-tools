@@ -39,6 +39,4 @@ export class Tso0112Service {
     [24, 2, 'AAC'], // 29
     [29, 1, 'ABA'], // 30
   ] as const;
-
-  constructor() { }
 }
