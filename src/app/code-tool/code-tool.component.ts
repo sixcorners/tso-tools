@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import * as lf from 'lovefield';
+import * as lf from 'lovefield-ts/dist/es6/lf';
 import { ChartNavigatorService } from './chart-navigator.service';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -91,27 +91,27 @@ export class CodeToolComponent {
     const db = await this.navigator.db;
     const node = db.getSchema().table('node');
     const history = db.getSchema().table('history');
-    let current = (await db.select()
+    let [current] = await db.select()
       .from(node)
-      .innerJoin(history, history['chart_id'].eq(node['chart_id']))
-      .where(node['parent_id'].isNull())
-      .orderBy(history['id'], lf.Order.DESC)
+      .innerJoin(history, history.col('chart_id').eq(node.col('chart_id')))
+      .where(node.col('parent_id').isNull())
+      .orderBy(history.col('id'), lf.Order.DESC)
       .limit(1)
-      .exec())[0] as any;
+      .exec() as any[];
     let steps = 0;
     for (; ;) {
       const matches = this.matches(combination, current.node.combination);
       if (++steps >= 99 || matches == 3)
         break;
-      current = (await db.select()
+      [current] = await db.select()
         .from(node)
-        .innerJoin(history, history['chart_id'].eq(node['chart_id']))
+        .innerJoin(history, history.col('chart_id').eq(node.col('chart_id')))
         .where(lf.op.and(
-          node['parent_id'].eq(current.node.id),
-          node['matches'].eq(matches)))
-        .orderBy(history['id'], lf.Order.DESC)
+          node.col('parent_id').eq(current.node.id),
+          node.col('matches').eq(matches)))
+        .orderBy(history.col('id'), lf.Order.DESC)
         .limit(1)
-        .exec())[0] as any;
+        .exec() as any[];
     }
     return [combination, steps];
   }
@@ -121,13 +121,13 @@ export class CodeToolComponent {
     const db = await this.navigator.db;
     const node = db.getSchema().table('node');
     const history = db.getSchema().table('history');
-    const count = (await db.select(lf.fn.count())
+    const [count] = await db.select(lf.fn.count())
       .from(node)
-      .innerJoin(history, history['chart_id'].eq(node['chart_id']))
-      .groupBy(history['id'])
-      .orderBy(history['id'], lf.Order.DESC)
+      .innerJoin(history, history.col('chart_id').eq(node.col('chart_id')))
+      .groupBy(history.col('id'))
+      .orderBy(history.col('id'), lf.Order.DESC)
       .limit(1)
-      .exec())[0] as any;
+      .exec() as any[];
     this._currentChartInfo = `
 ${this.navigator.current.chart.title}
 This chart has ${count["#UnknownTable"]["COUNT(*)"]} nodes.

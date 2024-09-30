@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as lf from 'lovefield';
+import * as lf from 'lovefield-ts/dist/es6/lf';
 import { RoomService } from '../room/room.service';
 import { CbuchartService } from './charts/cbuchart/cbuchart.service';
 import { CbuthraxisoptService } from './charts/cbuthraxisopt/cbuthraxisopt.service';
@@ -42,7 +42,7 @@ export class ChartNavigatorService {
       .addPrimaryKey(['id'], true)
       .addForeignKey('fk_chart_id', { local: 'chart_id', ref: 'chart.id' })
       .addForeignKey('fk_node_id', { local: 'node_id', ref: 'node.id' });
-    return schema.connect({ storeType: lf.schema.DataStoreType.MEMORY });
+    return schema.connect({ storeType: lf.DataStoreType.MEMORY });
   })();
   private lastTimestamp = -Number.MAX_VALUE;
   private lastRoomName?: string;
@@ -123,11 +123,11 @@ export class ChartNavigatorService {
         .exec();
 
       // initialize history table to point to the first node in the first chart
-      const { chart_id, id } = (await db.select()
+      const [{ chart_id, id }] = await db.select()
         .from(node)
-        .orderBy(node['id'])
+        .orderBy(node.col('id'))
         .limit(1)
-        .exec())[0] as any;
+        .exec() as any[];
       const history = db.getSchema().table('history');
       await db
         .insert()
@@ -144,9 +144,9 @@ export class ChartNavigatorService {
     const query = db
       .select()
       .from(chart)
-      .innerJoin(node, node['chart_id'].eq(chart['id']))
-      .where(node['relative_id'].eq(0))
-      .orderBy(chart['id']);
+      .innerJoin(node, node.col('chart_id').eq(chart.col('id')))
+      .where(node.col('relative_id').eq(0))
+      .orderBy(chart.col('id'));
     db.observe(query, (changes: any[]) => {
       this.availableCharts = changes[changes.length - 1].object;
     });
@@ -162,11 +162,11 @@ export class ChartNavigatorService {
       .innerJoin(
         history,
         lf.op.or(
-          node['parent_id'].eq(history['node_id']),
-          lf.op.and(node['parent_id'].isNull(), node['chart_id'].eq(history['chart_id']))
+          node.col('parent_id').eq(history.col('node_id')),
+          lf.op.and(node.col('parent_id').isNull(), node.col('chart_id').eq(history.col('chart_id')))
         )
       )
-      .orderBy(history['id'], lf.Order.DESC)
+      .orderBy(history.col('id'), lf.Order.DESC)
       .limit(4);
     db.observe(query, (changes: any[]) => {
       this.currentChoices.fill(undefined);
@@ -188,10 +188,10 @@ export class ChartNavigatorService {
     const query = db
       .select()
       .from(history)
-      .innerJoin(chart, chart['id'].eq(history['chart_id']))
-      .innerJoin(node, node['id'].eq(history['node_id']))
-      .innerJoin(nodeChart, nodeChart['id'].eq(node['chart_id']))
-      .orderBy(history['id'], lf.Order.DESC)
+      .innerJoin(chart, chart.col('id').eq(history.col('chart_id')))
+      .innerJoin(node, node.col('id').eq(history.col('node_id')))
+      .innerJoin(nodeChart, nodeChart.col('id').eq(node.col('chart_id')))
+      .orderBy(history.col('id'), lf.Order.DESC)
       .limit(1);
     db.observe(query, (changes: any[]) => {
       this.current = changes[changes.length - 1].object[0];
@@ -230,7 +230,7 @@ export class ChartNavigatorService {
     const history = db.getSchema().table('history');
     return db.delete()
       .from(history)
-      .where(history['id'].gt(1))
+      .where(history.col('id').gt(1))
       .exec();
   }
 
@@ -241,12 +241,12 @@ export class ChartNavigatorService {
   async moveNodeRelative(relative_id: number) {
     const db = await this.db;
     const node = db.getSchema().table('node');
-    const { id } = (await db.select()
+    const [{ id }] = await db.select()
       .from(node)
       .where(lf.op.and(
-        node['chart_id'].eq(this.current.chart.id),
-        node['relative_id'].eq(relative_id)))
-      .exec())[0] as any;
+        node.col('chart_id').eq(this.current.chart.id),
+        node.col('relative_id').eq(relative_id)))
+      .exec() as any[];
     return this.moveNode(id);
   }
 }
