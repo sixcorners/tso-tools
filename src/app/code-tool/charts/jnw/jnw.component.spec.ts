@@ -11,7 +11,7 @@ describe('JnwComponent', () => {
       imports: [JnwComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(JnwComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

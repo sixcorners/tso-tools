@@ -11,7 +11,7 @@ describe('ChartComponent', () => {
       imports: [ChartComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(ChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

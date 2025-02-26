@@ -13,7 +13,7 @@ import { AsyncPipe } from '@angular/common';
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
-  styleUrls: ['./room.component.scss'],
+  styleUrl: './room.component.scss',
   standalone: true,
   imports: [
     RouterOutlet,

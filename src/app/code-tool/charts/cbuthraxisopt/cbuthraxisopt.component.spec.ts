@@ -11,7 +11,7 @@ describe('CbuthraxisoptComponent', () => {
       imports: [CbuthraxisoptComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(CbuthraxisoptComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

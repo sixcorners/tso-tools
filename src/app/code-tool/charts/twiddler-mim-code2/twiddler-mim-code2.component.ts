@@ -4,7 +4,6 @@ import { TwiddlerMimCode2Service } from './twiddler-mim-code2.service';
 
 @Component({
   selector: 'app-twiddler-mim-code2',
-  standalone: true,
   imports: [],
   templateUrl: './twiddler-mim-code2.component.html',
   styleUrl: './twiddler-mim-code2.component.scss'

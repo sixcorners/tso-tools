@@ -6,7 +6,6 @@ import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-pizza-side',
-  standalone: true,
   imports: [
     NgFor,
     MatToolbarModule,

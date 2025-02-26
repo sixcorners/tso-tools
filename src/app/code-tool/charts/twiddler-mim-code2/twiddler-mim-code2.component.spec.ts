@@ -11,7 +11,7 @@ describe('TwiddlerMimCode2Component', () => {
       imports: [TwiddlerMimCode2Component]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(TwiddlerMimCode2Component);
     component = fixture.componentInstance;
     fixture.detectChanges();

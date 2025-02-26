@@ -11,7 +11,7 @@ describe('PizzaToolComponent', () => {
       imports: [PizzaToolComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(PizzaToolComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -11,7 +11,7 @@ describe('CodeSideComponent', () => {
       imports: [CodeSideComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(CodeSideComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

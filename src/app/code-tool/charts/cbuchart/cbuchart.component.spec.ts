@@ -11,7 +11,7 @@ describe('CbuchartComponent', () => {
       imports: [CbuchartComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(CbuchartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
