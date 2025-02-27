@@ -10,7 +10,6 @@ import { MatButtonModule } from '@angular/material/button';
 // https://github.com/riperiperi/FreeSO/blob/master/TSOClient/tso.simantics/NetPlay/EODs/Handlers/VMEODPizzaMakerPlugin.cs
 @Component({
   selector: 'app-pizza-tool',
-  standalone: true,
   imports: [
     NgFor,
     TitleCasePipe,

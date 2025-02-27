@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-code-top',
-  standalone: true,
   imports: [
     RouterLink,
     RouterLinkActive,

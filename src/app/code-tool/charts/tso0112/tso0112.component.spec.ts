@@ -11,7 +11,7 @@ describe('Tso0112Component', () => {
       imports: [Tso0112Component]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(Tso0112Component);
     component = fixture.componentInstance;
     fixture.detectChanges();

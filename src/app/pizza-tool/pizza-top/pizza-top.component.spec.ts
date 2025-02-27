@@ -11,7 +11,7 @@ describe('PizzaTopComponent', () => {
       imports: [PizzaTopComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(PizzaTopComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

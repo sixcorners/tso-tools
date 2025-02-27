@@ -19,7 +19,7 @@ import { Tso0112Component } from './charts/tso0112/tso0112.component';
 @Component({
   selector: 'app-code-tool',
   templateUrl: './code-tool.component.html',
-  styleUrls: ['./code-tool.component.scss'],
+  styleUrl: './code-tool.component.scss',
   standalone: true,
   imports: [
     CommonModule,

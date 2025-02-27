@@ -4,7 +4,6 @@ import { CbuchartService } from './cbuchart.service';
 
 @Component({
   selector: 'app-cbuchart',
-  standalone: true,
   imports: [],
   templateUrl: './cbuchart.component.html',
   styleUrl: './cbuchart.component.scss'
