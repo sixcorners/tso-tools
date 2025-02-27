@@ -2,6 +2,7 @@ import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RoomComponent } from './room.component';
+import { provideRouter } from '@angular/router';
 
 describe('RoomComponent', () => {
   let component: RoomComponent;
@@ -9,7 +10,8 @@ describe('RoomComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule]
+      imports: [NoopAnimationsModule],
+      providers: [provideRouter([])],
     }).compileComponents();
   }));
 
