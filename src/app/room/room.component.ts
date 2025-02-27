@@ -12,9 +12,6 @@ import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-room',
-  templateUrl: './room.component.html',
-  styleUrl: './room.component.scss',
-  standalone: true,
   imports: [
     RouterOutlet,
     RouterLink,
@@ -24,7 +21,9 @@ import { AsyncPipe } from '@angular/common';
     MatButtonModule,
     MatIconModule,
     AsyncPipe
-  ]
+  ],
+  templateUrl: './room.component.html',
+  styleUrl: './room.component.scss',
 })
 export class RoomComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);

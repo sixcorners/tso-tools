@@ -18,9 +18,6 @@ import { Tso0112Component } from './charts/tso0112/tso0112.component';
 // https://github.com/riperiperi/FreeSO/blob/master/TSOClient/tso.simantics/NetPlay/EODs/Handlers/VMEODPaperChasePlugin.cs
 @Component({
   selector: 'app-code-tool',
-  templateUrl: './code-tool.component.html',
-  styleUrl: './code-tool.component.scss',
-  standalone: true,
   imports: [
     CommonModule,
     MatFormFieldModule,
@@ -35,7 +32,9 @@ import { Tso0112Component } from './charts/tso0112/tso0112.component';
     JnwComponent,
     TwiddlerMimCode2Component,
     Tso0112Component,
-  ]
+  ],
+  templateUrl: './code-tool.component.html',
+  styleUrl: './code-tool.component.scss'
 })
 export class CodeToolComponent {
   private combinations = [
