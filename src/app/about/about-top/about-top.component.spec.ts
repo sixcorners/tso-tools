@@ -11,7 +11,7 @@ describe('AboutTopComponent', () => {
       imports: [AboutTopComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(AboutTopComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

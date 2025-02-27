@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-pizza-top',
-  standalone: true,
   imports: [
     RouterLink,
     RouterLinkActive,

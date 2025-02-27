@@ -4,7 +4,6 @@ import { JnwService } from './jnw.service';
 
 @Component({
   selector: 'app-jnw',
-  standalone: true,
   imports: [],
   templateUrl: './jnw.component.html',
   styleUrl: './jnw.component.scss'

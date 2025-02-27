@@ -2,7 +2,7 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'">
-    <router-outlet name="side"></router-outlet>
+    <router-outlet name="side" />
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary" role="toolbar">
@@ -13,12 +13,12 @@
         (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <router-outlet name="top"></router-outlet>
+      <router-outlet name="top" />
       <span class="spacer"></span>
       <a mat-button routerLink="/code/{{ room.name }}" routerLinkActive="active">Code</a>
       <a mat-button routerLink="/pizza/{{ room.name }}" routerLinkActive="active">Pizza</a>
       <a mat-button routerLink="/about/{{ room.name }}" routerLinkActive="active">About</a>
     </mat-toolbar>
-    <router-outlet></router-outlet>
+    <router-outlet />
   </mat-sidenav-content>
 </mat-sidenav-container>

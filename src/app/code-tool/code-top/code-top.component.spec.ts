@@ -11,7 +11,7 @@ describe('CodeTopComponent', () => {
       imports: [CodeTopComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(CodeTopComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

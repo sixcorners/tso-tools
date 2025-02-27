@@ -11,7 +11,7 @@ describe('PizzaSideComponent', () => {
       imports: [PizzaSideComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(PizzaSideComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

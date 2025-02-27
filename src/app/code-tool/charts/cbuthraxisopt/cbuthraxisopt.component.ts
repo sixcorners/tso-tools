@@ -4,7 +4,6 @@ import { CbuthraxisoptService } from './cbuthraxisopt.service';
 
 @Component({
   selector: 'app-cbuthraxisopt',
-  standalone: true,
   imports: [],
   templateUrl: './cbuthraxisopt.component.html',
   styleUrl: './cbuthraxisopt.component.scss'
