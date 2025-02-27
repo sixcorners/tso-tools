@@ -28,10 +28,10 @@ export class ChartComponent implements AfterViewInit, DoCheck {
   private lastNodeId = -1;
   ngDoCheck() {
     if (!this.ctx) return;
-    const { id, relative_id, parent_id } = this.navigator.current.node;
+    const { id, relative_id, parent_id } = this.navigator.current?.node ?? {};
     if (this.lastNodeId == id) return;
     if (relative_id == 0) this.clear();
-    if (this.navigator.current.nodeChart.name == this.chart.name) {
+    if (this.navigator.current?.nodeChart?.name == this.chart.name) {
       const [circle, arrow] = this.chart.drawings[relative_id];
       this.ctx.stroke(circle);
       if (arrow && this.lastNodeId == parent_id)

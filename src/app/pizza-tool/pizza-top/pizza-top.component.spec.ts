@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PizzaTopComponent } from './pizza-top.component';
+import { provideRouter } from '@angular/router';
 
 describe('PizzaTopComponent', () => {
   let component: PizzaTopComponent;
@@ -8,7 +9,8 @@ describe('PizzaTopComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PizzaTopComponent]
+      imports: [PizzaTopComponent],
+      providers: [provideRouter([])],
     })
     .compileComponents();
 

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CodeTopComponent } from './code-top.component';
+import { provideRouter } from '@angular/router';
 
 describe('CodeTopComponent', () => {
   let component: CodeTopComponent;
@@ -8,7 +9,8 @@ describe('CodeTopComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CodeTopComponent]
+      imports: [CodeTopComponent],
+      providers: [provideRouter([])],
     })
     .compileComponents();
 
