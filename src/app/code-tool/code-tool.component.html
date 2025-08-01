@@ -61,7 +61,7 @@
     <mat-label>Chart</mat-label>
     <mat-select (selectionChange)="navigator.moveChart($event.value)" [value]="navigator.current?.chart.id"
       (selectionChange)="showHideInfo()">
-      @for (entry of navigator.availableCharts; track entry) {
+      @for (entry of navigator.availableCharts; track entry.id) {
         <mat-option [value]="entry.chart.id">
           {{entry.chart.title}}
         </mat-option>

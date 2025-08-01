@@ -39,7 +39,7 @@
   }
   <button mat-raised-button (click)="bake()" [disabled]="!ready">
     Bake: @for (role of roles; track role) {
-    <span [class]="role"> {{model[role][model[role].selection!]}}</span>
-  }
-</button>
+      <span [class]="role"> {{model[role][model[role].selection!]}}</span>
+    }
+  </button>
 </div>
