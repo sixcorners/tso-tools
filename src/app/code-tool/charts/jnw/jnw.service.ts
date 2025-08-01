@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Chart } from '../chart';
 
 @Injectable({
   providedIn: 'root'
 })
-export class JnwService {
+export class JnwService implements Chart {
   readonly name = 'jnw' as const;
   readonly title = 'Jandrea\'s NEVER WRONG Codebreaker Chart' as const;
   readonly nodes = [

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Chart } from '../chart';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CbuthraxisoptService {
+export class CbuthraxisoptService implements Chart {
   readonly name = 'cbuthraxisopt' as const;
   readonly title = 'Thraxis optimized by Madison' as const;
   readonly nodes = [

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Chart } from '../chart';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ChartService {
+export class ChartService implements Chart {
   readonly name = 'chart' as const;
   readonly title = 'The Hermione CBU Chart' as const;
   readonly nodes = [

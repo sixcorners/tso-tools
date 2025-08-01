@@ -14,6 +14,7 @@ import { ChartComponent } from './charts/chart/chart.component';
 import { JnwComponent } from './charts/jnw/jnw.component';
 import { TwiddlerMimCode2Component } from './charts/twiddler-mim-code2/twiddler-mim-code2.component';
 import { Tso0112Component } from './charts/tso0112/tso0112.component';
+import { allCombinations } from './charts/chart';
 
 // https://github.com/riperiperi/FreeSO/blob/master/TSOClient/tso.simantics/NetPlay/EODs/Handlers/VMEODPaperChasePlugin.cs
 @Component({
@@ -36,35 +37,7 @@ import { Tso0112Component } from './charts/tso0112/tso0112.component';
   styleUrl: './code-tool.component.scss'
 })
 export class CodeToolComponent {
-  private combinations = [
-    'AAA',
-    'AAB',
-    'AAC',
-    'ABA',
-    'ABB',
-    'ABC',
-    'ACA',
-    'ACB',
-    'ACC',
-    'BAA',
-    'BAB',
-    'BAC',
-    'BBA',
-    'BBB',
-    'BBC',
-    'BCA',
-    'BCB',
-    'BCC',
-    'CAA',
-    'CAB',
-    'CAC',
-    'CBA',
-    'CBB',
-    'CBC',
-    'CCA',
-    'CCB',
-    'CCC',
-  ] as const;
+  private combinations = allCombinations;
   @ViewChild('chart') chart!: ElementRef<HTMLDivElement>;
 
   constructor(readonly navigator: ChartNavigatorService) { }

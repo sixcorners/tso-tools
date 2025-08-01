@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Chart } from '../chart';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TwiddlerMimCode2Service {
+export class TwiddlerMimCode2Service implements Chart {
   readonly name = 'twiddler_mim_code2' as const;
   readonly title = 'Twiddler\'s CBU Code Smasher 4.0' as const;
   readonly nodes = [

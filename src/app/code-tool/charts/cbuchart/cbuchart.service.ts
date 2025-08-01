@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Chart } from '../chart';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CbuchartService {
+export class CbuchartService implements Chart {
   readonly name = 'cbuchart' as const;
   readonly title = 'Madison’s CBU Chart' as const;
   readonly nodes = [
