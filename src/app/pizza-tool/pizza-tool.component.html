@@ -1,33 +1,45 @@
 <div class="ingredient input">
-    <div class="role" *ngFor="let role of roles">
-        <div>
-            <mat-checkbox #checkbox>{{role | titlecase}}</mat-checkbox>
-            <span class="last-selection" [class.hidden]="!checkbox.checked || !model[role].lastSelection">In the game
-                you should click slot: {{model[role].lastSelection}} ({{model[role].lastSelectionIngredient}})</span>
-        </div>
-        <mat-button-toggle-group class="slot" *ngFor="let slot of slots" name="{{role}}_{{slot}}"
-            [(ngModel)]="model[role][slot]" [disabled]="!checkbox.checked" hideSingleSelectionIndicator
-            #group="matButtonToggleGroup" [class.selected]="group.value">
-            <ng-container *ngFor="let size of ['L', 'M', 'S']">
-                <mat-button-toggle *ngFor="let variety of ['D', 'S', 'C', 'T']" value="{{size}}{{variety}}"
-                    (click)="newIngredient(role)">
-                    {{size}}{{variety}}
-                </mat-button-toggle>
-            </ng-container>
+  @for (role of roles; track role) {
+    <div class="role">
+      <div>
+        <mat-checkbox #checkbox>{{role | titlecase}}</mat-checkbox>
+        <span class="last-selection" [class.hidden]="!checkbox.checked || !model[role].lastSelection">In the game
+        you should click slot: {{model[role].lastSelection}} ({{model[role].lastSelectionIngredient}})</span>
+      </div>
+      @for (slot of slots; track slot) {
+        <mat-button-toggle-group class="slot" name="{{role}}_{{slot}}"
+          [(ngModel)]="model[role][slot]" [disabled]="!checkbox.checked" hideSingleSelectionIndicator
+          #group="matButtonToggleGroup" [class.selected]="group.value">
+          @for (size of ['L', 'M', 'S']; track size) {
+            @for (variety of ['D', 'S', 'C', 'T']; track variety) {
+              <mat-button-toggle value="{{size}}{{variety}}"
+                (click)="newIngredient(role)">
+                {{size}}{{variety}}
+              </mat-button-toggle>
+            }
+          }
         </mat-button-toggle-group>
+      }
     </div>
+  }
 </div>
 <div class="leader input">
-    <mat-checkbox #checkbox>Leader</mat-checkbox>
-    <div class="role" *ngFor="let role of roles">
-        <mat-button-toggle-group class="decision" [name]="role" [(ngModel)]="model[role].selection"
-            [disabled]="!checkbox.checked" hideSingleSelectionIndicator>
-            <mat-button-toggle *ngFor="let slot of slots" [value]="slot" [disabled]="!model[role][slot]">
-                {{model[role][slot] ?? '??'}}
-            </mat-button-toggle>
-        </mat-button-toggle-group>
+  <mat-checkbox #checkbox>Leader</mat-checkbox>
+  @for (role of roles; track role) {
+    <div class="role">
+      <mat-button-toggle-group class="decision" [name]="role" [(ngModel)]="model[role].selection"
+        [disabled]="!checkbox.checked" hideSingleSelectionIndicator>
+        @for (slot of slots; track slot) {
+          <mat-button-toggle [value]="slot" [disabled]="!model[role][slot]">
+            {{model[role][slot] ?? '??'}}
+          </mat-button-toggle>
+        }
+      </mat-button-toggle-group>
     </div>
-    <button mat-raised-button (click)="bake()" [disabled]="!ready">
-        Bake: <span *ngFor="let role of roles" [class]="role"> {{model[role][model[role].selection!]}}</span>
-    </button>
+  }
+  <button mat-raised-button (click)="bake()" [disabled]="!ready">
+    Bake: @for (role of roles; track role) {
+    <span [class]="role"> {{model[role][model[role].selection!]}}</span>
+  }
+</button>
 </div>

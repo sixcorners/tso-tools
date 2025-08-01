@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import * as lf from 'lovefield-ts/dist/es6/lf';
 import { ChartNavigatorService } from './chart-navigator.service';
-import { CommonModule } from '@angular/common';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
@@ -19,7 +19,6 @@ import { Tso0112Component } from './charts/tso0112/tso0112.component';
 @Component({
   selector: 'app-code-tool',
   imports: [
-    CommonModule,
     MatFormFieldModule,
     MatSelectModule,
     MatOptionModule,
@@ -31,8 +30,8 @@ import { Tso0112Component } from './charts/tso0112/tso0112.component';
     ChartComponent,
     JnwComponent,
     TwiddlerMimCode2Component,
-    Tso0112Component,
-  ],
+    Tso0112Component
+],
   templateUrl: './code-tool.component.html',
   styleUrl: './code-tool.component.scss'
 })

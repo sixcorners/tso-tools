@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import { PizzaModelService } from '../pizza-model.service';
-import { NgFor } from '@angular/common';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-pizza-side',
   imports: [
-    NgFor,
     MatToolbarModule,
-    MatListModule,
-  ],
+    MatListModule
+],
   templateUrl: './pizza-side.component.html',
   styleUrl: './pizza-side.component.scss'
 })

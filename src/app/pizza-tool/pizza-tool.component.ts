@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RoomService } from '../room/room.service';
 import { PizzaModelService } from './pizza-model.service';
-import { NgFor, TitleCasePipe } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -11,13 +11,12 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-pizza-tool',
   imports: [
-    NgFor,
     TitleCasePipe,
     FormsModule,
     MatCheckboxModule,
     MatButtonToggleModule,
-    MatButtonModule,
-  ],
+    MatButtonModule
+],
   templateUrl: './pizza-tool.component.html',
   styleUrl: './pizza-tool.component.scss'
 })

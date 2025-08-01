@@ -24,7 +24,7 @@
       mat-raised-button
       color="accent">{{
       0
-      }}</button>
+    }}</button>
     <button
       [disabled]="!navigator.currentChoices[1]"
       (click)="moveNode(navigator.currentChoices[1])"
@@ -32,7 +32,7 @@
       mat-raised-button
       color="accent">{{
       1
-      }}</button>
+    }}</button>
     <button
       [disabled]="!navigator.currentChoices[2]"
       (click)="moveNode(navigator.currentChoices[2])"
@@ -40,7 +40,7 @@
       mat-raised-button
       color="accent">{{
       2
-      }}</button>
+    }}</button>
     <button
       [disabled]="!navigator.currentChoices[3]"
       (click)="moveNode(navigator.currentChoices[3])"
@@ -48,28 +48,44 @@
       mat-raised-button
       color="warn">{{
       3
-      }}</button>
+    }}</button>
   </div>
-  <div class="info" *ngIf="showInfo">
-    {{currentChartInfo}}
-  </div>
+  @if (showInfo) {
+    <div class="info">
+      {{currentChartInfo}}
+    </div>
+  }
 </div>
 <div class="chart" #chart>
   <mat-form-field subscriptSizing="dynamic">
     <mat-label>Chart</mat-label>
     <mat-select (selectionChange)="navigator.moveChart($event.value)" [value]="navigator.current?.chart.id"
       (selectionChange)="showHideInfo()">
-      <mat-option *ngFor="let entry of navigator.availableCharts" [value]="entry.chart.id">
-        {{entry.chart.title}}
-      </mat-option>
+      @for (entry of navigator.availableCharts; track entry) {
+        <mat-option [value]="entry.chart.id">
+          {{entry.chart.title}}
+        </mat-option>
+      }
     </mat-select>
   </mat-form-field>
-  <ng-container [ngSwitch]="navigator.current?.chart.name">
-    <app-cbuchart *ngSwitchCase="'cbuchart'"></app-cbuchart>
-    <app-cbuthraxisopt *ngSwitchCase="'cbuthraxisopt'"></app-cbuthraxisopt>
-    <app-chart *ngSwitchCase="'chart'"></app-chart>
-    <app-jnw *ngSwitchCase="'jnw'"></app-jnw>
-    <app-twiddler-mim-code2 *ngSwitchCase="'twiddler_mim_code2'"></app-twiddler-mim-code2>
-    <app-tso0112 *ngSwitchCase="'tso0112'"></app-tso0112>
-  </ng-container>
+  @switch (navigator.current?.chart.name) {
+    @case ('cbuchart') {
+      <app-cbuchart></app-cbuchart>
+    }
+    @case ('cbuthraxisopt') {
+      <app-cbuthraxisopt></app-cbuthraxisopt>
+    }
+    @case ('chart') {
+      <app-chart></app-chart>
+    }
+    @case ('jnw') {
+      <app-jnw></app-jnw>
+    }
+    @case ('twiddler_mim_code2') {
+      <app-twiddler-mim-code2></app-twiddler-mim-code2>
+    }
+    @case ('tso0112') {
+      <app-tso0112></app-tso0112>
+    }
+  }
 </div>

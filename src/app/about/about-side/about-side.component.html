@@ -1,9 +1,10 @@
 <mat-toolbar>History</mat-toolbar>
 <mat-nav-list>
-  <a mat-list-item
-    *ngFor="let entry of about.history"
-    (click)="click(entry)"
-    [title]="entry.message">{{
+  @for (entry of about.history; track entry) {
+    <a mat-list-item
+      (click)="click(entry)"
+      [title]="entry.message">{{
       entry.parsed || entry.message
-  }}</a>
+    }}</a>
+  }
 </mat-nav-list>
