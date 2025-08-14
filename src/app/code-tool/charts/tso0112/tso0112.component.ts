@@ -17,8 +17,9 @@ export class Tso0112Component {
 
   constructor(private navigator: ChartNavigatorService) { }
 
-  @HostListener("click", ['$event.target.dataset.node'])
-  click(node: number) {
-    if (node) this.navigator.moveNodeRelative(node);
+  @HostListener("click", ['$event'])
+  click($event: MouseEvent) {
+    const node = ($event?.target as HTMLElement)?.dataset['node'];
+    if (node) this.navigator.moveNodeRelative(+node);
   }
 }
