@@ -23,7 +23,7 @@ import { AsyncPipe } from '@angular/common';
     AsyncPipe
   ],
   templateUrl: './room.component.html',
-  styleUrl: './room.component.scss',
+  styleUrl: './room.component.scss'
 })
 export class RoomComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
