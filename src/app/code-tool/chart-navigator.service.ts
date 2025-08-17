@@ -67,10 +67,8 @@ export class ChartNavigatorService {
         this.reset();
       }
       data = JSON.parse(data);
-      if (this.lastTimestamp >= data.timestamp)
-        return;
-      if (!data.message)
-        return;
+      if (this.lastTimestamp >= data.timestamp) return;
+      if (!data.message) return;
       this.lastTimestamp = data.timestamp;
       {
         const match = data.message.match(/!moveNode (\d+)/);

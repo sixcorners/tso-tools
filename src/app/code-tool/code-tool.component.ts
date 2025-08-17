@@ -32,7 +32,7 @@ import { allCombinations } from './charts/chart';
     JnwComponent,
     TwiddlerMimCode2Component,
     Tso0112Component
-],
+  ],
   templateUrl: './code-tool.component.html',
   styleUrl: './code-tool.component.scss'
 })
@@ -53,8 +53,9 @@ export class CodeToolComponent {
 
   private matches(a: string, b: string) {
     let matches = 0;
-    for (let i = a.length - 1; i >= 0; i--)
-      matches += +(a[i] == b[i]);
+    const lim = Math.min(a.length, b.length);
+    for (let i = 0; i < lim; i++)
+      matches += +(a[i] === b[i]);
     return matches;
   }
 
@@ -72,8 +73,7 @@ export class CodeToolComponent {
     let steps = 0;
     for (; ;) {
       const matches = this.matches(combination, current.node.combination);
-      if (++steps >= 99 || matches == 3)
-        break;
+      if (++steps >= 99 || matches == 3) break;
       [current] = await db.select()
         .from(node)
         .innerJoin(history, history.col('chart_id').eq(node.col('chart_id')))
