@@ -9,7 +9,7 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 const routerFeatures: RouterFeatures[] = [];
 
 // switch from the History API / pushState navigation if the base url is fully relative
-const base = document.querySelector('base')?.getAttribute('href');
+const base = globalThis.document?.querySelector('base')?.getAttribute('href');
 if (!base?.startsWith('/') && !base?.includes('://')) routerFeatures.push(withHashLocation());
 
 export const appConfig: ApplicationConfig = {
