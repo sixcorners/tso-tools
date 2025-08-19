@@ -1,6 +1,6 @@
 <mat-toolbar>History</mat-toolbar>
 <mat-nav-list>
-  @for (entry of model.history; track entry.id) {
+  @for (entry of model.history; track entry.timestamp) {
     <a mat-list-item
       [title]="entry.message">{{
       entry.parsed || entry.message

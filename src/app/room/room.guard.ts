@@ -9,7 +9,7 @@ const nanoid = customAlphabet('-_23456789:ABCDEFGHJKLMNPRSTUVWXYZabcdefghijkmnop
 // https://juristr.com/blog/2018/11/better-route-guard-redirects/
 export const roomGuard: CanActivateFn = (route) => {
   return inject(Router).createUrlTree(
-    [...getResolvedUrl(route), 'offline']
+    [...getResolvedUrl(route), nanoid()],
   );
 };
 

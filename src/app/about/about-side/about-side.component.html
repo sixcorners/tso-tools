@@ -1,6 +1,6 @@
 <mat-toolbar>History</mat-toolbar>
 <mat-nav-list>
-  @for (entry of about.history; track entry.id) {
+  @for (entry of about.history; track entry.timestamp) {
     <a mat-list-item
       (click)="click(entry)"
       [title]="entry.message">{{

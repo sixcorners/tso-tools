@@ -1,5 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterOutlet, RouterLink, RouterLinkActive, ActivatedRoute } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -25,7 +25,7 @@ import { AsyncPipe } from '@angular/common';
   templateUrl: './room.component.html',
   styleUrl: './room.component.scss'
 })
-export class RoomComponent implements OnInit {
+export class RoomComponent {
   private breakpointObserver = inject(BreakpointObserver);
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -34,9 +34,7 @@ export class RoomComponent implements OnInit {
       shareReplay()
     );
 
-  constructor(readonly route: ActivatedRoute, readonly room: RoomService) { }
-
-  ngOnInit() {
-    this.route.paramMap.subscribe(params => this.room.changeRoom(params.get('room') ?? undefined, '!joined'));
+  constructor(readonly room: RoomService, route: ActivatedRoute) {
+    room.subscribe(route);
   }
 }
