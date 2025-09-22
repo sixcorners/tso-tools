@@ -28,7 +28,7 @@
     "@angular/core": "^20.1.0",
     "@angular/forms": "^20.1.0",
     "@angular/material": "^20.2.0",
-    "@angular/platform-browser": "^20.1.0",
+    "@angular/platform-browser": "^20.3.1",
     "@angular/router": "^20.1.0",
     "@angular/service-worker": "^20.1.0",
     "lovefield-ts": "^0.7.0",
